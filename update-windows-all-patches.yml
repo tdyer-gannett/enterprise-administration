@@ -58,5 +58,7 @@
       debug: var=check_finish  
 
     - name: Reboot if needed.
-      raw: shutdown.exe /r /t 10 /d p:2:3
-when: check_finish.reboot_required != false 
+      win_reboot:
+        pre_reboot_delay_sec: 10
+      when: check_finish.reboot_required != false
+
