@@ -1,0 +1,8 @@
+---
+- hosts: linux
+  gather_facts: no
+  remote_user: root
+  connection: ssh
+  become: yes
+  roles:
+      - ansible-client
