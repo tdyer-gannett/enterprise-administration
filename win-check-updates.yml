@@ -1,0 +1,36 @@
+#The following command should be run to install the updates
+
+# ansible-playbook win-critsec.yml --ask-vault-pass --extra-vars "group=<group_name>"
+
+- hosts: '{{ group }}'
+  gather_facts: yes
+  tasks:
+    - name: Find all Critical and Security updates.
+      win_updates:
+        category_names:
+          - Application
+          - Connectors
+          - CriticalUpdates
+          - DefinitionUpdates
+          - DeveloperKits
+          - FeaturePacks
+          - Guidance
+          - SecurityUpdates
+          - ServicePacks
+          - Tools
+          - UpdateRollups
+          - Updates
+        state: searched
+        log_path: c:\ansible_wui_list.txt
+      register: found_updates
+      tags: find_updates
+    - name: Display (all) updates.
+      debug: var=found_updates
+    - name: Prompt for confirmation to install updates.
+      pause:
+        prompt: "Please confirm update installation! Enter 'Y' to continue."
+      register: result
+    - name: Exit if anything other than Y
+      meta: end_play
+      when: result.user_input != "Y"
+

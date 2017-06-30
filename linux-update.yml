@@ -1,0 +1,13 @@
+--- # Run yum update on all CentOS 7 machines
+- hosts: infrastructure_linux
+  gather_facts: no
+  tasks:
+    - name: upgrade all packages
+      yum:
+          name: '*'
+          state: latest
+          skip_broken: yes
+      register: yum_result
+    - debug: var=yum_result
+  
+

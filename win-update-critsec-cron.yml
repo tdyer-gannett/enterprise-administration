@@ -1,0 +1,44 @@
+--- # This playbook is intended for unattended updates run from a crontab.
+
+# WARNING: THIS SCRIPT WILL INSTALL UPDATES AND REBOOT ALL SERVERS IN THE GROUP
+#          It will not ask for confirmation or provide detailed output.
+#          It will run and notify the Slack #maintenance channel when it is done.
+
+- hosts: '{{ group }}'
+  gather_facts: no
+  tasks:
+    - name: Install Critical and Security updates.
+      win_updates:
+        category_names:
+          - CriticalUpdates
+          - SecurityUpdates
+        state: installed
+        log_path: c:\ansible_wui_installed.txt
+      register: check_finish
+      notify: Slack Maintenance Channel Upates Applied
+      tags: installed_updates
+
+    - name: Reboot if needed.
+      win_reboot:
+        pre_reboot_delay_sec: 10
+      when: check_finish.reboot_required != false
+      notify: Slack Maintenance Channel Reboot
+      tags: reboot
+
+  handlers:
+    - name: Slack Maintenance Channel Reboot
+      slack:
+        token: "{{ slack_token_maint }}"
+        icon_url: https://www.ansible.com/favicon.ico
+        username: 'Ansible on {{ inventory_hostname }}'
+        msg: "NOTICE: {{ inventory_hostname }} is being rebooted for maintenance."
+      delegate_to: localhost
+
+    - name: Slack Maintenance Channel Upates Applied
+      slack:
+        token: "{{ slack_token_maint }}"
+        icon_url: https://www.ansible.com/favicon.ico
+        username: 'Ansible on {{ inventory_hostname }}'
+        msg: "NOTICE: Updates have been applied to: {{ inventory_hostname }}"
+      delegate_to: localhost
+

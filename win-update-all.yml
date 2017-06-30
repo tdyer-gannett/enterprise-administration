@@ -1,0 +1,73 @@
+--- # This playbook will install windows updates of all the categories on the machines for the group mentioned as the argument and reboot the server
+#The following command should be run to install the updates
+# ansible-playbook win-update-all.yml --ask-vault-pass --extra-vars "group=[group_name | hostname]"
+
+- hosts: '{{ group }}' 
+  gather_facts: no 
+  tasks:
+    - name: Find all avaiable updates.
+      win_updates:
+        category_names:
+          - Application
+          - Connectors
+          - DefinitionUpdates
+          - DeveloperKits
+          - FeaturePacks
+          - Guidance
+          - ServicePacks
+          - Tools
+          - UpdateRollups
+          - CriticalUpdates
+          - SecurityUpdates
+          - Updates
+          - UpdateRollups
+        state: searched
+        log_path: c:\ansible_wui_list.txt
+      register: found_updates
+      tags: find_updates
+    - name: Display (all) updates.
+      debug: var=found_update
+
+    - name: Prompt for confirmation to install updates.
+      pause:
+        prompt: "Please confirm update installation! Enter 'Y' to continue."
+      register: result
+    - name: Exit if anything other than Y
+      meta: end_play
+      when: result.user_input != "Y"
+
+   - name: Install (all) the updates.
+      win_updates:
+        category_names:
+          - Application
+          - Connectors
+          - DefinitionUpdates
+          - DeveloperKits
+          - FeaturePacks
+          - Guidance
+          - ServicePacks
+          - Tools
+          - UpdateRollups
+          - CriticalUpdates
+          - SecurityUpdates
+          - Updates
+          - UpdateRollups
+        state: installed
+        log_path: c:\ansible_wui_installed.txt
+      register: check_finish 
+    - name: Display install results. 
+      debug: var=check_finish  
+
+    - name: Prompt for confirmation to reboot servers.
+      pause:
+        prompt: "Please confirm server reboot! Enter 'Y' to continue."
+      register: reboot_result
+    - name: Exit if anything other than Y
+      meta: end_play
+      when: reboot_result.user_input != "Y"
+
+    - name: Reboot if needed.
+      win_reboot:
+        pre_reboot_delay_sec: 10
+      when: check_finish.reboot_required != false
+

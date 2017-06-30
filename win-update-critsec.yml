@@ -1,0 +1,45 @@
+--- # This playbook will install windows updates of Security and Critical categories
+
+#The following command should be run to install the updates
+
+# ansible-playbook win-critsec.yml --ask-vault-pass --extra-vars "group=<group_name>"
+
+- hosts: '{{ group }}'
+  gather_facts: no
+  tasks:
+    - name: Find all Critical and Security updates.
+      win_updates:
+        category_names:
+          - CriticalUpdates
+          - SecurityUpdates
+        state: searched
+        log_path: c:\ansible_wui_list.txt
+      register: found_updates
+      tags: find_updates
+    - name: Display (Critical and Security) updates.
+      debug: var=found_updates
+
+    - name: Make a decision if you want  to continue with windows patches being install on the machines.
+      pause:
+          prompt: "Do you want to install and reboot, if needed? Enter 'Y' to continue."
+      register: result
+    - name: Exit if anything other than Y
+      meta: end_play
+      when: result.user_input != "Y"
+
+    - name: Install (all) the updates.
+      win_updates:
+        category_names:
+          - CriticalUpdates
+          - SecurityUpdates
+        state: installed
+        log_path: c:\ansible_wui_installed.txt
+      register: check_finish
+      tags: installed_updates
+    - name: Check on reboot requirement.
+      debug: var=check_finish
+
+    #- name: Reboot if needed.
+    #  win_reboot:
+    #    pre_reboot_delay_sec: 10
+    #  when: check_finish.reboot_required != false
