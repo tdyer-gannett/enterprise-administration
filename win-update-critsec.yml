@@ -39,7 +39,7 @@
     - name: Check on reboot requirement.
       debug: var=check_finish
 
-    #- name: Reboot if needed.
-    #  win_reboot:
-    #    pre_reboot_delay_sec: 10
-    #  when: check_finish.reboot_required != false
+    - name: Reboot if needed.
+      win_reboot:
+        pre_reboot_delay_sec: 10
+      when: check_finish.reboot_required != false
