@@ -1,0 +1,9 @@
+---
+
+ansible_connection: ssh
+ansible_user: ansible
+ansible_become: yes
+ansible_become_method: sudo
+
+sacewalk_host: moc-lx00011361.gmti.gbahn.net
+
