@@ -36,6 +36,6 @@
         icon_url: "{{ slack_icon_url }}"
         username: "Ansible"
         color: good
-        msg: "NOTICE: {{ inventory_hostname }} has updates available. (not applied)"
+        msg: "NOTICE: {{ inventory_hostname }} has {{ found_updates.found_update_count }} updates available. (not applied)"
       delegate_to: localhost
 
