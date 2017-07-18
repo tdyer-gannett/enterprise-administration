@@ -1,37 +1,24 @@
 ---
 
-- name: test raw module
-  hosts: aime_stage
-  vars:
-      local_user: "{{ lookup('env','USER') }}"
-      ansible_winrm_realm: GMTI.GBAHN.NET
-      ansible_user: "{{ local_user }}@{{ ansible_winrm_realm }}"
-
+- hosts: '{{ group | default("windows") }}'
+  gather_facts: no
   tasks:
-      - name: run ipconfig
-        raw: ipconfig
-        register: ipconfig
-      - debug: var=ipconfig
+    - name: run ipconfig
+      raw: ipconfig
+      register: ipconfig
+      changed_when: false
+    - debug: var=ipconfig
 
-- name: test stat module
-  hosts: aime_stage
-  vars:
-      local_user: "{{ lookup('env','USER') }}"
-      ansible_winrm_realm: GMTI.GBAHN.NET
-      ansible_user: "{{ local_user }}@{{ ansible_winrm_realm }}"
+    - name: test stat module on file
+      win_stat: path="C:/Windows/win.ini"
+      register: stat_file
+    - debug: var=stat_file
 
-  tasks:
-      - name: test stat module on file
-        win_stat: path="C:/Windows/win.ini"
-        register: stat_file
-
-      - debug: var=stat_file
-
-      - name: check stat_file result
-        assert:
-            that:
-                - "stat_file.stat.exists"
-                - "not stat_file.stat.isdir"
-                - "stat_file.stat.size > 0"
-                - "stat_file.stat.md5"
+    - name: check stat_file result
+      assert:
+        that:
+          - "stat_file.stat.exists"
+          - "not stat_file.stat.isdir"
+          - "stat_file.stat.size > 0"
+          - "stat_file.stat.md5"
 
