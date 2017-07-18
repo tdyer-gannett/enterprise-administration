@@ -9,7 +9,7 @@ Central Enterprise Ansible Repository
 > system name that is in the inventory file>
 
 ### Windows Playbooks
- * win_test.yml - Tests access to Windows systems or groups.
+ * win-test.yml - Tests access to Windows systems or groups.
  * win-check-updates.yml - Checks for updates to Windows systems.
  * win-update-critsec.yml - Apply Critical and Security updates and reboot
    the servers when needed.
@@ -21,6 +21,10 @@ Central Enterprise Ansible Repository
  * linux-update.yml - Runs the default package manager for the Linux system
    using the ansible package module that auto-detects the system package
    manager.
+
+### Cross-platform Playbooks
+   * ping-any.yml - Basic test of ansible connectivity to any system, using 
+   the right method for that system.
 
 ## Roles
 
