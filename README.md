@@ -9,6 +9,11 @@ Central Enterprise Ansible Repository
 > system name that is in the inventory file>
 
 ### Windows Playbooks
+> All windows playbooks now rely on the local user's Kerberos tickets for 
+> authentication on the remote server.  To ensure tickets are current, run
+> __kinit__ after logging into the system.  This will ask for the domain
+> password and fetch a current ticket, replacing any expired ticket.
+
  * __win-test.yml__ - Tests access to Windows systems or groups.
  * __win-check-updates.yml__ - Checks for updates to Windows systems.
  * __win-update-critsec.yml__ - Apply Critical and Security updates and 
