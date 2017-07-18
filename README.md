@@ -3,18 +3,24 @@ Central Enterprise Ansible Repository
 
 ## Playbooks
     > Some playbooks have a default group, if one is not hard-coded if one is
-    > not specified on the command line.  To specify a group, add extra-vars
-    > option to the ansible[-playbook] command line. (-e "variable=value")
+    > not specified on the command line.  To specify a group, add a variable
+    > called "group" to the oxtra-vars option to the ansible[-playbook] 
+    > command line. (-e "group=<value>") The value can be a group name or a
+    > system name that is in the inventory file>
 
+### Windows Playbooks
  * win_test.yml - Tests access to Windows systems or groups.
-    ```
-    ansible-playbook win_test.yml -e "group=<group/system name>"
-    ```
-
  * win-check-updates.yml - Checks for updates to Windows systems.
-    ```
-    ansible-playbook win-check-updates.yml -e "group=<group/system name>"
-    ```
+ * win-update-critsec.yml - Apply Critical and Security updates and reboot
+   the servers when needed.
+ * win-update-critsec-cron.yml - Cron version of the Critical and Security
+   update playbook.
+ * win-update-all.yml - Apply ALL AVAILABLE UPDATES and reboot, if necessary.
+  
+### Linux Playbooks
+ * linux-update.yml - Runs the default package manager for the Linux system
+   using the ansible package module that auto-detects the system package
+   manager.
 
 ## Roles
 

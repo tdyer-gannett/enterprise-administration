@@ -10,3 +10,11 @@ old/*
 # Files left behind by editors (vim, etc...)
 *.swp
 
+# Other stuff that should never go to GitHub
+
+# Certificate Files
+*.pem
+*.key
+*.crt
+*.csr
+*.pfx
