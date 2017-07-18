@@ -23,14 +23,19 @@
         state: searched
         log_path: c:\ansible_wui_list.txt
       register: found_updates
+      notify: Slack Maintenance Channel Updates Available
       tags: find_updates
+
     - name: Display (all) updates.
       debug: var=found_updates
-    - name: Prompt for confirmation to install updates.
-      pause:
-        prompt: "Please confirm update installation! Enter 'Y' to continue."
-      register: result
-    - name: Exit if anything other than Y
-      meta: end_play
-      when: result.user_input != "Y"
+
+  handlers:
+    - name: Slack Maintenance Channel Updates Available
+      slack:
+        token: "{{ slack_token_maint }}"
+        icon_url: "{{ slack_icon_url }}"
+        username: "Ansible"
+        color: good
+        msg: "NOTICE: {{ inventory_hostname }} has updates available. (not applied)"
+      delegate_to: localhost
 

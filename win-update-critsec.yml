@@ -49,19 +49,21 @@
       tags: reboot
 
   handlers:
-    - name: Slack Maintenance Channel Reboot
-      slack:
-        token: "{{ slack_token_maint }}"
-        icon_url: https://www.ansible.com/favicon.ico
-        username: 'Ansible on {{ inventory_hostname }}'
-        msg: "NOTICE: {{ inventory_hostname }} is being rebooted for maintenance."
-      delegate_to: localhost
-
     - name: Slack Maintenance Channel Upates Applied
       slack:
         token: "{{ slack_token_maint }}"
-        icon_url: https://www.ansible.com/favicon.ico
-        username: 'Ansible on {{ inventory_hostname }}'
+        icon_url: "{{ slack_icon_url }}"
+        username: "Ansible"
+        color: danger
         msg: "NOTICE: Updates have been applied to: {{ inventory_hostname }}"
+      delegate_to: localhost
+
+    - name: Slack Maintenance Channel Reboot
+      slack:
+        token: "{{ slack_token_maint }}"
+        icon_url: "{{ slack_icon_url }}"
+        username: "Ansible"
+        color: warning
+        msg: "NOTICE: {{ inventory_hostname }} is being rebooted for maintenance."
       delegate_to: localhost
 
