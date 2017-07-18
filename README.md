@@ -2,11 +2,11 @@
 Central Enterprise Ansible Repository
 
 ## Playbooks
-    > Some playbooks have a default group, if one is not hard-coded if one is
-    > not specified on the command line.  To specify a group, add a variable
-    > called "group" to the oxtra-vars option to the ansible[-playbook] 
-    > command line. (-e "group=<value>") The value can be a group name or a
-    > system name that is in the inventory file>
+> Some playbooks have a default group, if one is not hard-coded if one is
+> not specified on the command line.  To specify a group, add a variable
+> called "group" to the oxtra-vars option to the ansible[-playbook] 
+> command line. (-e "group=<value>") The value can be a group name or a
+> system name that is in the inventory file>
 
 ### Windows Playbooks
  * win_test.yml - Tests access to Windows systems or groups.
