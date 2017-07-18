@@ -9,32 +9,27 @@ Central Enterprise Ansible Repository
 > system name that is in the inventory file>
 
 ### Windows Playbooks
- * win-test.yml - Tests access to Windows systems or groups.
- * win-check-updates.yml - Checks for updates to Windows systems.
- * win-update-critsec.yml - Apply Critical and Security updates and reboot
-   the servers when needed.
- * win-update-critsec-cron.yml - Cron version of the Critical and Security
-   update playbook.
- * win-update-all.yml - Apply ALL AVAILABLE UPDATES and reboot, if necessary.
+ * __win-test.yml__ - Tests access to Windows systems or groups.
+ * __win-check-updates.yml__ - Checks for updates to Windows systems.
+ * __win-update-critsec.yml__ - Apply Critical and Security updates and reboot the servers when needed.
+ * __win-update-critsec-cron.yml__ - Cron version of the Critical and Security update playbook.
+ * __win-update-all.yml__ - Apply ALL AVAILABLE UPDATES and reboot, if necessary.
   
 ### Linux Playbooks
- * linux-update.yml - Runs the default package manager for the Linux system
-   using the ansible package module that auto-detects the system package
-   manager.
+ * __linux-update.yml__ - Runs the default package manager for the Linux system using the ansible package module that auto-detects the system package manager.
 
 ### Cross-platform Playbooks
-   * ping-any.yml - Basic test of ansible connectivity to any system, using 
-   the right method for that system.
+   * __ping-any.yml__ - Basic test of ansible connectivity to any system, using the right method for that system.
 
 ## Roles
 
- * ansible-client - Creates the ansible user on all linux systems.  It creates
-   the ansible user and group, if needed, copies the authorized_keys and 
-   configures sudors for elevated privileges.
+ * __ansible-client__ - Creates the ansible user on all linux systems.  It 
+ creates the ansible user and group, if needed, copies the authorized_keys 
+ and configures sudors for elevated privileges.
 
 ## Configuration Files
 
- * hosts - Default inventory file (override with -i <filename>)
+ * __hosts__ - Default inventory file (override with -i <filename>)
 
- * ansible.cfg - Local configuration file (overrides /etc/ansible/ansible.cfg)
+ * __ansible.cfg__ - Local configuration file (overrides /etc/ansible/ansible.cfg)
 
