@@ -5,6 +5,12 @@
 - hosts: '{{ group }}'
   gather_facts: yes
   tasks:
+    - name: Verify the Windows Update Service is running
+      win_service:
+        name: wuauserv
+        state: started
+      register: service_info
+
     - name: Find all Critical and Security updates.
       win_updates:
         category_names:
