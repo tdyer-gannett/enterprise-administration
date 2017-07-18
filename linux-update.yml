@@ -1,13 +1,18 @@
---- # Run yum update on all CentOS 7 machines
-- hosts: infrastructure_linux
+--- # Run package module to upgrade all packages on linux systems.
+
+- hosts: "{{ group | default('linux') }}"
+  ansible_connection: ssh
+  ansible_user: ansible
+  ansible_become: yes
+  ansible_become_method: sudo
   gather_facts: no
+
   tasks:
     - name: upgrade all packages
-      yum:
+      package:
           name: '*'
           state: latest
-          skip_broken: yes
-      register: yum_result
-    - debug: var=yum_result
+      register: package_result
+    - debug: var=package_result
   
 
