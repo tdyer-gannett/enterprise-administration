@@ -35,7 +35,9 @@
         state: installed
         log_path: c:\ansible_wui_installed.txt
       register: check_finish
+      notify: Slack Maintenance Channel Upates Applied
       tags: installed_updates
+
     - name: Check on reboot requirement.
       debug: var=check_finish
 
@@ -43,3 +45,23 @@
       win_reboot:
         pre_reboot_delay_sec: 10
       when: check_finish.reboot_required != false
+      notify: Slack Maintenance Channel Reboot
+      tags: reboot
+
+  handlers:
+    - name: Slack Maintenance Channel Reboot
+      slack:
+        token: "{{ slack_token_maint }}"
+        icon_url: https://www.ansible.com/favicon.ico
+        username: 'Ansible on {{ inventory_hostname }}'
+        msg: "NOTICE: {{ inventory_hostname }} is being rebooted for maintenance."
+      delegate_to: localhost
+
+    - name: Slack Maintenance Channel Upates Applied
+      slack:
+        token: "{{ slack_token_maint }}"
+        icon_url: https://www.ansible.com/favicon.ico
+        username: 'Ansible on {{ inventory_hostname }}'
+        msg: "NOTICE: Updates have been applied to: {{ inventory_hostname }}"
+      delegate_to: localhost
+
