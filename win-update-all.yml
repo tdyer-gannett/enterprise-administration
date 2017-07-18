@@ -30,13 +30,13 @@
 
     - name: Prompt for confirmation to install updates.
       pause:
-        prompt: "Please confirm update installation! Enter 'Y' to continue."
+        prompt: "Please confirm update installation and reboot, if needed! Enter 'Y' to continue."
       register: result
     - name: Exit if anything other than Y
       meta: end_play
       when: result.user_input != "Y"
 
-   - name: Install (all) the updates.
+    - name: Install (all) the updates.
       win_updates:
         category_names:
           - Application
@@ -54,20 +54,38 @@
           - UpdateRollups
         state: installed
         log_path: c:\ansible_wui_installed.txt
-      register: check_finish 
+      register: check_finish
+      notify: Slack Maintenance Channel Upates Applied
+      tags: installed_updates
+
     - name: Display install results. 
       debug: var=check_finish  
-
-    - name: Prompt for confirmation to reboot servers.
-      pause:
-        prompt: "Please confirm server reboot! Enter 'Y' to continue."
-      register: reboot_result
-    - name: Exit if anything other than Y
-      meta: end_play
-      when: reboot_result.user_input != "Y"
 
     - name: Reboot if needed.
       win_reboot:
         pre_reboot_delay_sec: 10
       when: check_finish.reboot_required != false
+      notify: Slack Maintenance Channel Reboot
+      tags: reboot
+
+  handlers:
+    - name: Slack Maintenance Channel Upates Applied
+      slack:
+        token: "{{ slack_token_maint }}"
+        attachments:
+            - text: "NOTICE: Updates have been applied to: {{ inventory_hostname }}"
+              color: warning
+              author_name: "Ansible"
+              author_icon: "{{ slack_icon_url }}"
+      delegate_to: localhost
+
+    - name: Slack Maintenance Channel Reboot
+      slack:
+        token: "{{ slack_token_maint }}"
+        attachments:
+          - text: "NOTICE: {{ inventory_hostname }} has been rebooted following Windows Update Installation."
+            color: good
+            author_name: "Ansible"
+            author_icon: "{{ slack_icon_url }}"
+      delegate_to: localhost
 
