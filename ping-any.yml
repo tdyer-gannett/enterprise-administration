@@ -2,7 +2,7 @@
 - name: Ping Hosts
   hosts: aime_stage
   become_method: sudo
-  gather_facts: no
+  gather_facts: yes
 
   tasks:
       - name: Ping Windows Hosts
