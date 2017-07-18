@@ -33,9 +33,11 @@
     - name: Slack Maintenance Channel Updates Available
       slack:
         token: "{{ slack_token_maint }}"
-        icon_url: "{{ slack_icon_url }}"
-        username: "Ansible"
-        color: good
-        msg: "NOTICE: {{ inventory_hostname }} has {{ found_updates.found_update_count }} updates available. (not applied)"
+        attachments:
+          - text: "NOTICE: {{ inventory_hostname }} has updates available. (not applied)"
+            title: Ansible Windows Update
+            color: good
+            author_name: "Ansible"
+            author_icon: "{{ slack_icon_url }}"
       delegate_to: localhost
 
