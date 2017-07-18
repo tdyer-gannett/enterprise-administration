@@ -1,4 +1,5 @@
 # Don't version control log files
 log/*
 *.retry
+old/*
 
