@@ -10,8 +10,10 @@ system name that is in the inventory file>
 
 ### Windows Playbooks
 > All windows playbooks now rely on the local user's Kerberos tickets for 
-> authentication on the remote server.  To ensure tickets are current, run
-> __kinit__ after logging into the system.  This will ask for the domain
+> authentication on the remote server.  SSSd will attempt to keep tickets
+> current, by renewing them automatically.  To check if tickets are current, 
+> run __klist__ and verify the dates.  To get new tickets, run __kinit__ 
+> after logging into the system.  This will ask for the domain
 > password and fetch a current ticket, replacing any expired ticket.  Use
 > __klist__ to list the user's principal and tickets.
 ```
