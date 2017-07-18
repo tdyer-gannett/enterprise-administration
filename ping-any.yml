@@ -7,9 +7,9 @@
   tasks:
       - name: Ping Windows Hosts
         win_ping:
-        when: os_family == "Windows"
+        when: ansible_os_family == "Windows"
 
       - name: Ping Linux Hosts
         ping:
-        when: os_family != "Windows"
+        when: ansible_os_family != "Windows"
 

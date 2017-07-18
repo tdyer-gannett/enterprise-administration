@@ -17,7 +17,7 @@ ansible_winrm_scheme=https
 [aime_stage]
 moc-wn00009573
 moc-wn00009593
-moc-wn00009594
+# moc-wn00009594
 moc-wn00010063
 moc-wn00010237
 moc-wn00010238
