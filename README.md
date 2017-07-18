@@ -2,17 +2,30 @@
 Central Enterprise Ansible Repository
 
 ## Playbooks
-> Some playbooks have a default group, if one is not hard-coded if one is
-> not specified on the command line.  To specify a group, add a variable
-> called "group" to the oxtra-vars option to the ansible[-playbook] 
-> command line. (-e "group=<value>") The value can be a group name or a
-> system name that is in the inventory file>
+Some playbooks have a default group, if one is not hard-coded if one is
+not specified on the command line.  To specify a group, add a variable
+called "group" to the oxtra-vars option to the ansible[-playbook] 
+command line. (-e "group=<value>") The value can be a group name or a
+system name that is in the inventory file>
 
 ### Windows Playbooks
 > All windows playbooks now rely on the local user's Kerberos tickets for 
 > authentication on the remote server.  To ensure tickets are current, run
 > __kinit__ after logging into the system.  This will ask for the domain
-> password and fetch a current ticket, replacing any expired ticket.
+> password and fetch a current ticket, replacing any expired ticket.  Use
+> __klist__ to list the user's principal and tickets.
+```
+prompt> kinit
+Password for dmaple@GMTI.GBAHN.NET:
+
+prompt> klist
+Ticket cache: FILE:/tmp/krb5cc_149813743
+Default principal: dmaple@GMTI.GBAHN.NET
+
+Valid starting       Expires              Service principal
+07/18/2017 10:06:54  07/18/2017 20:06:54  krbtgt/GMTI.GBAHN.NET@GMTI.GBAHN.NET
+	renew until 07/25/2017 10:06:49
+```
 
  * __win-test.yml__ - Tests access to Windows systems or groups.
  * __win-check-updates.yml__ - Checks for updates to Windows systems.
