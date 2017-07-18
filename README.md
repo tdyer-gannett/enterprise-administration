@@ -2,6 +2,9 @@
 Central Enterprise Ansible Repository
 
 ## Playbooks
+    > Some playbooks have a default group, if one is not hard-coded if one is
+    > not specified on the command line.  To specify a group, add extra-vars
+    > option to the ansible[-playbook] command line. (-e "variable=value")
 
  * win_test.yml - Tests access to Windows systems or groups.
     ```
@@ -11,6 +14,7 @@ Central Enterprise Ansible Repository
  * win-check-updates.yml - Checks for updates to Windows systems.
     ```
     ansible-playbook win-check-updates.yml -e "group=<group/system name>"
+    ```
 
 ## Roles
 

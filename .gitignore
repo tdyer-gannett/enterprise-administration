@@ -1,5 +1,12 @@
 # Don't version control log files
+
+# Directories to ignore
 log/*
-*.retry
 old/*
+
+# Files left behind by ansible
+*.retry
+
+# Files left behind by editors (vim, etc...)
+*.swp
 
