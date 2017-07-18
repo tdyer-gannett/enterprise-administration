@@ -1,4 +1,5 @@
 --- # Global Variables - Unencrypted
 
 slack_token_maint: "T024Q3DKE/B60RN60E6/Wumlzzw9qk50W3yeSmcM5iav"
+slack_icon_url: "https://www.ansible.com/hs-fs/hub/330046/file-448313641-png/favicon.png"
 
