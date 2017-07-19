@@ -17,7 +17,7 @@ system name that is in the inventory file>
 > password and fetch a current ticket, replacing any expired ticket.  Use
 > __klist__ to list the user's principal and tickets.
 ```
-prompt> kinit
+prompt> kinit dmaple@GMTI.GBAHN.NET
 Password for dmaple@GMTI.GBAHN.NET:
 
 prompt> klist
