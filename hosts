@@ -215,7 +215,8 @@ presto_lg2
 
 [windows_nonprod:children]
 isd_test
-aime_stage
+aime_prod_group1
+aime_prod_group2
 
 ### Linux Inventory
 
