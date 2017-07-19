@@ -14,7 +14,7 @@ phx-wn00010856
 ansible_port=5986
 ansible_winrm_scheme=https
 
-[aime_stage]
+[aime_stage_group1]
 moc-wn00009573
 moc-wn00009593
 # moc-wn00009594 # Not in DNS
@@ -27,6 +27,8 @@ moc-wn00010484
 moc-wn00010485
 moc-wn00010645
 moc-wn00010646
+
+[aime_stage_group2]
 moc-wn6743
 moc-wn7101
 moc-wn7159
