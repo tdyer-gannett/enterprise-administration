@@ -29,21 +29,8 @@
         state: searched
         log_path: c:\ansible_wui_list.txt
       register: found_updates
-      notify: Slack Maintenance Channel Updates Available
       tags: find_updates
 
     - name: Display (all) updates.
       debug: var=found_updates
-
-  handlers:
-    - name: Slack Maintenance Channel Updates Available
-      slack:
-        token: "{{ slack_token_maint }}"
-        attachments:
-          - text: "NOTICE: {{ inventory_hostname }} has updates available. (not applied)"
-            title: Ansible Windows Update
-            color: good
-            author_name: "Ansible"
-            author_icon: "{{ slack_icon_url }}"
-      delegate_to: localhost
 
