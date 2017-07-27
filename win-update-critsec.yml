@@ -7,6 +7,12 @@
 - hosts: '{{ group }}'
   gather_facts: no
   tasks:
+    - name: Verify the Windows Update Service is running
+      win_service:
+        name: wuauserv
+        state: started
+      register: service_info
+
     - name: Find all Critical and Security updates.
       win_updates:
         category_names:
@@ -35,7 +41,7 @@
         state: installed
         log_path: c:\ansible_wui_installed.txt
       register: check_finish
-      notify: Slack Maintenance Channel Upates Applied
+      notify: Slack Ansible Channel Upates Applied
       tags: installed_updates
 
     - name: Check on reboot requirement.
@@ -45,27 +51,29 @@
       win_reboot:
         pre_reboot_delay_sec: 10
       when: check_finish.reboot_required != false
-      notify: Slack Maintenance Channel Reboot
+      notify: Slack Ansible Channel Reboot
       tags: reboot
 
   handlers:
-    - name: Slack Maintenance Channel Upates Applied
+    - name: Slack Ansible Channel Upates Applied
+      listen: "Slack Ansible Channel Upates Applied"
       slack:
-        token: "{{ slack_token_maint }}"
-        attachments:
-            - text: "NOTICE: Updates have been applied to: {{ inventory_hostname }}"
-              color: warning
-              author_name: "Ansible"
-              author_icon: "{{ slack_icon_url }}"
+        token: "{{ slack_token }}"
+        channel: #ansible
+        username: "Enterprise-Ansible"
+        icon_url: "{{ slack_icon_url }}"
+        msg: "NOTICE: Updates have been applied to: {{ inventory_hostname }}"
+        color: warning
       delegate_to: localhost
 
-    - name: Slack Maintenance Channel Reboot
+    - name: Slack Ansible Channel Reboot
+      listen: "Slack Ansible Channel Reboot"
       slack:
-        token: "{{ slack_token_maint }}"
-        attachments:
-            - text: "NOTICE: {{ inventory_hostname }} has been rebooted for maintenance."
-              color: good
-              author_name: "Ansible"
-              author_icon: "{{ slack_icon_url }}"
+        token: "{{ slack_token }}"
+        channel: #ansible
+        username: "Enterprise-Ansible"
+        icon_url: "{{ slack_icon_url }}"
+        msg: "NOTICE: {{ inventory_hostname }} has been rebooted for maintenance."
+        color: good
       delegate_to: localhost
 

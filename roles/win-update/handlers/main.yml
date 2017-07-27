@@ -1,0 +1,22 @@
+--- # Handlers
+
+- name: Slack Ansible Channel Upates Applied
+  slack:
+    token: "{{ slack_token }}"
+    channel: #ansible
+    username: "Enterprise-Ansible"
+    icon_url: "{{ slack_icon_url }}"
+    msg: "NOTICE: Updates have been applied to: {{ inventory_hostname }}"
+    color: warning
+  delegate_to: localhost
+
+- name: Slack Ansible Channel Reboot
+  slack:
+    token: "{{ slack_token }}"
+    channel: #ansible
+    username: "Enterprise-Ansible"
+    icon_url: "{{ slack_icon_url }}"
+    msg: "NOTICE: {{ inventory_hostname }} has been rebooted for maintenance."
+    color: good
+  delegate_to: localhost
+
