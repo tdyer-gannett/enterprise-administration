@@ -22,8 +22,10 @@
         log_path: c:\ansible_wui_list.txt
       register: found_updates
       tags: find_updates
+
     - name: Display (Critical and Security) updates.
-      debug: var=found_updates
+      debug:
+        msg: "{{ inventory_hostname }} has {{ found_updates.found_update_count }} updates available."
 
     - name: Make a decision if you want  to continue with windows patches being install on the machines.
       pause:
@@ -45,35 +47,30 @@
       tags: installed_updates
 
     - name: Check on reboot requirement.
-      debug: var=check_finish
+      debug:
+        msg: "{{ inventory_hostname }} has installed {{ check_finish.installed_update_count }} updates."
+      when: check_finish.installed_update_count > 0
 
     - name: Reboot if needed.
       win_reboot:
         pre_reboot_delay_sec: 10
+        msg: "Rebooted to apply Windows updates."
       when: check_finish.reboot_required != false
+      register: reboot
       notify: Slack Ansible Channel Reboot
       tags: reboot
 
   handlers:
-    - name: Slack Ansible Channel Upates Applied
-      listen: "Slack Ansible Channel Upates Applied"
-      slack:
-        token: "{{ slack_token }}"
-        channel: #ansible
-        username: "Enterprise-Ansible"
-        icon_url: "{{ slack_icon_url }}"
-        msg: "NOTICE: Updates have been applied to: {{ inventory_hostname }}"
-        color: warning
-      delegate_to: localhost
 
     - name: Slack Ansible Channel Reboot
       listen: "Slack Ansible Channel Reboot"
       slack:
         token: "{{ slack_token }}"
         channel: #ansible
+        domain: "gannettdigital.slack.com"
         username: "Enterprise-Ansible"
         icon_url: "{{ slack_icon_url }}"
-        msg: "NOTICE: {{ inventory_hostname }} has been rebooted for maintenance."
+        msg: "NOTICE: Updates to {{ inventory_hostname }} required a reboot."
         color: good
       delegate_to: localhost
 
