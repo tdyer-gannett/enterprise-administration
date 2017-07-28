@@ -36,12 +36,14 @@
         msg: "{{ inventory_hostname }} has {{ found_updates.found_update_count }} updates available."
       when: found_updates.found_update_count > 0
 
-      #- name: Notify Slack #ansible channel
-      #run_once: true
-      #delegate_to: localhost
-      #slack:
-      #  token: "{{ slack_token }}"
-      #  channel: #ansible
-      #  attachments:
-      #    - text: 
+    - name: Slack Ansible Channel Upates Applied
+      slack:
+        token: "{{ slack_token }}"
+        channel: #ansible
+        username: "Enterprise-Ansible"
+        icon_url: "{{ slack_icon_url }}"
+        msg: "NOTICE: {{ inventory_hostname }} has {{ found_updates.found_update_count }} to be applied."
+        color: warning
+      delegate_to: localhost
+      when: found_updates.found_update_count > 0
 
