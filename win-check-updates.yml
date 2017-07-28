@@ -29,21 +29,19 @@
         state: searched
         log_path: c:\ansible_wui_list.txt
       register: found_updates
-      notify: "Slack_Updates_Fond"
       tags: find_updates
 
     - name: Display (all) updates.
-      debug: var=found_updates
+      debug: 
+        msg: "{{ inventory_hostanme }} has {{ found_updates.found_update_count }} updates available."
+      when: found_updates.found_update_count > 0
 
-  handlers:
-    - name: Slack Ansible Channel Upates Found
-      listen: "Slack_Updates_Fond"
-      slack:
-        token: "{{ slack_token }}"
-        channel: #ansible
-        username: "Enterprise-Ansible"
-        icon_url: "{{ slack_icon_url }}"
-        msg: "NOTICE: Updates have been found for: {{ inventory_hostname }}"
-        color: warning
-      delegate_to: localhost
+      #- name: Notify Slack #ansible channel
+      #run_once: true
+      #delegate_to: localhost
+      #slack:
+      #  token: "{{ slack_token }}"
+      #  channel: #ansible
+      #  attachments:
+      #    - text: 
 
