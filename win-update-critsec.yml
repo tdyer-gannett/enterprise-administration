@@ -35,6 +35,12 @@
       meta: end_play
       when: result.user_input != "Y"
 
+    - name: Notify any logged-in users
+      win_msg:
+        delay_seconds: 60
+        msg: "Automated update is about to start.  You have 60 seconds to save your work and log off."
+      when: found_updates.reboot_required != false
+
     - name: Install (all) the updates.
       win_updates:
         category_names:
@@ -43,7 +49,6 @@
         state: installed
         log_path: c:\ansible_wui_installed.txt
       register: check_finish
-      notify: Slack Ansible Channel Upates Applied
       tags: installed_updates
 
     - name: Check on reboot requirement.
