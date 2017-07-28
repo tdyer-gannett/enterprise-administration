@@ -23,7 +23,7 @@
       register: found_updates
       tags: find_updates
 
-    - name: Display (Critical and Security) updates.
+    - name: Display available updates.
       debug:
         msg: "{{ inventory_hostname }} has {{ found_updates.found_update_count }} updates available."
 
@@ -39,9 +39,9 @@
       win_msg:
         delay_seconds: 60
         msg: "Automated update is about to start.  You have 60 seconds to save your work and log off."
-      when: found_updates.reboot_required != false
+      when: found_updates.reboot_required
 
-    - name: Install (all) the updates.
+    - name: Install the updates.
       win_updates:
         category_names:
           - CriticalUpdates
@@ -50,6 +50,7 @@
         log_path: c:\ansible_wui_installed.txt
       register: check_finish
       tags: installed_updates
+      when: found_updates.found_update_count > 0
 
     - name: Check on reboot requirement.
       debug:
@@ -60,7 +61,7 @@
       win_reboot:
         pre_reboot_delay_sec: 10
         msg: "Rebooted to apply Windows updates."
-      when: check_finish.reboot_required != false
+      when: check_finish.reboot_required
       register: reboot
       notify: Slack Ansible Channel Reboot
       tags: reboot
