@@ -207,7 +207,8 @@ phx-wn7930
 
 [windows:children]
 isd_test
-aime_stage
+aime_stage_group1
+aime_stage_group2
 aime_prod_group1
 aime_prod_group2
 presto_lg1
