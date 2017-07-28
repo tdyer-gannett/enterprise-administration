@@ -33,7 +33,7 @@
 
     - name: Display (all) updates.
       debug: 
-        msg: "{{ inventory_hostanme }} has {{ found_updates.found_update_count }} updates available."
+        msg: "{{ inventory_hostname }} has {{ found_updates.found_update_count }} updates available."
       when: found_updates.found_update_count > 0
 
       #- name: Notify Slack #ansible channel
