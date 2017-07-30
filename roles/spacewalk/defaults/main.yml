@@ -1,0 +1,51 @@
+--- # defaults file for spacewalk-client
+spw_packages:
+  - m2crypto
+  - python-hwdata
+  - rhn-check
+  - rhn-client-tools
+  - rhn-setup
+  - rhnlib
+  - rhnsd
+  - python-hwdata
+  - yum-rhn-plugin
+
+spw_cert_uri: http://{{ spw_server }}/pub/RHN-ORG-TRUSTED-SSL-CERT
+spw_cert_file: /usr/share/rhn/RHN-ORG-TRUSTED-SSL-CERT
+spw_checkin_interval: 240
+spw_uri: https://{{ spw_server }}/XMLRPC
+spw_gpg_key: http://{{ spw_server }}/pub/register-rpms/RPM-GPG-KEY-spacewalk-2014
+
+distro: "{{ ansible_distribution | lower }}"
+major_ver: "{{ ansible_distribution_major_version }}"
+dist_ver: "{{ distro }}{{major_ver }}"
+arch: "{{ ansible_architecture | lower }}"
+release: "{{ distro }}{{ major_ver }}-{{ arch }}"
+
+spe_channels:
+  - "{{ release }}"
+  - "{{ release }}-extras"
+  - "{{ release }}-updates"
+  - "epel{{ major_ver }}-{{ release }}"
+  - "spacewalk-client-{{ release }}"
+
+spw_post_reg_remove:
+  - rhn-custom-info
+  - rhncfg
+  - rhncfg-actions
+  - rhncfg-client
+  - rhncfg-management
+  - spacewalk-backend-libs
+
+spw_post_reg_install:
+  - rhn-check
+  - rhn-client-tools
+  - rhn-custom-info
+  - rhn-setup
+  - rhncfg
+  - rhncfg-actions
+  - rhncfg-client
+  - rhncfg-management
+  - rhnlib
+  - rhnsd
+

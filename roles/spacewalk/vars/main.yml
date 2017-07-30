@@ -1,0 +1,11 @@
+--- # vars for spacewalk-client
+
+spw_server: moc-lx00011361.gmti.gbahn.net
+
+spw_distro_ver: "{{ ansible_distribution | lower }}{{ ansible_distribution_major_version }}"
+spw_distro_ver_arch: "{{ spw_distro_ver }}-{{ ansible_architecture }}"
+
+# Activation Key Should look something like this: 1-centos7-x86_64-base
+spw_activeation_key: "1-{{ spw_distro_ver_arch }}-base"
+
+

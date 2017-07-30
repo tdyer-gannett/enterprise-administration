@@ -1,0 +1,13 @@
+--- # Run the full site-wide playbook
+
+- name: Register Systems with Spacewalk
+  hosts: "{{ group | default('linux') }}"
+  remote_user: ansible
+  become: yes
+  become_method: sudo
+  gather_facts: yes
+  connection: ssh
+  roles:
+    - spacewalk
+
+
