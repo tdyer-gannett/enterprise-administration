@@ -222,7 +222,7 @@ aime_prod_group2
 ### Linux Inventory
 
 [dhs_utility_linux]
-moc-lx6206
+# moc-lx6206
 moc-lx7274
 
 [aime_stage_linux]

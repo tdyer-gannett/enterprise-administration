@@ -2,6 +2,10 @@
 # ansible_distribution
 # ansible_distribution_major_version
 
+- name: Install Spacewalk Client Repo
+  yum:
+      name: "{{ spw_client_repo }}"
+      state: present
 
 - name: install Spacewalk prerequisites
   yum: 
@@ -26,7 +30,7 @@
 
 - name: Fetch and install Spacewalk ORG Trusted SSL Certificate
   get_url:
-    url: http://{{ spw_cert_uri }}
+    url: "{{ spw_cert_uri }}"
     dest: "{{ spw_cert_file }}"
     owner: root
     group: root
@@ -59,12 +63,6 @@
     enabled: true
     state: started
 
-- name: Enable RHN Actions Control
-  command: /usr/bin/rhn-actions-control --enable-all --force
-  tags:
-    - config
-    - allow_actions
-
 - name: Remove packages, post-registration
   yum:
     name: "{{ item }}"
@@ -77,4 +75,9 @@
     state: installed
   with_items: "{{ spw_post_reg_install }}"
 
+- name: Enable RHN Actions Control
+  command: rhn-actions-control --enable-all --force
+  tags:
+    - config
+    - allow_actions
 

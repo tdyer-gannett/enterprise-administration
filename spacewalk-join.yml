@@ -8,6 +8,7 @@
   gather_facts: yes
   connection: ssh
   roles:
+    - epel-repo
     - spacewalk
 
 
