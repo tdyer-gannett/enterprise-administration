@@ -3,6 +3,7 @@
 # Directories to ignore
 log/*
 old/*
+facts.d/*
 
 # Files left behind by ansible
 *.retry

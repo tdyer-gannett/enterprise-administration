@@ -2,6 +2,15 @@
 # ansible_distribution
 # ansible_distribution_major_version
 
+- name: Fix badly-packaged GMTI RPMs
+  command: rpm -e --justdb --nodeps --noscripts --notriggers {{ item|quote }}
+  with_items: "{{ broken_gmti_packages }}"
+  register: bad_rpm_clean
+  ignore_errors: true
+
+#- name: DEBUG Fix badly-packged GMTI RPMs
+#  debug: var=bad_rpm_clean
+
 - name: Install Spacewalk Client Repo
   yum:
       name: "{{ spw_client_repo }}"
@@ -10,8 +19,25 @@
 - name: install Spacewalk prerequisites
   yum: 
     name: "{{ item }}"
-    state: present
+    state: installed
+    disablerepo: '*'
+    enablerepo: base,updates,extras,spacewalk-client,epel
   with_items: "{{ spw_packages }}"
+  tags: spw_prereq
+
+- name: Remove epel-release
+  yum:
+    name: epel-release
+    state: absent
+
+- name: Remove spacewalk-client-repo
+  yum:
+    name: spacewalk-client-repo
+    state: absent
+
+- name: disable all yum repos
+  command: 'yum-config-manager --disable \*'
+  ignore_errors: true
 
 - name: deploy configurations
   template: 
@@ -53,9 +79,12 @@
     server_url: "{{ spw_uri }}"
     sslcacert: "{{ spw_cert_file }}"
     activationkey: "{{ spw_activation_key }}"
-    channels: "{{ spw_channels }}"
     state: present
+  register: rhn_register_out
   when: spw_registered|failed
+
+- name: DEBUG Register with Spackewalk
+  debug: var=rhn_register_out
 
 - name: Enable rhnsd service
   service:
@@ -81,3 +110,9 @@
     - config
     - allow_actions
 
+- name: Update sysadmin packages and install missing tools
+  yum:
+    name: "{{ item }}"
+    state: latest
+  with_items: "{{ sysadmin_packages }}"
+  

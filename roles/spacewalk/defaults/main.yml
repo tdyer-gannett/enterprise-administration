@@ -1,4 +1,11 @@
 --- # defaults file for spacewalk-client
+
+broken_gmti_packages:
+  - openssl-1.0.1g-1.x86_64
+  - openssl-1.0.2j-1.el6.gmti.x86_64
+  - python-2.7.3-4.el6.gmti.x86_64
+  - python-2.7.10-3.el6.gmti.x86_64
+
 spw_packages:
   - m2crypto
   - python-hwdata
@@ -53,4 +60,40 @@ spw_post_reg_install:
   - rhncfg-management
   - rhnlib
   - rhnsd
+
+sysadmin_packages:
+  - bash
+  - bash-completion
+  - bind-libs
+  - bind-utils
+  - binutils
+  - coreutils
+  - cronie
+  - gzip
+  - less
+  - lsof
+  - man
+  - man-pages
+  - man-pages-overrides
+  - mlocate
+  - net-snmp-utils
+  - net-tools
+  - nmap
+  - ntp
+  - openssh
+  - rpm
+  - screen
+  - sudo
+  - tar
+  - tcpdump
+  - tzdata
+  - unzip
+  - vim-common
+  - vim-enhanced
+  - vim-minimal
+  - wget
+  - yum
+  - yum-utils
+  - zip
+  - zlib
 
