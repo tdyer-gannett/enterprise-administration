@@ -1,4 +1,11 @@
 --- # defaults file for spacewalk-client
+
+broken_gmti_packages:
+  - openssl-1.0.1g-1.x86_64
+  - openssl-1.0.2j-1.el6.gmti.x86_64
+  - python-2.7.3-4.el6.gmti.x86_64
+  - python-2.7.10-3.el6.gmti.x86_64
+
 spw_packages:
   - m2crypto
   - python-hwdata
@@ -7,14 +14,13 @@ spw_packages:
   - rhn-setup
   - rhnlib
   - rhnsd
-  - python-hwdata
   - yum-rhn-plugin
 
 spw_cert_uri: http://{{ spw_server }}/pub/RHN-ORG-TRUSTED-SSL-CERT
 spw_cert_file: /usr/share/rhn/RHN-ORG-TRUSTED-SSL-CERT
 spw_checkin_interval: 240
 spw_uri: https://{{ spw_server }}/XMLRPC
-spw_gpg_key: http://{{ spw_server }}/pub/register-rpms/RPM-GPG-KEY-spacewalk-2014
+spw_gpg_key: http://{{ spw_server }}/pub/register-rpms/RPM-GPG-KEY-spacewalk-2015
 
 distro: "{{ ansible_distribution | lower }}"
 major_ver: "{{ ansible_distribution_major_version }}"
@@ -22,7 +28,13 @@ dist_ver: "{{ distro }}{{major_ver }}"
 arch: "{{ ansible_architecture | lower }}"
 release: "{{ distro }}{{ major_ver }}-{{ arch }}"
 
-spe_channels:
+spw_client_baseurl: "http://yum.spacewalkproject.org/2.6-client/RHEL"
+spw_client_file: "spacewalk-client-repo-2.6-0.el{{ major_ver }}.noarch.rpm"
+spw_client_repo: "{{ spw_client_baseurl }}/{{ major_ver }}/{{ arch }}/{{ spw_client_file }}"
+
+spw_activation_key: "1-{{ release }}-base"
+
+spw_channels:
   - "{{ release }}"
   - "{{ release }}-extras"
   - "{{ release }}-updates"
@@ -48,4 +60,40 @@ spw_post_reg_install:
   - rhncfg-management
   - rhnlib
   - rhnsd
+
+sysadmin_packages:
+  - bash
+  - bash-completion
+  - bind-libs
+  - bind-utils
+  - binutils
+  - coreutils
+  - cronie
+  - gzip
+  - less
+  - lsof
+  - man
+  - man-pages
+  - man-pages-overrides
+  - mlocate
+  - net-snmp-utils
+  - net-tools
+  - nmap
+  - ntp
+  - openssh
+  - rpm
+  - screen
+  - sudo
+  - tar
+  - tcpdump
+  - tzdata
+  - unzip
+  - vim-common
+  - vim-enhanced
+  - vim-minimal
+  - wget
+  - yum
+  - yum-utils
+  - zip
+  - zlib
 

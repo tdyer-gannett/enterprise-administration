@@ -222,7 +222,7 @@ aime_prod_group2
 ### Linux Inventory
 
 [dhs_utility_linux]
-moc-lx6206
+# moc-lx6206
 moc-lx7274
 
 [aime_stage_linux]
@@ -252,9 +252,9 @@ moc-lx00010805
 moc-lx00009619
 moc-lx00009620
 
-[usat_subscriber]
-moc-lx00011008
-moc-lx00011009
+#[usat_subscriber] # PCI - Managed by Chef, AppOps "kill and rebuild" plan.
+#moc-lx00011008
+#moc-lx00011009
 
 [linux:children]
 dhs_utility_linux
@@ -262,7 +262,6 @@ aime_stage_linux
 aime_prod_linux
 broadcast
 gcas
-usat_subscriber
 
 [linux_nonprod:children]
 dhs_utility_linux

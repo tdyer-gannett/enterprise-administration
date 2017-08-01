@@ -1,0 +1,26 @@
+--- # Install the epel repository
+
+- name: upgrade some packages
+  yum:
+      name: "{{ item }}"
+      disablerepo: '*'
+      enablerepo: base,updates
+      state: latest
+  with_items:
+      - centos-release
+      - ca-certificates
+      - yum
+      - yum-utils
+      - 'yum-plugin*'
+  register: yum_result
+  when: ansible_distribution == "CentOS"
+
+- name: install epel-releas
+  yum:
+      name: epel-release
+      state: installed
+      disablerepo: '*'
+      enablerepo: base,updates,extras
+  when: ansible_distribution == "CentOS"
+  register: epel_install
+
