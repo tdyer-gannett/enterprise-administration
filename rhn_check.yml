@@ -1,0 +1,15 @@
+--- # Force rhn_check
+- hosts: "{{ group | default('linux') }}"
+  remote_user: ansible
+  become: yes
+  gather_facts: yes
+  connection: ssh
+
+  tasks:
+    - name: Run rhn_check on {{ group }} to force the systems to check in with Satellite.
+      command: /usr/sbin/rhn_check
+      register: rhn_check_output
+
+    - debug:
+        var: rhn_check_output
+

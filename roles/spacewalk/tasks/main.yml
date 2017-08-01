@@ -17,7 +17,7 @@
       state: present
 
 - name: install Spacewalk prerequisites
-  yum: 
+  yum:
     name: "{{ item }}"
     state: installed
     disablerepo: '*'
@@ -40,7 +40,7 @@
   ignore_errors: true
 
 - name: deploy configurations
-  template: 
+  template:
     src: "{{ item }}"
     dest: /etc/sysconfig/rhn/{{ item }}
   with_items:
@@ -50,7 +50,7 @@
     - config
 
 - name: Check for Spacewalk server SSL certificate
-  stat: 
+  stat:
     path: "{{ spw_cert_file }}"
   register: ssl_file
 
@@ -110,9 +110,9 @@
     - config
     - allow_actions
 
-- name: Update sysadmin packages and install missing tools
+- name: Update sysadmin packages and get missing tools
   yum:
     name: "{{ item }}"
     state: latest
   with_items: "{{ sysadmin_packages }}"
-  
+
