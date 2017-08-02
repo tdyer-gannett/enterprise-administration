@@ -12,4 +12,3 @@
 
     - debug:
         var: rhn_check_output
-
