@@ -256,14 +256,21 @@ moc-lx00009620
 #moc-lx00011008
 #moc-lx00011009
 
+[system_management]
+moc-lx00011359
+moc-lx00011361
+
 [linux:children]
 dhs_utility_linux
 aime_stage_linux
 aime_prod_linux
 broadcast
 gcas
+system_management
 
 [linux_nonprod:children]
 dhs_utility_linux
 aime_stage_linux
+system_management
+
 
