@@ -259,6 +259,7 @@ moc-lx00009620
 [system_management]
 moc-lx00011359
 moc-lx00011361
+moc-lx00011393
 
 [linux:children]
 dhs_utility_linux
