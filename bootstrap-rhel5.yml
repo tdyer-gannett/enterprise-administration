@@ -1,0 +1,11 @@
+--- # Fix RedHat and CentOS 5 clients so Ansible can connect.
+
+- hosts: "{{ group }}"
+  gather_facts: yes
+  remote_user: root
+  connection: ssh
+  become: yes
+  roles:
+      - bootstrap-rhel5
+      - ansible-client
+

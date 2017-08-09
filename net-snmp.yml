@@ -1,0 +1,12 @@
+--- # Configure net-snmp
+
+- name: Install and configure net-snmp
+  hosts: "{{ group | default('linux') }}"
+  remote_user: ansible
+  become: yes
+  become_method: sudo
+  gather_facts: yes
+  connection: ssh
+  roles:
+    - net-snmp
+

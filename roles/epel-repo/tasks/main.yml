@@ -24,3 +24,9 @@
   when: ansible_distribution == "CentOS"
   register: epel_install
 
+- name: Remove conflicting python-json package
+  yum:
+      name: python-json
+      state: removed
+  when: ansible_os_family == "RedHat" and ansible_distribution_major_version == "5"
+

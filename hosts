@@ -222,7 +222,7 @@ aime_prod_group2
 ### Linux Inventory
 
 [dhs_utility_linux]
-# moc-lx6206
+moc-lx6206
 moc-lx7274
 
 [aime_stage_linux]
@@ -259,7 +259,7 @@ moc-lx00009620
 [system_management]
 moc-lx00011359
 moc-lx00011361
-moc-lx00011393
+# moc-lx00011393 # new Spacewalk nightly-build server
 
 [linux:children]
 dhs_utility_linux

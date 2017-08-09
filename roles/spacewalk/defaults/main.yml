@@ -60,6 +60,7 @@ spw_post_reg_install:
   - rhncfg-management
   - rhnlib
   - rhnsd
+  - osad
 
 sysadmin_packages:
   - bash
