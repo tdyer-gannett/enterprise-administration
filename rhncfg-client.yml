@@ -1,0 +1,24 @@
+--- # Run rhncfg-client verify
+
+- hosts: "{{ group | default('linux') }}"
+  remote_user: ansible
+  become: yes
+  gather_facts: yes
+  connection: ssh
+
+  tasks:
+
+    - name: rhncfg-client channels
+      command: rhncfg-client channels
+      register: rhncfg_channels_result
+
+    - debug:
+        var: rhncfg_channels_result
+
+    - name: rhncfg-client verify
+      command: rhncfg-client verify
+      register: rhncfg_verify_result
+
+    - debug:
+        var: rhncfg_verify_result
+

@@ -1,6 +1,9 @@
 --- # Ping a device, regardless of the OS Family
 - name: Ping Hosts
-  hosts: aime_stage
+  hosts: "{{ group | default('dhs_utility_linux') }}"
+  connection: ssh
+  user: ansible
+  become: yes
   become_method: sudo
   gather_facts: yes
 

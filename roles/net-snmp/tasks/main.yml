@@ -1,0 +1,52 @@
+--- # Tasks for net-snmp setup
+
+- name: Check if already done
+  lineinfile:
+      path: /etc/snmp/snmpd.conf
+      state: present
+      line: rouser {{ snmp_v3_username }}
+  register: lineinfile_result
+
+- name: If already configured, just make sure snmp is enabled and started
+  service:
+      name: snmpd
+      enabled: yes
+      state: started
+  when: lineinfile_result.changed == false
+
+- name: End play if line is already there
+  meta: end_play
+  when: lineinfile_result.changed == false
+
+- name: Get the packages installed
+  yum:
+      name: "{{ item }}"
+      state: installed
+  with_items: "{{ net_snmp_packages }}"
+
+- name: Write the configuration file
+  template:
+      src: snmpd.conf.j2
+      dest: /etc/snmp/snmpd.conf
+      owner: root
+      group: root
+      mode: 644
+      selevel: s0
+      serole: object_r
+      setype: etc_t
+      seuser: unconfined_u
+
+- name: Stop the service, in case it is running
+  service:
+      name: snmpd
+      state: stopped
+
+- name: Create the SNMPv3 User
+  command: net-snmp-config --create-snmpv3-user -ro -a {{ snmp_v3_authpass }} -A MD5 {{ snmp_v3_username }}
+
+- name: Enable and Start the service
+  service:
+      name: snmpd
+      enabled: yes
+      state: started
+

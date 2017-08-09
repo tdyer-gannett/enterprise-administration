@@ -31,19 +31,18 @@ Valid starting       Expires              Service principal
 
  * __win-test.yml__ - Tests access to Windows systems or groups.
  * __win-check-updates.yml__ - Checks for updates to Windows systems.
- * __win-update-critsec.yml__ - Apply Critical and Security updates and 
- reboot the servers when needed.
- * __win-update-critsec-cron.yml__ - Cron version of the Critical and 
- Security update playbook.
- * __win-update-all.yml__ - Apply ALL AVAILABLE UPDATES and reboot, if 
- necessary.
+ * __win-update-critsec.yml__ - Apply Critical and Security updates and reboot the servers when needed.
+ * __win-update-critsec-cron.yml__ - Cron version of the Critical and Security update playbook.
+ * __win-update-all.yml__ - Apply ALL AVAILABLE UPDATES and reboot, if necessary.
   
 ### Linux Playbooks
- * __linux-update.yml__ - Runs the default package manager for the Linux 
- system using the ansible package module that auto-detects the system package 
- manager.
- * __ansible-client.yml__ - Runs the ansible-client role to install (see 
-         below.)
+ * __bootstrap-rhel5__ - Runs the bootstrap-rhel5 role, followed by the ansible-client role to prepare an EL5 host for management by Ansible.
+ * __ansible-client.yml__ - Runs the ansible-client role to create the ansible user and grant necessary access.
+ * __spacewalk-join.yml__ - Runs the epel-repo and spacewalk roles to register a host with Spacewalk.
+ * __net-snmp.yml__ - Runs the net-snmp role to install and configure net-snmp for SNMPv3 monitoring by EM7.
+ * __rhn_check.yml__ - Runs rhn_check on hosts to get them to check-in with Spacewalk or Satellite.
+ * __rhncfg-client.yml__ - Runs rhncfg to list configuration channels and verify configuration files (does not make any changes.)
+ * __linux-update.yml__ - Runs the default package manager for the Linux system using the ansible package module that auto-detects the system package manager.
 
 ### Cross-platform Playbooks
  * __ping-any.yml__ - Basic test of ansible connectivity to any system, using 
@@ -51,9 +50,11 @@ Valid starting       Expires              Service principal
 
 ## Roles
 
- * __ansible-client__ - Creates the ansible user on all linux systems.  It 
- creates the ansible user and group, if needed, copies the authorized_keys 
- and configures sudors for elevated privileges.
+ * __ansible-client__ - Creates the ansible user on all linux systems.  It creates the ansible user and group, if needed, copies the authorized_keys and configures sudors for elevated privileges.
+ * __bootstrap-rhel5__ - Used on RedHat and CentOS 5 systems to get them ready for management by ansible.  It removes the python-json package, if installed and installs the python-simplejson package.
+ * __epel-repo__ - Update some packages and install the epel repository configuration for yum.
+ * __net-snmp__ - Install net-snmp packages as needed, and configure snmpd.conf for SNMPv3 access by EM7.
+ * __spacewalk__ - Install spacewalk client packages and register a system with the Spacewalk server.
 
 ## Configuration Files
 

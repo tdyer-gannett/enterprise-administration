@@ -1,0 +1,21 @@
+--- # Bootstrap ansible's ability to access RHEL/CentOS 5.x clients running python 2.4
+
+- name: Exit if this is not el5
+  meta: end_play
+  when: ansible_os_family == "RedHat" and ansible_distribution_major_version != "5"
+
+- name: Clear failed state
+  meta: clear_host_errors
+
+- name: Check Python Version
+  raw: /usr/bin/python -V
+  register: output
+
+- name: Bootstrap a legacy python 2.4 host
+  raw: yum -y install python-simplejson
+
+- name: Remove python-json to avoid conflicts
+  yum:
+      name: python-json
+      state: removed
+

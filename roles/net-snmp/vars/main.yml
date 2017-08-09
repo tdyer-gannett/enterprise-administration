@@ -1,0 +1,22 @@
+--- # Defaults for net-snmp setup and configuration
+
+net_snmp_packages:
+    - net-snmp
+    - net-snmp-libs
+    - net-snmp-utils
+    - net-snmp-devel
+
+snmp_monitors:
+    - 10.189.252.0/26
+    - 10.186.252.0/26
+
+snmp_community: Tny9u7jc5nqKg
+
+
+# Usage:
+#   net-snmp-create-v3-user [-ro] [-A authpass] [-X privpass]
+#                           [-a MD5|SHA] [-x DES|AES] [username]
+
+snmp_v3_username: gciv3monitoring
+snmp_v3_authpass: 'lpwN)@^k'
+

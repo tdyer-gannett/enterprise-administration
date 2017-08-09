@@ -32,7 +32,7 @@ spw_client_baseurl: "http://yum.spacewalkproject.org/2.6-client/RHEL"
 spw_client_file: "spacewalk-client-repo-2.6-0.el{{ major_ver }}.noarch.rpm"
 spw_client_repo: "{{ spw_client_baseurl }}/{{ major_ver }}/{{ arch }}/{{ spw_client_file }}"
 
-spw_activation_key: "1-{{ release }}-base"
+spw_activation_key: "1-{{ release }}"
 
 spw_channels:
   - "{{ release }}"
@@ -60,6 +60,7 @@ spw_post_reg_install:
   - rhncfg-management
   - rhnlib
   - rhnsd
+  - osad
 
 sysadmin_packages:
   - bash
