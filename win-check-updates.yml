@@ -14,18 +14,8 @@
     - name: Find all Critical and Security updates.
       win_updates:
         category_names:
-          - Application
-          - Connectors
           - CriticalUpdates
-          - DefinitionUpdates
-          - DeveloperKits
-          - FeaturePacks
-          - Guidance
           - SecurityUpdates
-          - ServicePacks
-          - Tools
-          - UpdateRollups
-          - Updates
         state: searched
         log_path: c:\ansible_wui_list.txt
       register: found_updates
