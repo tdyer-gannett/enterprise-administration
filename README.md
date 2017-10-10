@@ -58,7 +58,7 @@ Valid starting       Expires              Service principal
 
 ## Configuration Files
 
- * __hosts__ - Default inventory file (override with -i <filename>)
+ * __hosts-init__ - Default inventory file (copy to "hosts" to make live)
 
  * __ansible.cfg__ - Local configuration file (overrides /etc/ansible/ansible.cfg)
 
