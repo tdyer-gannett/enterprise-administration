@@ -3,6 +3,7 @@
 - hosts: '{{ group | default("windows") }}'
   gather_facts: no
   tasks:
+
     - name: run ipconfig
       raw: ipconfig
       register: ipconfig
@@ -21,4 +22,24 @@
           - "not stat_file.stat.isdir"
           - "stat_file.stat.size > 0"
           - "stat_file.stat.md5"
+
+    - name: Verify the Windows Update Service is running
+      win_service:
+          name: wuauserv
+          state: started
+          register: service_info
+      notify: Slack Ansible Channel Test
+
+  handlers:
+      - name: Slack Ansible Channel Test
+        listen: "Slack Ansible Channel Test"
+        slack:
+            token: "{{ slack_token }}"
+            channel: '#ansible'
+            domain: "gannettdigital.slack.com"
+            username: "Enterprise-Ansible"
+            icon_url: "{{ slack_icon_url }}"
+            msg: "NOTICE: This is a test about {{ inventory_hostname }}."
+            color: good
+        delegate_to: localhost
 
