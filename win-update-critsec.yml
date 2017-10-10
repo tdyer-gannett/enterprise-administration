@@ -57,26 +57,24 @@
         msg: "{{ inventory_hostname }} has installed {{ check_finish.installed_update_count }} updates."
       when: check_finish.installed_update_count > 0
 
-    - name: Reboot if needed.
-      win_reboot:
-        pre_reboot_delay_sec: 10
-        msg: "Rebooted to apply Windows updates."
-      when: check_finish.reboot_required
-      register: reboot
-      notify: Slack Ansible Channel Reboot
-      tags: reboot
-
-  handlers:
-
     - name: Slack Ansible Channel Reboot
-      listen: "Slack Ansible Channel Reboot"
       slack:
         token: "{{ slack_token }}"
         channel: #ansible
         domain: "gannettdigital.slack.com"
         username: "Enterprise-Ansible"
         icon_url: "{{ slack_icon_url }}"
-        msg: "NOTICE: Updates to {{ inventory_hostname }} required a reboot."
+        msg: "NOTICE: {{ inventory_hostname }} is being reboted to complete installation of updates."
         color: good
       delegate_to: localhost
+      when: check_finish.reboot_required
+
+
+    - name: Reboot if needed.
+      win_reboot:
+        pre_reboot_delay_sec: 10
+        msg: "Rebooted to apply Windows updates."
+      when: check_finish.reboot_required
+      register: reboot
+      tags: reboot
 

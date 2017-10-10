@@ -18,27 +18,33 @@
       notify: Slack Maintenance Channel Upates Applied
       tags: installed_updates
 
+    - name: Slack Maintenance Channel Reboot
+      slack:
+        token: "{{ slack_token_maint }}"
+        channel: #ansible
+        domain: "gannettdigital.slack.com"
+        username: "Enterprise-Ansible"
+        icon_url: "{{ slack_icon_url }}"
+        username: 'Ansible on {{ inventory_hostname }}'
+        msg: "NOTICE: {{ inventory_hostname }} is being rebooted to complete updates."
+        color: good
+      delegate_to: localhost
+      when: check_finish.reboot_required != false
+
     - name: Reboot if needed.
       win_reboot:
         pre_reboot_delay_sec: 10
       when: check_finish.reboot_required != false
-      notify: Slack Maintenance Channel Reboot
       tags: reboot
 
   handlers:
-    - name: Slack Maintenance Channel Reboot
-      slack:
-        token: "{{ slack_token_maint }}"
-        icon_url: https://www.ansible.com/favicon.ico
-        username: 'Ansible on {{ inventory_hostname }}'
-        msg: "NOTICE: {{ inventory_hostname }} is being rebooted for maintenance."
-      delegate_to: localhost
-
     - name: Slack Maintenance Channel Upates Applied
       slack:
         token: "{{ slack_token_maint }}"
-        icon_url: https://www.ansible.com/favicon.ico
-        username: 'Ansible on {{ inventory_hostname }}'
+        channel: #ansible
+        domain: "gannettdigital.slack.com"
+        username: "Enterprise-Ansible"
+        icon_url: "{{ slack_icon_url }}"
         msg: "NOTICE: Updates have been applied to: {{ inventory_hostname }}"
       delegate_to: localhost
 
