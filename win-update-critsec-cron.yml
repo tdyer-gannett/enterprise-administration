@@ -25,7 +25,6 @@
         domain: "gannettdigital.slack.com"
         username: "Enterprise-Ansible"
         icon_url: "{{ slack_icon_url }}"
-        username: 'Ansible on {{ inventory_hostname }}'
         msg: "NOTICE: {{ inventory_hostname }} is being rebooted to complete updates."
         color: good
       delegate_to: localhost
