@@ -20,7 +20,7 @@
 
     - name: Slack Maintenance Channel Reboot
       slack:
-        token: "{{ slack_token_maint }}"
+        token: "{{ slack_token }}"
         channel: #ansible
         domain: "gannettdigital.slack.com"
         username: "Enterprise-Ansible"
@@ -39,7 +39,7 @@
   handlers:
     - name: Slack Maintenance Channel Upates Applied
       slack:
-        token: "{{ slack_token_maint }}"
+        token: "{{ slack_token }}"
         channel: #ansible
         domain: "gannettdigital.slack.com"
         username: "Enterprise-Ansible"
