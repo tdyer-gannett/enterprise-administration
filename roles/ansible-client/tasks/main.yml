@@ -1,5 +1,9 @@
 --- # Tasks for setting up a linux system as an Ansible client
 
+- name: Run extra tests, can be skipped with --skip-tags "extra-tests"
+  tags: extra-tests
+  include: extratests.yml
+
 - name: Check/install ansible group with GID = 4242
   tags: ansible-group
   group:
@@ -18,6 +22,7 @@
       createhome: yes
       update_password: always
       password: "{{ ansible_encrypted_password }}"
+
 - name: Add Authorized Keys
   tags: ansible-keys
   authorized_key:
@@ -26,33 +31,26 @@
       manage_dir: yes
       exclusive: yes
       key: "{{ lookup('file', '../files/authorized_keys') }}"
+
 - name: Install sudo (RedHat-like)
   tags: sudo-package
   yum: 
       name: sudo
       state: present
-- name: Create sudoers.d directory
-  tags: sudoers.d-directory
-  file:
-      path: /etc/sudoers.d
-      owner: root
-      group: root
-      mode: 0755
-      state: directory
-- name: Set includedir in sudoers
-  tags: sudoers-include
-  lineinfile:
-      dest: /etc/sudoers
-      line: "#includedir /etc/sudoers.d"
-      state: present
-      validate: "/usr/sbin/visudo -cf %s"
-- name: Create sudoers file
-  tags: sudoers-file
-  template:
-      src: sudoers.d.j2
-      dest: "/etc/sudoers.d/{{ sudoers_filename }}"
-      mode: 0440
-      owner: root
-      group: root
-      validate: "/usr/sbin/visudo -cf %s"
 
+- name: get version of sudo
+  shell: "sudo -V | cut -d' ' -f3"
+  args:
+    warn: False
+  changed_when: False
+  register: sudo_version
+
+- name: Set up /etc/sudoers.d when sudo is version 1.7.2 or above
+  tags: sudoers.d-directory
+  when: sudo_version.stdout_lines[0] | version_compare('1.7.2', '>=')
+  include: etc-sudoers-d.yml
+
+- name: Set up /etc/sduoers when sudo is an earlier version than 1.7.2 
+  tags: etc-sudoers-file
+  when: sudo_version.stdout_lines[0] | version_compare('1.7.2', '<')
+  include: etc-sudoers.yml

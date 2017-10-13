@@ -1,0 +1,26 @@
+---
+# This will be called for versions of sudo at or above 1.7.2
+# where using #include should not cause problems
+- name: Create sudoers.d directory
+  file:
+      path: /etc/sudoers.d
+      owner: root
+      group: root
+      mode: 0755
+      state: directory
+- name: Set includedir in sudoers
+  lineinfile:
+      path: /etc/sudoers
+      regexp: '^#includedir /etc/sudoers.d'
+      line: "#includedir /etc/sudoers.d"
+      state: present
+      validate: "visudo -cf %s"
+      insertafter: EOF
+- name: Create sudoers file
+  template:
+      src: sudoers.d.j2
+      dest: "/etc/sudoers.d/{{ sudoers_filename }}"
+      mode: 0440
+      owner: root
+      group: root
+      validate: "visudo -cf %s"
