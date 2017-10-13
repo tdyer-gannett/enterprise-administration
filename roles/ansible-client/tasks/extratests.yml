@@ -1,5 +1,5 @@
 --- 
-# Extra checking for use with a wide range of enterprise production servers, even though as long as the 
+# Extra checking for use with a wide range of production servers, even though as long as the 
 # ansible modules work properly it isn't needed.
 
 - name: if an ansible user exists on the system already then make sure it has uid 4242
