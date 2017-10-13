@@ -3,24 +3,28 @@
 # ansible modules work properly it isn't needed.
 
 - name: if an ansible user exists on the system already then make sure it has uid 4242
+  tags: extra-tests
   shell: id -u ansible
   register: ansible_id_response
   changed_when: False
   failed_when: ansible_id_response.stdout is defined and ansible_id_response.stdout != "" and ansible_id_response.stdout != "4242"
 
 - name: if a user with uid 4242 exists on the system already then make sure it's ansible
+  tags: extra-tests
   shell: "id 4242 | awk -F '[()]' '{print $2}'"
   register: userid_4242_response
   changed_when: False
   failed_when: userid_4242_response.stdout is defined and userid_4242_response.stdout != "" and userid_4242_response.stdout != "ansible"
 
 - name: if an ansible group exists on the system already then make sure it has gid 4242
+  tags: extra-tests
   shell: getent group ansible | cut -d':' -f3
   register: ansible_groupid_response
   changed_when: False
   failed_when: ansible_groupid_response.stdout is defined and ansible_groupid_response.stdout != "" and ansible_groupid_response.stdout != "4242"
 
 - name: if a group with gid 4242 exists on the system already then make sure it's ansible
+  tags: extra-tests
   shell: getent group 4242 | cut -d':' -f1
   register: groupid_4242_response
   changed_when: False
