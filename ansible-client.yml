@@ -4,5 +4,7 @@
   remote_user: root
   connection: ssh
   become: yes
+  vars:
+    authorized_keys_spacewalk: no
   roles:
       - ansible-client
