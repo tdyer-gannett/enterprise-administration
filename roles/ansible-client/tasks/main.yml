@@ -1,7 +1,8 @@
 --- # Tasks for setting up a linux system as an Ansible client
 
-- name: Run extra tests, can be skipped with --skip-tags "extra-tests"
+- name: Run additional pre-tests
   tags: extra-tests
+  when: extra_tests
   include: extratests.yml
 
 - name: Check/install ansible group with GID = 4242
@@ -34,6 +35,7 @@
 
 - name: Install sudo (RedHat-like)
   tags: sudo-package
+  when: install_sudo
   yum: 
       name: sudo
       state: present
