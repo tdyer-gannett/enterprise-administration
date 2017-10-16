@@ -1,0 +1,10 @@
+---
+- hosts: "{{ group }}"
+  gather_facts: no
+  connection: ssh
+  vars:
+    extra_tests: yes
+    install_sudo: no
+    ansible_user: root
+  roles:
+      - ansible-client
