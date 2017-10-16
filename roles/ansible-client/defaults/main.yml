@@ -1,0 +1,4 @@
+---
+# default variable values for ansible-client role
+extra_tests: yes
+install_sudo: yes
