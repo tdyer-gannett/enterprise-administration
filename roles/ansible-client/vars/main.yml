@@ -2,8 +2,6 @@
 
 # ansible_encrypted_password: "$6$0Ka6igNH$FuOenKGFPihprj/.gfj7BWUgxnNy1fY1w7Yx8VG4R/C31a7ZVEoAGNcdaSkVj2vOFEfylTk0KIQ0diOt.xwnU0"
 ansible_encrypted_password: "!!"
-extra_tests: true
-install_sudo: true
 sudoers_filename: 00_ansible
 sudoers_nopasswd: true
 sudoers:
