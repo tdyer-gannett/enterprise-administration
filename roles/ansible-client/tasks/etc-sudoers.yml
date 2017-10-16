@@ -1,0 +1,13 @@
+---
+# This will be called for versions of sudo below 1.7.2 where we 
+# need to update the /etc/sudoers file itself rather than using an includedir
+# *NB* This may be overwritten by spacewalk
+
+- name: add line for ansible to /etc/sudoers 
+  lineinfile:
+    path: /etc/sudoers
+    regexp: '^ansible'
+    line: 'ansible  ALL=(ALL) NOPASSWD: ALL'
+    state: present
+    create: no
+    insertafter: EOF
