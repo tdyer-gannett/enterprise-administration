@@ -26,12 +26,24 @@
 
 - name: Add Authorized Keys
   tags: ansible-keys
+  when: not authorized_keys_spacewalk
   authorized_key:
       user: ansible
       state: present
       manage_dir: yes
       exclusive: yes
       key: "{{ lookup('file', '../files/authorized_keys') }}"
+
+- name: Get Authorized Keys from Spacewalk
+  tags: ansible-keys
+  when: authorized_keys_spacewalk
+  command: "rhncfg-client get /home/ansible /home/ansible/.ssh /home/ansible/.ssh/authorized_keys"
+  register: rhncfg_client
+
+- name: Warn if authorized_keys didn't deploy successfully
+  when: (authorized_keys_spacewalk) and ('Deploying /home/ansible/.ssh/authorized_keys' not in rhncfg_client.stdout)
+  debug:
+    msg: "**Warning** output from rhncfg-client get was  {{ rhncfg_client.stdout }}"
 
 - name: Install sudo (RedHat-like)
   tags: sudo-package
