@@ -6,5 +6,6 @@
     extra_tests: yes
     install_sudo: no
     ansible_user: root
+    authorized_keys_spacewalk: yes
   roles:
       - ansible-client
