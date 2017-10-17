@@ -45,6 +45,11 @@
   debug:
     msg: "**Warning** output from rhncfg-client get was  {{ rhncfg_client.stdout }}"
 
+- name: restore ansible home directory contexts
+  command: "restorecon /home/ansible /home/ansible/.ssh /home/ansible/.ssh/authorized_keys"
+  ignore_errors: yes
+  changed_when: False
+
 - name: Install sudo (RedHat-like)
   tags: sudo-package
   when: install_sudo
