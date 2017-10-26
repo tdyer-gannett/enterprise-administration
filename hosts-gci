@@ -185,9 +185,6 @@ tdn-aut-prod-voc
 [eng-aut-qa]
 eng-vocqaaut[01:02].eng.gci.
 
-[eng-aut-tst]
-eng-voctstaut01.eng.gci.
-
 [tdn-aut-tst]
 eng-voctstaut02.eng.gci.
 
@@ -613,9 +610,36 @@ ent-mocdevcos[01:03].dev.gci.
 ent-mocdevcn[01:03].dev.gci.
 
 [jamf]
-ent-mocapjamf01.us.ad.gannett.com
-ent-mocapjamf02.us.ad.gannett.com
-ent-mocapjamf03.us.ad.gannett.com
-ent-mocapjamf04.us.ad.gannett.com
-ent-mocapjamf05.us.ad.gannett.com
-ent-mocapjamf06.us.ad.gannett.com
+ent-mocapjamf01.us.ad.gannett.com.
+ent-mocapjamf02.us.ad.gannett.com.
+ent-mocapjamf03.us.ad.gannett.com.
+ent-mocapjamf04.us.ad.gannett.com.
+ent-mocapjamf05.us.ad.gannett.com.
+ent-mocapjamf06.us.ad.gannett.com.
+
+[dns-res-int]
+res1.doc.gci. # ent-docux20
+res1.moc.gci. # ent-mocux20
+res2.moc.gci. # ent-mocux22
+res1.poc.gci. # ent-pocux20
+res2.poc.gci. # ent-pocux22
+res1.voc.gci. # ent-vocux20
+
+[dns-res-ext]
+res1.doc.gannett.com. # ent-docux21
+res1.moc.gannett.com. # ent-mocux21
+res2.moc.gannett.com. # ent-mocux23
+res1.poc.gannett.com. # ent-pocux21
+res2.poc.gannett.com. # ent-pocux23
+res1.voc.gannett.com. # ent-vocux21
+
+[dns-auth-ext]
+ns1.gannett.com. # ent-mocindns01
+ns2.gannett.com. # ent-pocindns01
+ns3.gannett.com. # ent-vocindns01
+ns4.gannett.com. # ent-docindns01
+
+[dns:children]
+dns-res-int
+dns-res-ext
+dns-auth-ext
