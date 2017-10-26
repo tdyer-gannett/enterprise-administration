@@ -1,0 +1,16 @@
+---
+- hosts: "{{ group }}"
+  gather_facts: no
+  connection: ssh
+  become: yes
+  serial: 100
+  vars:
+    ansible_user: ansible
+
+  tasks:
+    - name: Test ansible access to target
+      copy:
+        dest: /root/ansible_deployment_success
+        content: "The presense of this file indicates ansible client deployment succeeded on this machine."
+        owner: root
+        mode: 0600
