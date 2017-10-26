@@ -2,6 +2,7 @@
 - hosts: "{{ group }}"
   gather_facts: no
   connection: ssh
+  serial: 20
   vars:
     extra_tests: yes
     install_sudo: no
