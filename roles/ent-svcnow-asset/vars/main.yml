@@ -1,0 +1,10 @@
+---
+
+ent_svcnow_asset_encrypted_password: "!!"
+authorized_keys_spacewalk: true
+sudoers_filename: ent-svcnow-asset
+sudoers_nopasswd: true
+sudoers:
+    - name: "%ent-svcnow-asset"
+      users: 
+          - "ALL"

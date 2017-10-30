@@ -1,0 +1,60 @@
+--- # Tasks for setting up a linux system for service-now discovery with user ent-svcnow-asset
+- name: Check/install ent-svcnow-asset group
+  tags: ent-svcnow-asset-group
+  group:
+      name: ent-svcnow-asset
+      state: present
+
+- name: Check/install for ent-svcnow-asset user
+  tags: ent-svcnow-asset-user
+  user:
+      name: ent-svcnow-asset
+      comment: "Service-now inventory discovery"
+      group: ent-svcnow-asset
+      home: /home/ent-svcnow-asset
+      createhome: yes
+      update_password: always
+      password: "{{ ent_svcnow_asset_encrypted_password }}"
+
+- name: Add Authorized Keys
+  tags: ent-svcnow-asset-keys
+  when: not authorized_keys_spacewalk
+  authorized_key:
+      user: ent-svcnow-asset
+      state: present
+      manage_dir: yes
+      exclusive: yes
+      key: "{{ lookup('file', '../files/authorized_keys') }}"
+
+- name: Get Authorized Keys from Spacewalk
+  tags: ent-svcnow-asset-keys
+  when: authorized_keys_spacewalk
+  command: "rhncfg-client get /home/ent-svcnow-asset /home/ent-svcnow-asset/.ssh /home/ent-svcnow-asset/.ssh/authorized_keys"
+  register: rhncfg_client
+
+- name: Warn if authorized_keys didn't deploy successfully
+  when: (authorized_keys_spacewalk) and ('Deploying /home/ent-svcnow-asset/.ssh/authorized_keys' not in rhncfg_client.stdout)
+  debug:
+    msg: "**Warning** output from rhncfg-client get was  {{ rhncfg_client.stdout }}"
+
+- name: restore ent-svcnow-asset home directory contexts
+  command: "restorecon /home/ent-svcnow-asset /home/ent-svcnow-asset/.ssh /home/ent-svcnow-asset/.ssh/authorized_keys"
+  ignore_errors: yes
+  changed_when: False
+
+- name: get version of sudo
+  shell: "sudo -V | cut -d' ' -f3"
+  args:
+    warn: False
+  changed_when: False
+  register: sudo_version
+
+- name: Set up /etc/sudoers.d when sudo is version 1.7.2 or above
+  tags: sudoers.d-directory
+  when: sudo_version.stdout_lines[0] | version_compare('1.7.2', '>=')
+  include: etc-sudoers-d.yml
+
+- name: Set up /etc/sduoers when sudo is an earlier version than 1.7.2 
+  tags: etc-sudoers-file
+  when: sudo_version.stdout_lines[0] | version_compare('1.7.2', '<')
+  include: etc-sudoers.yml
