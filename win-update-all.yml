@@ -2,10 +2,10 @@
 #The following command should be run to install the updates
 # ansible-playbook win-update-all.yml --ask-vault-pass --extra-vars "group=[group_name | hostname]"
 
-- hosts: '{{ group }}' 
-  gather_facts: no 
+- hosts: '{{ group }}'
+  gather_facts: no
   tasks:
-    
+
     - name: Report host list to Slack
       slack:
         token: "{{ slack_token }}"
