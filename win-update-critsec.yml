@@ -2,11 +2,24 @@
 
 #The following command should be run to install the updates
 
-# ansible-playbook win-critsec.yml --ask-vault-pass --extra-vars "group=<group_name>"
+# ansible-playbook win-update-critsec.yml --ask-vault-pass --extra-vars "group=<group_name>"
 
 - hosts: '{{ group }}'
-  gather_facts: no
+  gather_facts: yes
   tasks:
+
+    - name: Report host list to Slack
+      slack:
+        token: "{{ slack_token }}"
+        channel: #ansible
+        domain: "gannettdigital.slack.com"
+        username: "Enterprise-Ansible"
+        icon_url: "{{ slack_icon_url }}"
+        msg: "Ansible Playbook: win-update-critsec.yml\nGroup: {{ group }}\n--------------\n{{ansible_play_batch|join('\n') }}"
+        color: good
+      delegate_to: localhost
+      run_once: true
+
     - name: Verify the Windows Update Service is running
       win_service:
         name: wuauserv
@@ -31,6 +44,7 @@
       pause:
           prompt: "Do you want to install and reboot, if needed? Enter 'Y' to continue."
       register: result
+
     - name: Exit if anything other than Y
       meta: end_play
       when: result.user_input != "Y"
@@ -56,19 +70,6 @@
       debug:
         msg: "{{ inventory_hostname }} has installed {{ check_finish.installed_update_count }} updates."
       when: check_finish.installed_update_count > 0
-
-    - name: Slack Ansible Channel Reboot
-      slack:
-        token: "{{ slack_token }}"
-        channel: #ansible
-        domain: "gannettdigital.slack.com"
-        username: "Enterprise-Ansible"
-        icon_url: "{{ slack_icon_url }}"
-        msg: "NOTICE: {{ inventory_hostname }} is being reboted to complete installation of updates."
-        color: good
-      delegate_to: localhost
-      when: check_finish.reboot_required
-
 
     - name: Reboot if needed.
       win_reboot:

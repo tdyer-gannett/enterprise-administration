@@ -1,14 +1,36 @@
----
+--- # Access and notification test for Windows Systems
 
 - hosts: '{{ group | default("windows") }}'
   gather_facts: yes
   tasks:
 
+    - name: Report host list to Slack
+      slack:
+        token: "{{ slack_token }}"
+        channel: #ansible
+        domain: "gannettdigital.slack.com"
+        username: "Enterprise-Ansible"
+        icon_url: "{{ slack_icon_url }}"
+        msg: "Ansible Test: Group {{ group | default('windows') }}\n--------------\n{{ansible_play_batch|join('\n') }}"
+        color: good
+      delegate_to: localhost
+      run_once: true
+
+    - name: Report host list via Email
+      mail:
+        host: smtp
+        port: 25
+        subject: "Ansible Play Report for Group: {{ group | default('windows') }}"
+        to: dmaple@gannett.com
+        from: ansible@moc-lx00011359.gmti.gbahn.net
+        body: "Group: {{ group | default('windows') }}\n--------------\n{{ansible_play_batch|join('\n') }}"
+      delegate_to: localhost
+      run_once: true
+
     - name: run ipconfig
       raw: ipconfig
       register: ipconfig
       changed_when: true
-      notify: Slack Ansible Channel Test
     - debug: var=ipconfig
 
     - name: test stat module on file
@@ -29,17 +51,5 @@
           name: wuauserv
           state: started
           register: service_info
-
-  handlers:
-    - name: Slack Ansible Channel Test
-      slack:
-        token: "{{ slack_token }}"
-        channel: #ansible
-        domain: "gannettdigital.slack.com"
-        username: "Enterprise-Ansible"
-        icon_url: "{{ slack_icon_url }}"
-        msg: "NOTICE: This is a test about {{ inventory_hostname }}."
-        color: good
-      delegate_to: localhost
 
 
