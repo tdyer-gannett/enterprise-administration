@@ -1,18 +1,49 @@
 --- # Run package module to upgrade all packages on linux systems.
 
-- hosts: "{{ group | default('linux') }}"
-  ansible_connection: ssh
-  ansible_user: ansible
-  ansible_become: yes
-  ansible_become_method: sudo
-  gather_facts: no
+- hosts: "{{ group }}"
+  connection: ssh
+  remote_user: ansible
+  become: yes
+  become_method: sudo
+  gather_facts: yes
 
   tasks:
-    - name: upgrade all packages
+    - name: Report host list to Slack
+      slack:
+        token: "{{ slack_token }}"
+        channel: #ansible
+        domain: "gannettdigital.slack.com"
+        username: "Enterprise-Ansible"
+        icon_url: "{{ slack_icon_url }}"
+        msg: "Ansible Playbook: linux-update.yml\nGroup: {{ group }}\n--------------\n{{ansible_play_batch|join('\n') }}"
+        color: good
+      delegate_to: localhost
+      run_once: true
+
+    - name: Upgrade ALL Packages (RedHat Family)
       package:
           name: '*'
           state: latest
-      register: package_result
-    - debug: var=package_result
-  
+          update_cache: yes
+      register: yum_result
+      notify:
+          - reboot
+          - wait_for_connection
+      when: ansible_pkg_mgr == 'yum'
 
+    - name: Package Debug Output
+      debug: var=yum_result
+      when: ansible_pkg_mgr == 'yum'
+
+  handlers:
+      - name: reboot
+        command: /sbin/shutdown -r now
+        async: 0
+        poll: 0
+        ignore_errors: true
+        when: ansible_os_family == 'RedHat'
+      - name: wait_for_connection
+        wait_for_connection:
+            delay: 20
+            sleep: 5
+            timeout: 150
