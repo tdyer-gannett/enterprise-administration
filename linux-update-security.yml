@@ -1,4 +1,4 @@
---- # Run package module to upgrade all packages on linux systems.
+--- # Run package module to upgrade security-related packages on linux systems.
 
 - hosts: "{{ group }}"
   connection: ssh
@@ -15,16 +15,17 @@
         domain: "gannettdigital.slack.com"
         username: "Enterprise-Ansible"
         icon_url: "{{ slack_icon_url }}"
-        msg: "Ansible Playbook: linux-update.yml\nGroup: {{ group }}\n--------------\n{{ansible_play_batch|join('\n') }}"
+        msg: "Ansible Playbook: linux-update-security.yml\nGroup: {{ group }}\n--------------\n{{ansible_play_batch|join('\n') }}"
         color: good
       delegate_to: localhost
       run_once: true
 
-    - name: Upgrade ALL Packages (RedHat Family)
+    - name: Upgrade Security-Related Packages (RedHat Family)
       package:
           name: '*'
           state: latest
           update_cache: yes
+          security: yes
       register: yum_result
       notify:
           - reboot
