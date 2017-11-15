@@ -4,9 +4,9 @@
 
 - name: if an ent-svcnow-asset user exists on the system already then make sure it has uid 4040
   shell: id -u ent-svcnow-asset
-  register: ent-svcnow-asset_id_response
+  register: ent_svcnow_asset_id_response
   changed_when: False
-  failed_when: ent-svcnow-asset_id_response.stdout is defined and ent-svcnow-asset_id_response.stdout != "" and ent-svcnow-asset_id_response.stdout != "4040"
+  failed_when: ent_svcnow_asset_id_response.stdout is defined and ent_svcnow_asset_id_response.stdout != "" and ent_svcnow_asset_id_response.stdout != "4040"
 
 - name: if a user with uid 4040 exists on the system already then make sure it's ent-svcnow-asset
   shell: "id 4040 | awk -F '[()]' '{print $2}'"
@@ -16,7 +16,7 @@
 
 - name: if an ent-svcnow-asset group exists on the system already then make sure it has gid 4040
   shell: getent group ent-svcnow-asset | cut -d':' -f3
-  register: ent-svcnow-asset_groupid_response
+  register: ent_svcnow_asset_groupid_response
   changed_when: False
   failed_when: ent-svcnow-asset_groupid_response.stdout is defined and ent-svcnow-asset_groupid_response.stdout != "" and ent-svcnow-asset_groupid_response.stdout != "4040"
 
