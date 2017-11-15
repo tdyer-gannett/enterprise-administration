@@ -1,0 +1,5 @@
+---
+# default variable values for ent-svcnow-asset role
+extra_tests: yes
+install_sudo: no
+authorized_keys_spacewalk: yes
