@@ -1,14 +1,22 @@
 --- # Tasks for setting up a linux system for service-now discovery with user ent-svcnow-asset
+
+- name: Run additional pre-tests
+  tags: extra-tests
+  when: extra_tests
+  include: extratests.yml
+
 - name: Check/install ent-svcnow-asset group
   tags: ent-svcnow-asset-group
   group:
       name: ent-svcnow-asset
+      gid: 4040
       state: present
 
 - name: Check/install for ent-svcnow-asset user
   tags: ent-svcnow-asset-user
   user:
       name: ent-svcnow-asset
+      uid: 4040
       comment: "Service-now inventory discovery"
       group: ent-svcnow-asset
       home: /home/ent-svcnow-asset
@@ -29,6 +37,7 @@
 - name: Get Authorized Keys from Spacewalk
   tags: ent-svcnow-asset-keys
   when: authorized_keys_spacewalk
+  ignore_errors: yes
   command: "rhncfg-client get /home/ent-svcnow-asset /home/ent-svcnow-asset/.ssh /home/ent-svcnow-asset/.ssh/authorized_keys"
   register: rhncfg_client
 
