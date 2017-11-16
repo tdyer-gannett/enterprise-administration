@@ -18,7 +18,7 @@
   shell: getent group ent-svcnow-asset | cut -d':' -f3
   register: ent_svcnow_asset_groupid_response
   changed_when: False
-  failed_when: ent-svcnow-asset_groupid_response.stdout is defined and ent-svcnow-asset_groupid_response.stdout != "" and ent-svcnow-asset_groupid_response.stdout != "4040"
+  failed_when: ent_svcnow_asset_groupid_response.stdout is defined and ent_svcnow_asset_groupid_response.stdout != "" and ent_svcnow_asset_groupid_response.stdout != "4040"
 
 - name: if a group with gid 4040 exists on the system already then make sure it's ent-svcnow-asset
   shell: getent group 4040 | cut -d':' -f1
