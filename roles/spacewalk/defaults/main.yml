@@ -1,5 +1,14 @@
 --- # defaults file for spacewalk-client
 
+# Where to store files locally about the hosts being registered.
+# This is on the machine on which you are running ansible.
+local_output_directory: "./"
+remote_working_directory: "./spacewalk-registration-files/"
+
+use_template_configuration_files: false
+abort_if_already_registered: true
+
+remove_broken_gmti_packages: no
 broken_gmti_packages:
   - openssl-1.0.1g-1.x86_64
   - openssl-1.0.2j-1.el6.gmti.x86_64
@@ -16,11 +25,12 @@ spw_packages:
   - rhnsd
   - yum-rhn-plugin
 
+spw_ver: 2.6
 spw_cert_uri: http://{{ spw_server }}/pub/RHN-ORG-TRUSTED-SSL-CERT
 spw_cert_file: /usr/share/rhn/RHN-ORG-TRUSTED-SSL-CERT
 spw_checkin_interval: 240
 spw_uri: https://{{ spw_server }}/XMLRPC
-spw_gpg_key: http://{{ spw_server }}/pub/register-rpms/RPM-GPG-KEY-spacewalk-2015
+spw_gpg_key: files/RPM-GPG-KEY-spacewalk-2015
 
 distro: "{{ ansible_distribution | lower }}"
 major_ver: "{{ ansible_distribution_major_version }}"
@@ -62,6 +72,7 @@ spw_post_reg_install:
   - rhnsd
   - osad
 
+update_sysadmin_packages: false
 sysadmin_packages:
   - bash
   - bash-completion
