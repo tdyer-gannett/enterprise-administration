@@ -9,10 +9,10 @@ use_template_configuration_files: false
 abort_if_already_registered: true
 initial_disable_repos: false
 use_force: true  # set to false if you're certain it has never been registered elsewhere
-replace_packages_after_registering: false
+replace_packages_after_registering: true
 using_osad: false
 
-remove_broken_gmti_packages: no
+remove_broken_gmti_packages: false
 broken_gmti_packages:
   - openssl-1.0.1g-1.x86_64
   - openssl-1.0.2j-1.el6.gmti.x86_64
@@ -20,8 +20,8 @@ broken_gmti_packages:
   - python-2.7.10-3.el6.gmti.x86_64
 
 spw_packages:
-  - m2crypto
-  - python-hwdata
+  # - m2crypto
+  # - python-hwdata
   - rhn-check
   - rhn-client-tools
   - rhn-setup
@@ -62,6 +62,12 @@ spw_post_reg_remove:
   - rhncfg-client
   - rhncfg-management
   - spacewalk-backend-libs
+  - rhn-check
+  - rhn-client-tools
+  - rhn-setup
+  - rhnlib
+  - rhnsd
+  - yum-rhn-plugin
 
 spw_post_reg_install:
   - rhn-check
@@ -74,6 +80,7 @@ spw_post_reg_install:
   - rhncfg-management
   - rhnlib
   - rhnsd
+  - yum-rhn-plugin
 
 update_sysadmin_packages: false
 sysadmin_packages:

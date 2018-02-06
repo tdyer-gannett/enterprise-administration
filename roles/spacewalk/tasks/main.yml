@@ -18,34 +18,13 @@
     - ( spw_server in spw_registered ) or
       ( spw_server_alias in spw_registered )
 
-# Fix BZ1422518
-- name: Look for /usr/lib/yum-plugins/rhnplugin.py
-  stat:
-    path: /usr/lib/yum-plugins/rhnplugin.py
-  register: under_lib
-  ignore_errors: true
-- name: Look for /usr/share/yum-plugins/rhnplugin.py
-  stat:
-    path: /usr/share/yum-plugins/rhnplugin.py
-  register: under_share
-  ignore_errors: true
-- name: if present fix bz1422518 in /usr/share/yum-plugins/rhnplugin.py
-  lineinfile:
-    state: present
-    backrefs: yes
-    path: /usr/share/yum-plugins/rhnplugin.py
-    regexp: 'self.http_headers.AuthUserH. = "..X-libcurl-Empty-Header-Workaround: ."'
-    line: '                self.http_headers[AuthUserH] = "\\r\\nX-libcurl-Empty-Header-Workaround: *"'
-  when: under_share.stat.exists == True
-  ignore_errors: true
-- name: if present fix bz1422518 in /usr/lib/yum-plugins/rhnplugin.py
-  lineinfile:
-    state: present
-    backrefs: yes
-    path: /usr/lib/yum-plugins/rhnplugin.py
-    regexp: 'self.http_headers.AuthUserH. = "..X-libcurl-Empty-Header-Workaround: ."'
-    line: '                self.http_headers[AuthUserH] = "\\r\\nX-libcurl-Empty-Header-Workaround: *"'
-  when: under_lib.stat.exists == True
+- name: Fix bugzilla 1422518
+  include: fix-bz1422518.yml
+
+- name: Get latest yum
+  yum:
+    name: yum
+    state: latest
   ignore_errors: true
 
 - name: Make a directory for our files so we don't clutter
@@ -259,18 +238,23 @@
     enabled: true
     state: started
 
+- name: Fix bugzilla 1422518 which has sometimes been reinstroduced by this point
+  include: fix-bz1422518.yml
+
 - name: Remove packages, post-registration
   yum:
     name: "{{ item }}"
     state: removed
   with_items: "{{ spw_post_reg_remove }}"
   when: replace_packages_after_registering
+  ignore_errors: true
 
 - name: Install RHN packages from Spacewalk
   yum:
     name: "{{ item }}"
     state: installed
   with_items: "{{ spw_post_reg_install }}"
+  ignore_errors: true
 
 - name: install osad package when using_osad is true
   yum:
@@ -297,8 +281,8 @@
     path: /etc/yum.conf
     regexp: '^reposdir='
     state: present
-    insertafter: '^gpgcheck'
-    line: reposdir=
+    insertafter: "^cachedir"
+    line: "reposdir="
 
 # Set up allowed actions manually in case the command failed
 - name: create allowed actions directories
