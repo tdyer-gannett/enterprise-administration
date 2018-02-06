@@ -175,14 +175,13 @@
     path: /etc/sysconfig/rhn/up2date
   register: up2date_file
 
-# - name: Ensure correct server name in /etc/sysconfig/rhn/up2date
-#   when: up2date_file.stat.exists
-#   lineinfile:
-#     path: /etc/sysconfig/rhn/up2date
-#     regexp: '^\s*([Ss]erverURL\s*=\s*[^:]+://)[^/]*(/.*)'
-#     line: '\1{{ spw_server }}\2'
-#     backrefs: yes
-#   ignore_errors: true
+- name: Ensure correct server name in /etc/sysconfig/rhn/up2date
+  when: up2date_file.stat.exists
+  lineinfile:
+    path: /etc/sysconfig/rhn/up2date
+    regexp: '^\s*([Ss]erverURL\s*='
+    line: "serverURL=https://{{ spw_server }}/XMLRPC"
+  ignore_errors: true
 
 - name: Ensure correct certificate name in /etc/sysconfig/rhn/up2date
   when: up2date_file.stat.exists
@@ -251,6 +250,21 @@
   when: replace_packages_after_registering
   ignore_errors: true
 
+- name: comment out any custom repo directories 
+  lineinfile:
+    path: /etc/yum.conf
+    regexp: '^(reposdir=.*)'
+    line: '#\1'
+    backrefs: yes
+
+- name: null the repo directory
+  lineinfile:
+    path: /etc/yum.conf
+    regexp: '^reposdir='
+    state: present
+    insertafter: "^cachedir"
+    line: "reposdir="
+
 - name: Install RHN packages from Spacewalk
   yum:
     name: "{{ item }}"
@@ -273,21 +287,6 @@
   tags:
     - config
     - allow_actions
-
-- name: comment out any custom repo directories 
-  lineinfile:
-    path: /etc/yum.conf
-    regexp: '^(reposdir=.*)'
-    line: '#\1'
-    backrefs: yes
-
-- name: null the repo directory
-  lineinfile:
-    path: /etc/yum.conf
-    regexp: '^reposdir='
-    state: present
-    insertafter: "^cachedir"
-    line: "reposdir="
 
 # Set up allowed actions manually in case the command failed
 - name: create allowed actions directories
