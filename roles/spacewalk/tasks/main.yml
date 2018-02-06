@@ -179,7 +179,7 @@
   when: up2date_file.stat.exists
   lineinfile:
     path: /etc/sysconfig/rhn/up2date
-    regexp: '^\s*([Ss]erverURL\s*='
+    regexp: '^\s*[Ss]erverURL\s*='
     line: "serverURL=https://{{ spw_server }}/XMLRPC"
   ignore_errors: true
 
