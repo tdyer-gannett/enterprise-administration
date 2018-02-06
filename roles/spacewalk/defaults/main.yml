@@ -8,6 +8,9 @@ remote_working_directory: "./spacewalk-registration-files/"
 use_template_configuration_files: false
 abort_if_already_registered: true
 initial_disable_repos: false
+use_force: true  # set to false if you're certain it has never been registered elsewhere
+replace_packages_after_registering: false
+using_osad: false
 
 remove_broken_gmti_packages: no
 broken_gmti_packages:
@@ -26,7 +29,7 @@ spw_packages:
   - rhnsd
   - yum-rhn-plugin
 
-spw_ver: 2.6
+spw_ver: 2.3
 spw_cert_uri: http://{{ spw_server }}/pub/RHN-ORG-TRUSTED-SSL-CERT
 spw_cert_file: /usr/share/rhn/RHN-ORG-TRUSTED-SSL-CERT
 spw_checkin_interval: 240
@@ -39,8 +42,8 @@ dist_ver: "{{ distro }}{{major_ver }}"
 arch: "{{ ansible_architecture | lower }}"
 release: "{{ distro }}{{ major_ver }}-{{ arch }}"
 
-spw_client_baseurl: "http://yum.spacewalkproject.org/2.6-client/RHEL"
-spw_client_file: "spacewalk-client-repo-2.6-0.el{{ major_ver }}.noarch.rpm"
+spw_client_baseurl: "http://yum.spacewalkproject.org/{{ spw_ver }}-client/RHEL"
+spw_client_file: "spacewalk-client-repo-{{ spw_ver }}-0.el{{ major_ver }}.noarch.rpm"
 spw_client_repo: "{{ spw_client_baseurl }}/{{ major_ver }}/{{ arch }}/{{ spw_client_file }}"
 
 spw_activation_key: "1-{{ release }}"
@@ -71,7 +74,6 @@ spw_post_reg_install:
   - rhncfg-management
   - rhnlib
   - rhnsd
-  - osad
 
 update_sysadmin_packages: false
 sysadmin_packages:
