@@ -151,7 +151,7 @@
 - name: install Spacewalk prerequisites
   yum:
     name: "{{ item }}"
-    state: installed
+    state: latest
   with_items: "{{ spw_packages }}"
   tags: spw_prereq
   ignore_errors: true
@@ -161,26 +161,28 @@
     name: epel-release
     state: absent
   ignore_errors: true
+  when: remove_external_repos
 
 - name: Remove spacewalk-client-repo
   yum:
     name: spacewalk-client-repo
     state: absent
   ignore_errors: true
+  when: remove_external_repos
 
 - name: Check whether /etc/sysconfig/rhn/up2date exists
   stat:
     path: /etc/sysconfig/rhn/up2date
   register: up2date_file
 
-- name: Ensure correct server name in /etc/sysconfig/rhn/up2date
-  when: up2date_file.stat.exists
-  lineinfile:
-    path: /etc/sysconfig/rhn/up2date
-    regexp: '^\s*([Ss]erverURL\s*=\s*[^:]+://)[^/]*(/.*)'
-    line: '\1{{ spw_server }}\2'
-    backrefs: yes
-  ignore_errors: true
+# - name: Ensure correct server name in /etc/sysconfig/rhn/up2date
+#   when: up2date_file.stat.exists
+#   lineinfile:
+#     path: /etc/sysconfig/rhn/up2date
+#     regexp: '^\s*([Ss]erverURL\s*=\s*[^:]+://)[^/]*(/.*)'
+#     line: '\1{{ spw_server }}\2'
+#     backrefs: yes
+#   ignore_errors: true
 
 - name: Ensure correct certificate name in /etc/sysconfig/rhn/up2date
   when: up2date_file.stat.exists

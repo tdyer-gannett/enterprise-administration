@@ -11,6 +11,7 @@ initial_disable_repos: false
 use_force: true  # set to false if you're certain it has never been registered elsewhere
 replace_packages_after_registering: false
 using_osad: false
+remove_external_repos: false
 
 remove_broken_gmti_packages: false
 broken_gmti_packages:
