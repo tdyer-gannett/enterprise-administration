@@ -1,45 +1,217 @@
 --- # Tasks for spacewalk registration
 # ansible_distribution
 # ansible_distribution_major_version
+#  "ansible_distribution": "CentOS", "ansible_distribution": "RedHat",
+
+- name: Check for existing registration
+  command: rhncfg-client list
+  register: spw_registered
+  ignore_errors: true
+  changed_when: false
+
+- name: Go no further if already registered and abort_if_already_registered is true
+  meta: end_play
+  ignore_errors: true
+  when: 
+    - abort_if_already_registered
+    - spw_registered is defined
+    - ( spw_server in spw_registered ) or
+      ( spw_server_alias in spw_registered )
+
+# Fix BZ1422518
+- name: Look for /usr/lib/yum-plugins/rhnplugin.py
+  stat:
+    path: /usr/lib/yum-plugins/rhnplugin.py
+  register: under_lib
+  ignore_errors: true
+- name: Look for /usr/share/yum-plugins/rhnplugin.py
+  stat:
+    path: /usr/share/yum-plugins/rhnplugin.py
+  register: under_share
+  ignore_errors: true
+- name: if present fix bz1422518 in /usr/share/yum-plugins/rhnplugin.py
+  lineinfile:
+    state: present
+    backrefs: yes
+    path: /usr/share/yum-plugins/rhnplugin.py
+    regexp: 'self.http_headers.AuthUserH. = "..X-libcurl-Empty-Header-Workaround: ."'
+    line: '                self.http_headers[AuthUserH] = "\\r\\nX-libcurl-Empty-Header-Workaround: *"'
+  when: under_share.stat.exists == True
+  ignore_errors: true
+- name: if present fix bz1422518 in /usr/lib/yum-plugins/rhnplugin.py
+  lineinfile:
+    state: present
+    backrefs: yes
+    path: /usr/lib/yum-plugins/rhnplugin.py
+    regexp: 'self.http_headers.AuthUserH. = "..X-libcurl-Empty-Header-Workaround: ."'
+    line: '                self.http_headers[AuthUserH] = "\\r\\nX-libcurl-Empty-Header-Workaround: *"'
+  when: under_lib.stat.exists == True
+  ignore_errors: true
+
+- name: Make a directory for our files so we don't clutter
+  file:
+    path: "{{ remote_working_directory }}"
+    state: directory
+
+# Make a note of the current software channels and orphaned packages
+# This can be useful later. Keep a record on the host and locally.
+- name: get current software channels
+  command: yum -v repolist
+  register: channel_list
+  ignore_errors: true
+- name: save the channel list locally if this hasn't already been done (no clobber)
+  local_action:
+    module: copy
+    content: "{{ channel_list.stdout_lines }}"
+    dest: "{{ local_output_directory }}/{{ inventory_hostname }}-channel-list"
+    force: no
+  ignore_errors: true
+- name: save the channel list remotely if this hasn't already been done (no clobber)
+  copy:
+    content: "{{ channel_list.stdout_lines }}"
+    dest: "{{ remote_working_directory }}/{{ inventory_hostname }}-channel-list"
+    force: no
+  ignore_errors: true
+- name: get current orphaned packages
+  command: yum list extras
+  register: orphans_list
+  ignore_errors: true
+- name: save the orphaned packages list locally if this hasn't already been done (no clobber)
+  local_action:
+    module: copy
+    content: "{{ orphans_list.stdout_lines }}"
+    dest: "{{ local_output_directory }}/{{ inventory_hostname }}-orphaned-packages-list"
+    force: no
+  ignore_errors: true
+- name: save the orphaned packages list remotely if this hasn't already been done (no clobber)
+  copy:
+    content: "{{ orphans_list.stdout_lines }}"
+    dest: "{{ remote_working_directory }}/{{ inventory_hostname }}-orphaned-packages-list"
+    force: no
+  ignore_errors: true
 
 - name: Fix badly-packaged GMTI RPMs
   command: rpm -e --justdb --nodeps --noscripts --notriggers {{ item|quote }}
   with_items: "{{ broken_gmti_packages }}"
   register: bad_rpm_clean
   ignore_errors: true
+  when: remove_broken_gmti_packages
 
-#- name: DEBUG Fix badly-packged GMTI RPMs
-#  debug: var=bad_rpm_clean
+- name: DEBUG Fix badly-packged GMTI RPMs
+  debug: var=bad_rpm_clean
+  when: remove_broken_gmti_packages
+
+# Disable the current yum repositories if initial_disable_repos
+
+- name: disable all spacewalk client yum repos
+  command: 'yum-config-manager --disable \*pacewalk-client\*'
+  ignore_errors: true
+
+- name: disable all satellite client yum repos
+  command: 'yum-config-manager --disable \*satellite-tools\*'
+  ignore_errors: true
+
+- name: disable all yum repos
+  when: initial_disable_repos
+  command: 'yum-config-manager --disable \*'
+  ignore_errors: true
+
+- name: Make a directory for our keys so we don't clutter
+  file:
+    path: "{{ remote_working_directory }}/keys"
+    state: directory
+
+- name: copy spacewalk repo keys to system
+  copy:
+    src: files/keys/
+    dest: "{{ remote_working_directory }}/keys/"
+
+- name: get listing of keys
+  find: 
+    paths: "{{ remote_working_directory }}/keys/"
+    patterns: "*GPG*"
+  register: keys
+  changed_when: false
+
+- name: install spacewalk client repo keys
+  rpm_key:
+    key: "{{ item.path }}"
+    state: present
+  with_items: "{{ keys.files }}"
+
+- name: install epel when EL 6 or 7
+  yum_repository:
+    name: epel
+    description: EPEL YUM repo
+    baseurl: https://download.fedoraproject.org/pub/epel/$releasever/$basearch/
+  when: ansible_distribution_major_version == 6 or ansible_distribution_major_version == 7
+
+- name: Make a directory for our repos so we don't clutter
+  file:
+    path: "{{ remote_working_directory }}/repos"
+    state: directory
+
+- name: upload repository packages
+  copy:
+    src: files/repos/
+    dest: "{{ remote_working_directory }}/repos/"
+
+- name: determine correct spacewalk client repo package file
+  find:
+    paths: "{{ remote_working_directory }}/repos/"
+    patterns: "spacewalk-client-repo-{{ spw_ver }}*{{ ansible_distribution_major_version }}.noarch.rpm"
+  register: client_repo_files
+  ignore_errors: true
 
 - name: Install Spacewalk Client Repo
   yum:
-      name: "{{ spw_client_repo }}"
-      state: present
+    name: "{{ client_repo_files.files[0].path }}"
+    state: present
+  ignore_errors: true
 
 - name: install Spacewalk prerequisites
   yum:
     name: "{{ item }}"
     state: installed
-    disablerepo: '*'
-    enablerepo: base,updates,extras,spacewalk-client,epel
   with_items: "{{ spw_packages }}"
   tags: spw_prereq
+  ignore_errors: true
 
 - name: Remove epel-release
   yum:
     name: epel-release
     state: absent
+  ignore_errors: true
 
 - name: Remove spacewalk-client-repo
   yum:
     name: spacewalk-client-repo
     state: absent
-
-- name: disable all yum repos
-  command: 'yum-config-manager --disable \*'
   ignore_errors: true
 
+- name: Check whether /etc/sysconfig/rhn/up2date exists
+  stat:
+    path: /etc/sysconfig/rhn/up2date
+  register: up2date_file
+
+- name: Ensure correct server name in /etc/sysconfig/rhn/up2date
+  when: up2date_file.stat.exists
+  lineinfile:
+    path: /etc/sysconfig/rhn/up2date
+    regexp: '^\s*([Ss]erverURL\s*=\s*[^:]+://)[^/]*(/.*)'
+    line: '\1{{ spw_server }}\2'
+    backrefs: yes
+  ignore_errors: true
+
+- name: Ensure correct certificate name in /etc/sysconfig/rhn/up2date
+  when: up2date_file.stat.exists
+  lineinfile:
+    path: /etc/sysconfig/rhn/up2date
+    regexp: '^\s*sslCACert='
+    line: sslCACert=/usr/share/rhn/RHN-ORG-TRUSTED-SSL-CERT
+
 - name: deploy configurations
+  when: use_template_configuration_files
   template:
     src: "{{ item }}"
     dest: /etc/sysconfig/rhn/{{ item }}
@@ -49,42 +221,37 @@
   tags:
     - config
 
-- name: Check for Spacewalk server SSL certificate
-  stat:
-    path: "{{ spw_cert_file }}"
-  register: ssl_file
-
 - name: Fetch and install Spacewalk ORG Trusted SSL Certificate
   get_url:
     url: "{{ spw_cert_uri }}"
     dest: "{{ spw_cert_file }}"
+    backup: yes
+    force: yes
     owner: root
     group: root
     mode: 0644
-  when: ssl_file.stat.exists == false
 
-- name: Check for existing registration
-  command: /usr/sbin/rhn_check
-  register: spw_registered
-  ignore_errors: true
-  changed_when: false
-
-- name: Import Spacewalk GPG key
-  rpm_key:
-    key: "{{ spw_gpg_key }}"
-    state: present
-
-- name: Register with Spacewalk
+- name: Register with Spacewalk using ansible module
+  when: not use_force
   rhn_register:
     server_url: "{{ spw_uri }}"
     sslcacert: "{{ spw_cert_file }}"
     activationkey: "{{ spw_activation_key }}"
     state: present
-  register: rhn_register_out
-  when: spw_registered|failed
+  register: rhn_register_out_ansible
 
-- name: DEBUG Register with Spackewalk
-  debug: var=rhn_register_out
+- name: Register with Spacewalk using rhnreg_ks command
+  shell: "rhnreg_ks --force --serverUrl={{ spw_uri }}/XMLRPC --sslCACert={{ spw_cert_file }} --activationkey={{ spw_activation_key }}"
+  when: use_force
+  register: rhn_register_out_shell
+
+- name: DEBUG Register with Spackewalk using ansible module
+  debug: var=rhn_register_out_ansible
+  when: rhn_register_out_ansible is defined
+
+- name: DEBUG Register with Spackewalk using shell command
+  debug: var=rhn_register_out_shell
+  when: rhn_register_out_shell is defined
 
 - name: Enable rhnsd service
   service:
@@ -97,6 +264,7 @@
     name: "{{ item }}"
     state: removed
   with_items: "{{ spw_post_reg_remove }}"
+  when: replace_packages_after_registering
 
 - name: Install RHN packages from Spacewalk
   yum:
@@ -104,13 +272,52 @@
     state: installed
   with_items: "{{ spw_post_reg_install }}"
 
+- name: install osad package when using_osad is true
+  yum:
+    name: osad
+    state: present
+  when: using_osad
+
 - name: Enable RHN Actions Control
   command: rhn-actions-control --enable-all --force
+  ignore_errors: true
   tags:
     - config
     - allow_actions
 
+- name: comment out any custom repo directories 
+  lineinfile:
+    path: /etc/yum.conf
+    regexp: '^(reposdir=.*)'
+    line: '#\1'
+    backrefs: yes
+
+- name: null the repo directory
+  lineinfile:
+    path: /etc/yum.conf
+    regexp: '^reposdir='
+    state: present
+    insertafter: '^gpgcheck'
+    line: reposdir=
+
+# Set up allowed actions manually in case the command failed
+- name: create allowed actions directories
+  file:
+    path: "{{ item }}"
+    state: directory
+  with_items:
+    - /etc/sysconfig/rhn/allowed-actions/script
+    - /etc/sysconfig/rhn/allowed-actions/configfiles
+- name: create allowed actions files
+  file:
+    path: "{{ item }}"
+    state: touch
+  with_items:
+    - /etc/sysconfig/rhn/allowed-actions/script/run
+    - /etc/sysconfig/rhn/allowed-actions/configfiles/all
+
 - name: Update sysadmin packages and get missing tools
+  when: update_sysadmin_packages
   yum:
     name: "{{ item }}"
     state: latest
