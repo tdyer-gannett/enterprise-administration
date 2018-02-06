@@ -9,7 +9,7 @@ use_template_configuration_files: false
 abort_if_already_registered: true
 initial_disable_repos: false
 use_force: true  # set to false if you're certain it has never been registered elsewhere
-replace_packages_after_registering: true
+replace_packages_after_registering: false
 using_osad: false
 
 remove_broken_gmti_packages: false
@@ -62,12 +62,6 @@ spw_post_reg_remove:
   - rhncfg-client
   - rhncfg-management
   - spacewalk-backend-libs
-  - rhn-check
-  - rhn-client-tools
-  - rhn-setup
-  - rhnlib
-  - rhnsd
-  - yum-rhn-plugin
 
 spw_post_reg_install:
   - rhn-check

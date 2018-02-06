@@ -256,6 +256,9 @@
   with_items: "{{ spw_post_reg_install }}"
   ignore_errors: true
 
+- name: Fix bugzilla 1422518 which has sometimes been reinstroduced by this point
+  include: fix-bz1422518.yml
+
 - name: install osad package when using_osad is true
   yum:
     name: osad
