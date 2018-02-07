@@ -1,0 +1,31 @@
+- name: Look for /usr/lib/yum-plugins/rhnplugin.py
+  stat:
+    path: /usr/lib/yum-plugins/rhnplugin.py
+  register: under_lib
+  ignore_errors: true
+
+- name: Look for /usr/share/yum-plugins/rhnplugin.py
+  stat:
+    path: /usr/share/yum-plugins/rhnplugin.py
+  register: under_share
+  ignore_errors: true
+
+- name: if present fix bz1422518 in /usr/share/yum-plugins/rhnplugin.py
+  lineinfile:
+    state: present
+    backrefs: yes
+    path: /usr/share/yum-plugins/rhnplugin.py
+    regexp: 'self.http_headers.AuthUserH. = "..X-libcurl-Empty-Header-Workaround: ."'
+    line: '                self.http_headers[AuthUserH] = "\\r\\nX-libcurl-Empty-Header-Workaround: *"'
+  when: under_share.stat.exists == True
+  ignore_errors: true
+
+- name: if present fix bz1422518 in /usr/lib/yum-plugins/rhnplugin.py
+  lineinfile:
+    state: present
+    backrefs: yes
+    path: /usr/lib/yum-plugins/rhnplugin.py
+    regexp: 'self.http_headers.AuthUserH. = "..X-libcurl-Empty-Header-Workaround: ."'
+    line: '                self.http_headers[AuthUserH] = "\\r\\nX-libcurl-Empty-Header-Workaround: *"'
+  when: under_lib.stat.exists == True
+  ignore_errors: true

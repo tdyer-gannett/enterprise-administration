@@ -1,13 +1,18 @@
 --- # vars for spacewalk-client
 
-spw_server: moc-lx00011361.gmti.gbahn.net
+local_output_directory: output
+# override default version of 2.6 if necessary
+spw_ver: "2.3"
+# spw_server: moc-lx00011361.gmti.gbahn.net
+spw_server: spacewalk.ent.gci
+spw_server_alias: ent-mocsmxu03.ent.gci # just repeat spacewalk server if no alias
 
 spw_distro_ver: "{{ ansible_distribution | lower }}{{ ansible_distribution_major_version }}"
 spw_distro_ver_arch: "{{ spw_distro_ver }}-{{ ansible_architecture }}"
 
 # Activation Key Should look something like this: 1-centos7-x86_64-base
 # spw_activation_key: "1-{{ spw_distro_ver_arch }}-base"
+spw_activation_key: 2-jmg-import
+# spw_activation_key: 2-all-builds
 
 # spw_client_repo: "http://yum.spacewalkproject.org/2.6-client/RHEL/{{ ansible_distribution_major_version }}/{{ ansible_architecture }}/spacewalk-client-repo-2.6-0.el{{ ansible_distribution_major_version }}.noarch.rpm"
-
-
