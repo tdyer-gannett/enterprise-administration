@@ -1,3 +1,46 @@
+[local]
+localhost.
+
+[relays]
+ent-mocinrl08.gannett.com.
+ent-mocinrl09.gannett.com.
+ent-pocinrl08.gannett.com.
+ent-pocinrl09.gannett.com.
+ent-docinrl10.us.ad.gannett.com.
+ent-docinrl11.us.ad.gannett.com.
+ent-mocinrl10.us.ad.gannett.com.
+ent-mocinrl11.us.ad.gannett.com.
+
+[sm]
+ent-mocsmnag01.us.ad.gannett.com.
+ent-mocsmux03.ent.gci.
+ent-mocsmux04.gannett.com.
+#ent-mocsmux05.gannett.com. ansible_ssh_common_args: '-o ProxyCommand="ssh -W %h:%p -q ent-mocsmux04.gannett.com."'
+ent-mocsmrhs01.moc.gci.
+ent-pocsmrhp01.poc.gci.
+ent-mocsmnag01.us.ad.gannett.com.
+ent-mocsmtklm01.us.ad.gannett.com.
+ent-pocsmtklm01.us.ad.gannett.com.
+ent-vocsmawm01.us.ad.gannett.com.
+
+[mon]
+ent-moccolspk02.us.ad.gannett.com.
+ent-poccolspk02.us.ad.gannett.com.
+
+[security]
+ent-mocaptw01.us.ad.gannett.com.
+ent-mocapwall01.ent.gci.
+ent-mocsmbrp01.us.ad.gannett.com.
+ent-mocsmnvs01.us.ad.gannett.com.
+ent-mocsmnvs02.us.ad.gannett.com.
+ent-mocsmst01.us.ad.gannett.com.
+ent-mocsmst02.us.ad.gannett.com.
+ent-mocstwt01.us.ad.gannett.com.
+ent-mocstwt02.us.ad.gannett.com.
+ent-mocwbpki01.gannett.com.
+ent-pocsmnvs01.us.ad.gannett.com.
+ent-pocsmst01.us.ad.gannett.com.
+
 [l8k-doc]
 eng-docasbl8k71.eng.gci.
 eng-docdesl8k71.eng.gci.
@@ -16,7 +59,6 @@ eng-vocphxl8k71.eng.gci.
 
 [eng-one-of-each]
 eng-vocngap71.eng.gci.
-eng-vocngaut71.eng.gci.
 eng-vocngcn73.eng.gci.
 eng-vocngdbdrs71.eng.gci.
 eng-vocngfip71.eng.gci.
@@ -75,9 +117,6 @@ eng-voctstiodb02.eng.gci.
 eng-iodb-tst
 tdn-iodb-tst
 
-[eng-iodb-qa]
-eng-vocqacn[01:02].eng.gci.
-
 [eng-iodb-prod:children]
 eng-iodb-prod-doc
 eng-iodb-prod-voc
@@ -85,7 +124,6 @@ eng-iodb-prod-voc
 [eng-iodb-all:children]
 eng-iodb-prod
 eng-iodb-tst
-eng-iodb-qa
 
 [tdn-iodb-prod:children]
 tdn-iodb-prod-doc
@@ -130,14 +168,12 @@ tdn-ap-tst
 eng-ap-prod
 tdn-ap-prod
 
-[eng-ap-qa]
-eng-vocqaap[01:04].eng.gci.
-
 [eng-ap-tst]
+eng-voctstap71.eng.gci.
+eng-voctstap72.eng.gci.
 
 [eng-ap-all:children]
 eng-ap-prod
-eng-ap-qa
 eng-ap-tst
 
 [eng-tdn-ap-all:children]
@@ -154,39 +190,13 @@ eng-vocngwb[71:73].eng.gci.
 eng-wb-prod-doc
 eng-wb-prod-voc
 
-[eng-wb-qa]
-eng-vocqawb[01:02].eng.gci.
-
 [eng-wb-tst]
 eng-voctstiodb71.eng.gci.
 
 [eng-wb-all:children]
 eng-wb-prod
-eng-wb-qa
 eng-wb-tst
 tdn-wb-tst
-
-[eng-aut-prod-doc]
-eng-docngaut[71:72].eng.gci.
-
-[eng-aut-prod-voc]
-eng-vocngaut[71:72].eng.gci.
-
-[eng-aut-prod:children]
-eng-aut-prod-doc
-eng-aut-prod-voc
-
-[tdn-aut-prod-voc]
-eng-vocngaut[05:06].eng.gci.
-
-[tdn-aut-prod:children]
-tdn-aut-prod-voc
-
-[eng-aut-qa]
-eng-vocqaaut[01:02].eng.gci.
-
-[tdn-aut-tst]
-eng-voctstaut02.eng.gci.
 
 [eng-fip-prod-doc]
 eng-docngfip[71:72].eng.gci.
@@ -198,36 +208,32 @@ eng-vocngfip[71:72].eng.gci.
 eng-fip-prod-doc
 eng-fip-prod-voc
 
-[eng-fip-qa]
-eng-vocqafip01.eng.gci.
-
 [eng-fip-tst]
 eng-voctstfip71.eng.gci.
 
 [eng-fip:children]
 eng-fip-prod
 eng-fip-tst
-eng-fip-qa
 
-[eng-fs-prod-doc]
+[eng-fs-doc]
 eng-docngfs[71:72].eng.gci.
 
-[eng-fs-prod-voc]
+[eng-fs-voc]
 eng-vocngfs[71:72].eng.gci.
 
-[eng-fs-prod:children]
-eng-fs-prod-doc
-eng-fs-prod-voc
+[eng-fs:children]
+eng-fs-doc
+eng-fs-voc
 
-[eng-ftp-prod-doc]
+[eng-ftp-doc]
 eng-docngftp[71:72].eng.gci.
 
-[eng-ftp-prod-voc]
+[eng-ftp-voc]
 eng-vocngftp[71:72].eng.gci.
 
-[eng-ftp-prod:children]
-eng-ftp-prod-doc
-eng-ftp-prod-voc
+[eng-ftp:children]
+eng-ftp-doc
+eng-ftp-voc
 
 [eng-lts-doc]
 eng-docnglts71.eng.gci.
@@ -235,13 +241,9 @@ eng-docnglts71.eng.gci.
 [eng-lts-voc]
 eng-vocnglts71.eng.gci.
 
-[eng-lts-qa]
-eng-vocqalts01.eng.gci.
-
 [eng-lts:children]
 eng-lts-doc
 eng-lts-voc
-eng-lts-qa
 
 [eng-sms-doc]
 eng-docngsms71.eng.gci.
@@ -265,10 +267,9 @@ eng-dbdrs-voc
 
 [eng-prod-doc:children]
 eng-ap-prod-doc
-eng-aut-prod-doc
 eng-fip-prod-doc
-eng-fs-prod-doc
-eng-ftp-prod-doc
+eng-fs-doc
+eng-ftp-doc
 eng-iodb-prod-doc
 eng-lts-doc
 l8k-doc
@@ -277,10 +278,9 @@ eng-dbdrs-doc
 
 [eng-prod-voc:children]
 eng-ap-prod-voc
-eng-aut-prod-voc
 eng-fip-prod-voc
-eng-fs-prod-voc
-eng-ftp-prod-voc
+eng-fs-voc
+eng-ftp-voc
 eng-iodb-prod-voc
 eng-lts-voc
 l8k-prod-voc
@@ -291,45 +291,32 @@ eng-dbdrs-voc
 eng-prod-doc
 eng-prod-voc
 
-[eng-qa:children]
-eng-iodb-qa
-eng-ap-qa
-eng-aut-qa
-eng-wb-qa
-eng-fip-qa
-eng-lts-qa
-
 [eng-tst:children]
 eng-iodb-tst
+eng-ap-tst
 l8k-tst
 
 [eng-all:children]
 eng-prod
 eng-tst
-eng-qa
 eng-sms
 
 [eng-tdn-all-voc:children]
 eng-prod-voc
 tdn-iodb-prod-voc
-tdn-aut-prod-voc
 tdn-ap-prod-voc
 eng-tst
 tdn-tst
-eng-qa
-
 
 [tdn-prod:children]
 tdn-iodb-prod
 tdn-ap-prod
-tdn-aut-prod
 
 [tdn-wb-tst]
 eng-voctstiodb02.eng.gci.
 
 [tdn-tst:children]
 tdn-ap-tst
-tdn-aut-tst
 tdn-iodb-tst
 tdn-wb-tst
 
@@ -529,25 +516,45 @@ nmass-pci
 nmass-non-pci
 
 [nmass-pci:children]
-nmass-pci-x86
-ppc
+nmass-pci-moc
+nmass-pci-poc
 
-[nmass-pci-x86]
+[nmass-pci-moc:children]
+nmass-pci-x86-moc
+ppc-moc
+
+[nmass-pci-poc:children]
+nmass-pci-x86-poc
+ppc-poc
+
+[nmass-pci-x86-moc]
 ent-mocapgcs01.us.ad.gannett.com.
 ent-mocapgcs02.us.ad.gannett.com.
 ent-mocapnmas20.us.ad.gannett.com.
 ent-mocapnmas23.us.ad.gannett.com.
 ent-mocapnmas25.us.ad.gannett.com.
+
+[nmass-pci-x86-poc]
 ent-pocapgcs02.us.ad.gannett.com.
 ent-pocapnmas20.us.ad.gannett.com.
 ent-pocapnmas23.us.ad.gannett.com.
 ent-pocapnmas25.us.ad.gannett.com.
 
-[ppc]
+[nmass-pci-x86:children]
+nmass-pci-x86-moc
+nmass-pci-x86-poc
+
+[ppc-moc]
 ent-mocapapi02.us.ad.gannett.com.
 ent-mocapcirc02.us.ad.gannett.com.
+
+[ppc-poc]
 ent-pocapapi02.us.ad.gannett.com.
 ent-pocapcirc02.us.ad.gannett.com.
+
+[ppc:children]
+ppc-moc
+ppc-poc
 
 [nmass-non-pci]
 ent-mocapinch01.us.ad.gannett.com.
@@ -573,6 +580,7 @@ ent-mocapnmas36.us.ad.gannett.com.
 ent-mocapnmas37.us.ad.gannett.com.
 ent-mocdbnmas01.us.ad.gannett.com.
 ent-mocdbnmas20.us.ad.gannett.com.
+#ent-mocdvgen02.us.ad.gannett.com. ansible_python_interpreter=/usr/local/bin/python
 ent-mocdvgen03.us.ad.gannett.com.
 ent-mocdvnmas01.us.ad.gannett.com.
 ent-mocdvnmas03.us.ad.gannett.com.
@@ -603,8 +611,26 @@ pci-mocapdraw01.us.ad.gannett.com.
 pci-mocapnmas01.us.ad.gannett.com.
 pci-pocapdraw01.us.ad.gannett.com.
 
+[c5]
+ent-mocdevcos01.dev.gci.
+
+[c6]
+ent-mocdevcos02.dev.gci.
+
+[c7]
+ent-mocdevcos03.dev.gci.
+
 [c567]
 ent-mocdevcos[01:03].dev.gci.
+
+[dev-cn1]
+ent-mocdevcn01.dev.gci.
+
+[dev-cn2]
+ent-mocdevcn02.dev.gci.
+
+[dev-cn3]
+ent-mocdevcn03.dev.gci.
 
 [dev-cluster-nodes]
 ent-mocdevcn[01:03].dev.gci.
@@ -639,7 +665,150 @@ ns2.gannett.com. # ent-pocindns01
 ns3.gannett.com. # ent-vocindns01
 ns4.gannett.com. # ent-docindns01
 
-[dns:children]
+[dnstool]
+ent-mocapfdr01.dns.gannett.com.
+ent-mocapfdr02.gci.gannett.com.
+ent-pocapfdr01.dns.gannett.com.
+
+[dns-res:children]
 dns-res-int
 dns-res-ext
+
+[dns-legacy]
+# these old servers need to have ansible added
+#auth1.dns.gci.
+#auth2.dns.gci.
+
+[dns:children]
+dns-res
 dns-auth-ext
+dns-legacy
+
+[gpc]
+#gpc-iniapbps01.us.ad.gannett.com.
+gpc-mocapatl01.us.ad.gannett.com.
+gpc-mocapatr01.us.ad.gannett.com.
+gpc-mocapatr01.us.ad.gannett.com.
+gpc-mocapatr01.us.ad.gannett.com.
+gpc-mocapatr01.us.ad.gannett.com.
+gpc-mocapatr01.us.ad.gannett.com.
+gpc-mocapavn01.us.ad.gannett.com.
+gpc-mocapbls01.us.ad.gannett.com.
+gpc-mocapccc01.us.ad.gannett.com. timeout=60
+gpc-mocapfnl01.us.ad.gannett.com.
+gpc-mocapgst01.us.ad.gannett.com.
+gpc-mocaphom01.us.ad.gannett.com.
+gpc-mocapimg01.us.ad.gannett.com.
+gpc-mocapkwi01.us.ad.gannett.com.
+gpc-mocapmgc01.us.ad.gannett.com.
+gpc-mocapopq01.us.ad.gannett.com.
+gpc-mocapqik01.us.ad.gannett.com.
+gpc-mocapqik02.us.ad.gannett.com.
+gpc-mocapqiz01.us.ad.gannett.com.
+gpc-mocapsen01.us.ad.gannett.com.
+gpc-mocaptag01.us.ad.gannett.com.
+gpc-mocdbqik01.us.ad.gannett.com.
+gpc-moctstavn01.us.ad.gannett.com.
+gpc-moctstbls01.us.ad.gannett.com.
+gpc-moctstimg01.us.ad.gannett.com.
+
+[pni]
+pni-testazcent.pni.us.ad.gannett.com.
+pni-vmsamprod.pni.us.ad.gannett.com.
+pni-azcwebdev.pni.us.ad.gannett.com.
+pni-vmc2ktrxnaps.pni.us.ad.gannett.com.
+pni-azcwh-03.pni.us.ad.gannett.com.
+pni-azccs-01.pni.us.ad.gannett.com.
+pni-azcwh-02.pni.us.ad.gannett.com.
+pni-azcwh-01.pni.us.ad.gannett.com.
+pni-azcinternal-01.pni.us.ad.gannett.com.
+pni-azcwh-04.pni.us.ad.gannett.com.
+docsectest.pni.us.ad.gannett.com.
+pni-vmpostalprod.pni.us.ad.gannett.com.
+pni-vmcircapidev.pni.us.ad.gannett.com.
+pni-vmpostaltest.pni.us.ad.gannett.com.
+pni-vmwebserv03.pni.us.ad.gannett.com.
+pni-vmwebserv-test.pni.us.ad.gannett.com.
+pni-vmmsbps-test2.pni.us.ad.gannett.com.
+pni-vmmsbps03.pni.us.ad.gannett.com.
+pni-azcdb-01.pni.us.ad.gannett.com.
+pni-vmmsbps-test.pni.us.ad.gannett.com.
+
+[ipt]
+ent-mociptcti01.us.ad.gannett.com.
+
+[unclassified]
+ent-docstaut01.us.ad.gannett.com.
+ent-docstaut02.us.ad.gannett.com.
+ent-docstaut03.us.ad.gannett.com.
+ent-docstclar01.us.ad.gannett.com.
+ent-docstclar02.us.ad.gannett.com.
+ent-docstclar03.us.ad.gannett.com.
+ent-docstpgdb01.us.ad.gannett.com.
+ent-docstpgdb02.us.ad.gannett.com.
+ent-docstpgdb03.us.ad.gannett.com.
+ent-docstwt01.us.ad.gannett.com.
+ent-docstwt02.us.ad.gannett.com.
+ent-mocdvdgtl01.us.ad.gannett.com.
+ent-mocdvsmg01.us.ad.gannett.com.
+ent-mocinftp01.gannett.com.
+ent-mocnjlxpbs1.us.ad.gannett.com.
+ent-mocstaut01.us.ad.gannett.com.
+ent-mocstaut02.us.ad.gannett.com.
+ent-mocstaut03.us.ad.gannett.com.
+ent-mocstsgclar01.us.ad.gannett.com.
+ent-mocstclar02.us.ad.gannett.com.
+ent-mocstclar03.us.ad.gannett.com.
+ent-mocstpgdb01.us.ad.gannett.com.
+ent-mocstpgdb02.us.ad.gannett.com.
+ent-mocstpgdb03.us.ad.gannett.com.
+ent-mocstsgclar01.us.ad.gannett.com.
+ent-mocstsgaut01.us.ad.gannett.com.
+ent-mocstsgaut02.us.ad.gannett.com.
+ent-mocstsgpgdb01.us.ad.gannett.com.
+ent-mocstsgpgdb02.us.ad.gannett.com.
+ent-mocstsgwt01.us.ad.gannett.com.
+ent-mocsttest01.us.ad.gannett.com.
+ent-mocutildig01.us.ad.gannett.com.
+ent-vocdvcfdb01.us.ad.gannett.com.
+ent-vocdvcfwb01.us.ad.gannett.com.
+tnm-pocapbps-test.us.ad.gannett.com.
+tnm-pocapbps01.us.ad.gannett.com.
+
+[jmg-worklife-dev]
+ent-docnplxdevfs01.us.ad.gannett.com.
+ent-docnplxdevmysql01.us.ad.gannett.com.
+ent-docnplxdevphp01.us.ad.gannett.com.
+
+[jmg-worklife-prod]
+ent-docnplxfs01.us.ad.gannett.com.
+ent-docnplxmysql01.us.ad.gannett.com.
+ent-docnplxphp01.us.ad.gannett.com.
+ent-docnplxsvn01.us.ad.gannett.com.
+
+[jmg-dti]
+ent-docarlxpbs01.us.ad.gannett.com.
+ent-doccclxpbs01.us.ad.gannett.com.
+ent-doceclxpbs01.us.ad.gannett.com.
+ent-docknlxpbs01.us.ad.gannett.com.
+ent-docmclxpbs01.us.ad.gannett.com.
+ent-docmclxpbs02.us.ad.gannett.com.
+ent-docmjlxpbs01.us.ad.gannett.com.
+ent-docndlxpbs01.us.ad.gannett.com.
+ent-docrrlxpbs01.us.ad.gannett.com.
+ent-docsslxpbs01.us.ad.gannett.com.
+ent-docsulxpbs01.us.ad.gannett.com.
+ent-docvslxpbs01.us.ad.gannett.com.
+ent-docwtlxpbs01.us.ad.gannett.com.
+ent-mocailxpbs01.us.ad.gannett.com.
+ent-mocailxpbstst01.us.ad.gannett.com.
+ent-mocbslxpbs01.us.ad.gannett.com.
+ent-mocbslxpbstst01.us.ad.gannett.com.
+ent-moclxweb01.us.ad.gannett.com.
+ent-mocnplxppt01.us.ad.gannett.com.
+ent-mocnplxpromon01.us.ad.gannett.com.
+
+[jmg:children]
+jmg-worklife-dev
+jmg-worklife-prod
+jmg-dti
