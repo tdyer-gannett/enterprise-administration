@@ -242,6 +242,13 @@
 - name: Fix bugzilla 1422518 which has sometimes been reinstroduced by this point
   include: fix-bz1422518.yml
 
+- name: Ensure correct server name in /etc/sysconfig/rhn/up2date
+  lineinfile:
+    path: /etc/sysconfig/rhn/up2date
+    regexp: '^\s*[Ss]erverURL\s*='
+    line: "serverURL=https://{{ spw_server }}/XMLRPC"
+  ignore_errors: true
+
 - name: Remove packages, post-registration
   yum:
     name: "{{ item }}"
@@ -265,6 +272,9 @@
     insertafter: "^cachedir"
     line: "reposdir="
 
+- name: Fix bugzilla 1422518 which has sometimes been reinstroduced by this point
+  include: fix-bz1422518.yml
+  
 - name: Install RHN packages from Spacewalk
   yum:
     name: "{{ item }}"
