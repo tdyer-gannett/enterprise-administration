@@ -1,0 +1,1024 @@
+all:
+  children:
+    c567:
+      hosts:
+        ent-mocdevcos01.dev.gci: {}
+        ent-mocdevcos02.dev.gci: {}
+        ent-mocdevcos03.dev.gci: {}
+    dev-cluster-nodes:
+      hosts:
+        ent-mocdevcn01.dev.gci: {}
+        ent-mocdevcn02.dev.gci: {}
+        ent-mocdevcn03.dev.gci: {}
+    dns:
+      children:
+        dns-auth-ext:
+          hosts:
+            ns1.gannett.com: {}
+            ns2.gannett.com: {}
+            ns3.gannett.com: {}
+            ns4.gannett.com: {}
+        dns-res-ext:
+          hosts:
+            res1.doc.gannett.com: {}
+            res1.moc.gannett.com: {}
+            res1.poc.gannett.com: {}
+            res1.voc.gannett.com: {}
+            res2.moc.gannett.com: {}
+            res2.poc.gannett.com: {}
+        dns-res-int:
+          hosts:
+            res1.doc.gci: {}
+            res1.moc.gci: {}
+            res1.poc.gci: {}
+            res1.voc.gci: {}
+            res2.moc.gci: {}
+            res2.poc.gci: {}
+    eng-aut-prod:
+      children:
+        eng-aut-prod-doc:
+          hosts:
+            eng-docngaut71.eng.gci: {}
+            eng-docngaut72.eng.gci: {}
+        eng-aut-prod-voc:
+          hosts:
+            eng-vocngaut71.eng.gci: {}
+            eng-vocngaut72.eng.gci: {}
+    eng-dbdrs:
+      children:
+        eng-dbdrs-doc:
+          hosts:
+            eng-docngdbdrs71.eng.gci: {}
+        eng-dbdrs-voc:
+          hosts:
+            eng-vocngdbdrs71.eng.gci: {}
+    eng-fip:
+      children:
+        eng-fip-prod:
+          children:
+            eng-fip-prod-doc:
+              hosts:
+                eng-docngfip71.eng.gci: {}
+                eng-docngfip72.eng.gci: {}
+            eng-fip-prod-voc:
+              hosts:
+                eng-vocngfip71.eng.gci: {}
+                eng-vocngfip72.eng.gci: {}
+        eng-fip-qa:
+          hosts:
+            eng-vocqafip01.eng.gci: {}
+        eng-fip-tst:
+          hosts:
+            eng-voctstfip71.eng.gci: {}
+    eng-fs-prod:
+      children:
+        eng-fs-prod-doc:
+          hosts:
+            eng-docngfs71.eng.gci: {}
+            eng-docngfs72.eng.gci: {}
+        eng-fs-prod-voc:
+          hosts:
+            eng-vocngfs71.eng.gci: {}
+            eng-vocngfs72.eng.gci: {}
+    eng-ftp-prod:
+      children:
+        eng-ftp-prod-doc:
+          hosts:
+            eng-docngftp71.eng.gci: {}
+            eng-docngftp72.eng.gci: {}
+        eng-ftp-prod-voc:
+          hosts:
+            eng-vocngftp71.eng.gci: {}
+            eng-vocngftp72.eng.gci: {}
+    eng-lts:
+      children:
+        eng-lts-doc:
+          hosts:
+            eng-docnglts71.eng.gci: {}
+        eng-lts-qa:
+          hosts:
+            eng-vocqalts01.eng.gci: {}
+        eng-lts-voc:
+          hosts:
+            eng-vocnglts71.eng.gci: {}
+    eng-one-of-each:
+      hosts:
+        eng-vocngap71.eng.gci: {}
+        eng-vocngaut71.eng.gci: {}
+        eng-vocngcn73.eng.gci: {}
+        eng-vocngdbdrs71.eng.gci: {}
+        eng-vocngfip71.eng.gci: {}
+        eng-vocngfs71.eng.gci: {}
+        eng-vocngftp71.eng.gci: {}
+        eng-vocnglts71.eng.gci: {}
+        eng-vocngwb71.eng.gci: {}
+        eng-vocphxl8k71.eng.gci: {}
+    eng-tdn-all:
+      children:
+        eng-all:
+          children:
+            eng-prod:
+              children:
+                eng-prod-doc:
+                  children:
+                    eng-ap-prod-doc:
+                      hosts:
+                        eng-docngap71.eng.gci: {}
+                        eng-docngap72.eng.gci: {}
+                        eng-docngap73.eng.gci: {}
+                        eng-docngap74.eng.gci: {}
+                        eng-docngap75.eng.gci: {}
+                        eng-docngap76.eng.gci: {}
+                        eng-docngap77.eng.gci: {}
+                        eng-docngap78.eng.gci: {}
+                    eng-aut-prod-doc:
+                      hosts:
+                        eng-docngaut71.eng.gci: {}
+                        eng-docngaut72.eng.gci: {}
+                    eng-dbdrs-doc:
+                      hosts:
+                        eng-docngdbdrs71.eng.gci: {}
+                    eng-fip-prod-doc:
+                      hosts:
+                        eng-docngfip71.eng.gci: {}
+                        eng-docngfip72.eng.gci: {}
+                    eng-fs-prod-doc:
+                      hosts:
+                        eng-docngfs71.eng.gci: {}
+                        eng-docngfs72.eng.gci: {}
+                    eng-ftp-prod-doc:
+                      hosts:
+                        eng-docngftp71.eng.gci: {}
+                        eng-docngftp72.eng.gci: {}
+                    eng-iodb-prod-doc:
+                      hosts:
+                        eng-docngcn71.eng.gci: {}
+                        eng-docngcn72.eng.gci: {}
+                        eng-docngcn73.eng.gci: {}
+                    eng-lts-doc:
+                      hosts:
+                        eng-docnglts71.eng.gci: {}
+                    eng-wb-prod-doc:
+                      hosts:
+                        eng-docngwb71.eng.gci: {}
+                        eng-docngwb72.eng.gci: {}
+                        eng-docngwb73.eng.gci: {}
+                    l8k-doc:
+                      hosts:
+                        eng-docasbl8k71.eng.gci: {}
+                        eng-docdesl8k71.eng.gci: {}
+                        eng-docdmpl8k71.eng.gci: {}
+                        eng-doclcjl8k71.eng.gci: {}
+                        eng-docnasl8k71.eng.gci: {}
+                        eng-docphxl8k71.eng.gci: {}
+                eng-prod-voc:
+                  children:
+                    eng-ap-prod-voc:
+                      hosts:
+                        eng-vocngap71.eng.gci: {}
+                        eng-vocngap72.eng.gci: {}
+                        eng-vocngap73.eng.gci: {}
+                        eng-vocngap74.eng.gci: {}
+                        eng-vocngap75.eng.gci: {}
+                        eng-vocngap76.eng.gci: {}
+                        eng-vocngap77.eng.gci: {}
+                        eng-vocngap78.eng.gci: {}
+                    eng-aut-prod-voc:
+                      hosts:
+                        eng-vocngaut71.eng.gci: {}
+                        eng-vocngaut72.eng.gci: {}
+                    eng-dbdrs-voc:
+                      hosts:
+                        eng-vocngdbdrs71.eng.gci: {}
+                    eng-fip-prod-voc:
+                      hosts:
+                        eng-vocngfip71.eng.gci: {}
+                        eng-vocngfip72.eng.gci: {}
+                    eng-fs-prod-voc:
+                      hosts:
+                        eng-vocngfs71.eng.gci: {}
+                        eng-vocngfs72.eng.gci: {}
+                    eng-ftp-prod-voc:
+                      hosts:
+                        eng-vocngftp71.eng.gci: {}
+                        eng-vocngftp72.eng.gci: {}
+                    eng-iodb-prod-voc:
+                      hosts:
+                        eng-vocngcn71.eng.gci: {}
+                        eng-vocngcn72.eng.gci: {}
+                        eng-vocngcn73.eng.gci: {}
+                    eng-lts-voc:
+                      hosts:
+                        eng-vocnglts71.eng.gci: {}
+                    eng-wb-prod-voc:
+                      hosts:
+                        eng-vocngwb71.eng.gci: {}
+                        eng-vocngwb72.eng.gci: {}
+                        eng-vocngwb73.eng.gci: {}
+                    l8k-prod-voc:
+                      hosts:
+                        eng-vocasbl8k71.eng.gci: {}
+                        eng-vocdesl8k71.eng.gci: {}
+                        eng-vocdmpl8k71.eng.gci: {}
+                        eng-voclcjl8k71.eng.gci: {}
+                        eng-vocnasl8k71.eng.gci: {}
+                        eng-vocphxl8k71.eng.gci: {}
+            eng-qa:
+              children:
+                eng-ap-qa:
+                  hosts:
+                    eng-vocqaap01.eng.gci: {}
+                    eng-vocqaap02.eng.gci: {}
+                    eng-vocqaap03.eng.gci: {}
+                    eng-vocqaap04.eng.gci: {}
+                eng-aut-qa:
+                  hosts:
+                    eng-vocqaaut01.eng.gci: {}
+                    eng-vocqaaut02.eng.gci: {}
+                eng-fip-qa:
+                  hosts:
+                    eng-vocqafip01.eng.gci: {}
+                eng-iodb-qa:
+                  hosts:
+                    eng-vocqacn01.eng.gci: {}
+                    eng-vocqacn02.eng.gci: {}
+                eng-lts-qa:
+                  hosts:
+                    eng-vocqalts01.eng.gci: {}
+                eng-wb-qa:
+                  hosts:
+                    eng-vocqawb01.eng.gci: {}
+                    eng-vocqawb02.eng.gci: {}
+            eng-sms:
+              children:
+                eng-sms-doc:
+                  hosts:
+                    eng-docngsms71.eng.gci: {}
+                eng-sms-voc:
+                  hosts:
+                    eng-vocngsms71.eng.gci: {}
+            eng-tst:
+              children:
+                eng-iodb-tst:
+                  hosts:
+                    eng-voctstiodb71.eng.gci: {}
+                l8k-tst:
+                  hosts:
+                    eng-voctstl8k71.eng.gci: {}
+                    eng-voctstl8k72.eng.gci: {}
+        tdn-all:
+          children:
+            tdn-prod:
+              children:
+                tdn-ap-prod:
+                  children:
+                    tdn-ap-prod-doc:
+                      hosts:
+                        eng-docngap40.eng.gci: {}
+                        eng-docngap41.eng.gci: {}
+                    tdn-ap-prod-voc:
+                      hosts:
+                        eng-vocngap40.eng.gci: {}
+                        eng-vocngap41.eng.gci: {}
+                tdn-aut-prod:
+                  children:
+                    tdn-aut-prod-voc:
+                      hosts:
+                        eng-vocngaut05.eng.gci: {}
+                        eng-vocngaut06.eng.gci: {}
+                tdn-iodb-prod:
+                  children:
+                    tdn-iodb-prod-doc:
+                      hosts:
+                        eng-docngcn04.eng.gci: {}
+                        eng-docngcn05.eng.gci: {}
+                    tdn-iodb-prod-voc:
+                      hosts:
+                        eng-vocngcn04.eng.gci: {}
+                        eng-vocngcn05.eng.gci: {}
+            tdn-tst:
+              children:
+                tdn-ap-tst:
+                  hosts:
+                    eng-voctstap05.eng.gci: {}
+                tdn-aut-tst:
+                  hosts:
+                    eng-voctstaut02.eng.gci: {}
+                tdn-iodb-tst:
+                  hosts:
+                    eng-voctstiodb02.eng.gci: {}
+                tdn-wb-tst:
+                  hosts:
+                    eng-voctstiodb02.eng.gci: {}
+    eng-tdn-all-voc:
+      children:
+        eng-prod-voc:
+          children:
+            eng-ap-prod-voc:
+              hosts:
+                eng-vocngap71.eng.gci: {}
+                eng-vocngap72.eng.gci: {}
+                eng-vocngap73.eng.gci: {}
+                eng-vocngap74.eng.gci: {}
+                eng-vocngap75.eng.gci: {}
+                eng-vocngap76.eng.gci: {}
+                eng-vocngap77.eng.gci: {}
+                eng-vocngap78.eng.gci: {}
+            eng-aut-prod-voc:
+              hosts:
+                eng-vocngaut71.eng.gci: {}
+                eng-vocngaut72.eng.gci: {}
+            eng-dbdrs-voc:
+              hosts:
+                eng-vocngdbdrs71.eng.gci: {}
+            eng-fip-prod-voc:
+              hosts:
+                eng-vocngfip71.eng.gci: {}
+                eng-vocngfip72.eng.gci: {}
+            eng-fs-prod-voc:
+              hosts:
+                eng-vocngfs71.eng.gci: {}
+                eng-vocngfs72.eng.gci: {}
+            eng-ftp-prod-voc:
+              hosts:
+                eng-vocngftp71.eng.gci: {}
+                eng-vocngftp72.eng.gci: {}
+            eng-iodb-prod-voc:
+              hosts:
+                eng-vocngcn71.eng.gci: {}
+                eng-vocngcn72.eng.gci: {}
+                eng-vocngcn73.eng.gci: {}
+            eng-lts-voc:
+              hosts:
+                eng-vocnglts71.eng.gci: {}
+            eng-wb-prod-voc:
+              hosts:
+                eng-vocngwb71.eng.gci: {}
+                eng-vocngwb72.eng.gci: {}
+                eng-vocngwb73.eng.gci: {}
+            l8k-prod-voc:
+              hosts:
+                eng-vocasbl8k71.eng.gci: {}
+                eng-vocdesl8k71.eng.gci: {}
+                eng-vocdmpl8k71.eng.gci: {}
+                eng-voclcjl8k71.eng.gci: {}
+                eng-vocnasl8k71.eng.gci: {}
+                eng-vocphxl8k71.eng.gci: {}
+        eng-qa:
+          children:
+            eng-ap-qa:
+              hosts:
+                eng-vocqaap01.eng.gci: {}
+                eng-vocqaap02.eng.gci: {}
+                eng-vocqaap03.eng.gci: {}
+                eng-vocqaap04.eng.gci: {}
+            eng-aut-qa:
+              hosts:
+                eng-vocqaaut01.eng.gci: {}
+                eng-vocqaaut02.eng.gci: {}
+            eng-fip-qa:
+              hosts:
+                eng-vocqafip01.eng.gci: {}
+            eng-iodb-qa:
+              hosts:
+                eng-vocqacn01.eng.gci: {}
+                eng-vocqacn02.eng.gci: {}
+            eng-lts-qa:
+              hosts:
+                eng-vocqalts01.eng.gci: {}
+            eng-wb-qa:
+              hosts:
+                eng-vocqawb01.eng.gci: {}
+                eng-vocqawb02.eng.gci: {}
+        eng-tst:
+          children:
+            eng-iodb-tst:
+              hosts:
+                eng-voctstiodb71.eng.gci: {}
+            l8k-tst:
+              hosts:
+                eng-voctstl8k71.eng.gci: {}
+                eng-voctstl8k72.eng.gci: {}
+        tdn-ap-prod-voc:
+          hosts:
+            eng-vocngap40.eng.gci: {}
+            eng-vocngap41.eng.gci: {}
+        tdn-aut-prod-voc:
+          hosts:
+            eng-vocngaut05.eng.gci: {}
+            eng-vocngaut06.eng.gci: {}
+        tdn-iodb-prod-voc:
+          hosts:
+            eng-vocngcn04.eng.gci: {}
+            eng-vocngcn05.eng.gci: {}
+        tdn-tst:
+          children:
+            tdn-ap-tst:
+              hosts:
+                eng-voctstap05.eng.gci: {}
+            tdn-aut-tst:
+              hosts:
+                eng-voctstaut02.eng.gci: {}
+            tdn-iodb-tst:
+              hosts:
+                eng-voctstiodb02.eng.gci: {}
+            tdn-wb-tst:
+              hosts:
+                eng-voctstiodb02.eng.gci: {}
+    eng-tdn-ap-all:
+      children:
+        eng-ap-all:
+          children:
+            eng-ap-prod:
+              children:
+                eng-ap-prod-doc:
+                  hosts:
+                    eng-docngap71.eng.gci: {}
+                    eng-docngap72.eng.gci: {}
+                    eng-docngap73.eng.gci: {}
+                    eng-docngap74.eng.gci: {}
+                    eng-docngap75.eng.gci: {}
+                    eng-docngap76.eng.gci: {}
+                    eng-docngap77.eng.gci: {}
+                    eng-docngap78.eng.gci: {}
+                eng-ap-prod-voc:
+                  hosts:
+                    eng-vocngap71.eng.gci: {}
+                    eng-vocngap72.eng.gci: {}
+                    eng-vocngap73.eng.gci: {}
+                    eng-vocngap74.eng.gci: {}
+                    eng-vocngap75.eng.gci: {}
+                    eng-vocngap76.eng.gci: {}
+                    eng-vocngap77.eng.gci: {}
+                    eng-vocngap78.eng.gci: {}
+            eng-ap-qa:
+              hosts:
+                eng-vocqaap01.eng.gci: {}
+                eng-vocqaap02.eng.gci: {}
+                eng-vocqaap03.eng.gci: {}
+                eng-vocqaap04.eng.gci: {}
+            eng-ap-tst: {}
+        tdn-ap-all:
+          children:
+            tdn-ap-prod:
+              children:
+                tdn-ap-prod-doc:
+                  hosts:
+                    eng-docngap40.eng.gci: {}
+                    eng-docngap41.eng.gci: {}
+                tdn-ap-prod-voc:
+                  hosts:
+                    eng-vocngap40.eng.gci: {}
+                    eng-vocngap41.eng.gci: {}
+            tdn-ap-tst:
+              hosts:
+                eng-voctstap05.eng.gci: {}
+    eng-tdn-ap-prod:
+      children:
+        eng-ap-prod:
+          children:
+            eng-ap-prod-doc:
+              hosts:
+                eng-docngap71.eng.gci: {}
+                eng-docngap72.eng.gci: {}
+                eng-docngap73.eng.gci: {}
+                eng-docngap74.eng.gci: {}
+                eng-docngap75.eng.gci: {}
+                eng-docngap76.eng.gci: {}
+                eng-docngap77.eng.gci: {}
+                eng-docngap78.eng.gci: {}
+            eng-ap-prod-voc:
+              hosts:
+                eng-vocngap71.eng.gci: {}
+                eng-vocngap72.eng.gci: {}
+                eng-vocngap73.eng.gci: {}
+                eng-vocngap74.eng.gci: {}
+                eng-vocngap75.eng.gci: {}
+                eng-vocngap76.eng.gci: {}
+                eng-vocngap77.eng.gci: {}
+                eng-vocngap78.eng.gci: {}
+        tdn-ap-prod:
+          children:
+            tdn-ap-prod-doc:
+              hosts:
+                eng-docngap40.eng.gci: {}
+                eng-docngap41.eng.gci: {}
+            tdn-ap-prod-voc:
+              hosts:
+                eng-vocngap40.eng.gci: {}
+                eng-vocngap41.eng.gci: {}
+    eng-tdn-iodb-all:
+      children:
+        eng-iodb-all:
+          children:
+            eng-iodb-prod:
+              children:
+                eng-iodb-prod-doc:
+                  hosts:
+                    eng-docngcn71.eng.gci: {}
+                    eng-docngcn72.eng.gci: {}
+                    eng-docngcn73.eng.gci: {}
+                eng-iodb-prod-voc:
+                  hosts:
+                    eng-vocngcn71.eng.gci: {}
+                    eng-vocngcn72.eng.gci: {}
+                    eng-vocngcn73.eng.gci: {}
+            eng-iodb-qa:
+              hosts:
+                eng-vocqacn01.eng.gci: {}
+                eng-vocqacn02.eng.gci: {}
+            eng-iodb-tst:
+              hosts:
+                eng-voctstiodb71.eng.gci: {}
+        tdn-iodb-all:
+          children:
+            tdn-iodb-prod:
+              children:
+                tdn-iodb-prod-doc:
+                  hosts:
+                    eng-docngcn04.eng.gci: {}
+                    eng-docngcn05.eng.gci: {}
+                tdn-iodb-prod-voc:
+                  hosts:
+                    eng-vocngcn04.eng.gci: {}
+                    eng-vocngcn05.eng.gci: {}
+            tdn-iodb-tst:
+              hosts:
+                eng-voctstiodb02.eng.gci: {}
+    eng-tdn-iodb-prod:
+      children:
+        eng-tdn-iodb-prod-doc:
+          children:
+            eng-iodb-prod-doc:
+              hosts:
+                eng-docngcn71.eng.gci: {}
+                eng-docngcn72.eng.gci: {}
+                eng-docngcn73.eng.gci: {}
+            tdn-iodb-prod-doc:
+              hosts:
+                eng-docngcn04.eng.gci: {}
+                eng-docngcn05.eng.gci: {}
+        eng-tdn-iodb-prod-voc:
+          children:
+            eng-iodb-prod-voc:
+              hosts:
+                eng-vocngcn71.eng.gci: {}
+                eng-vocngcn72.eng.gci: {}
+                eng-vocngcn73.eng.gci: {}
+            tdn-iodb-prod-voc:
+              hosts:
+                eng-vocngcn04.eng.gci: {}
+                eng-vocngcn05.eng.gci: {}
+    eng-tdn-iodb-tst:
+      children:
+        eng-iodb-tst:
+          hosts:
+            eng-voctstiodb71.eng.gci: {}
+        tdn-iodb-tst:
+          hosts:
+            eng-voctstiodb02.eng.gci: {}
+    eng-wb-all:
+      children:
+        eng-wb-prod:
+          children:
+            eng-wb-prod-doc:
+              hosts:
+                eng-docngwb71.eng.gci: {}
+                eng-docngwb72.eng.gci: {}
+                eng-docngwb73.eng.gci: {}
+            eng-wb-prod-voc:
+              hosts:
+                eng-vocngwb71.eng.gci: {}
+                eng-vocngwb72.eng.gci: {}
+                eng-vocngwb73.eng.gci: {}
+        eng-wb-qa:
+          hosts:
+            eng-vocqawb01.eng.gci: {}
+            eng-vocqawb02.eng.gci: {}
+        eng-wb-tst:
+          hosts:
+            eng-voctstiodb71.eng.gci: {}
+        tdn-wb-tst:
+          hosts:
+            eng-voctstiodb02.eng.gci: {}
+    jamf:
+      hosts:
+        ent-mocapjamf01.us.ad.gannett.com: {}
+        ent-mocapjamf02.us.ad.gannett.com: {}
+        ent-mocapjamf03.us.ad.gannett.com: {}
+        ent-mocapjamf04.us.ad.gannett.com: {}
+        ent-mocapjamf05.us.ad.gannett.com: {}
+        ent-mocapjamf06.us.ad.gannett.com: {}
+    l8k-all:
+      children:
+        l8k-doc:
+          hosts:
+            eng-docasbl8k71.eng.gci: {}
+            eng-docdesl8k71.eng.gci: {}
+            eng-docdmpl8k71.eng.gci: {}
+            eng-doclcjl8k71.eng.gci: {}
+            eng-docnasl8k71.eng.gci: {}
+            eng-docphxl8k71.eng.gci: {}
+        l8k-voc:
+          children:
+            l8k-prod-voc:
+              hosts:
+                eng-vocasbl8k71.eng.gci: {}
+                eng-vocdesl8k71.eng.gci: {}
+                eng-vocdmpl8k71.eng.gci: {}
+                eng-voclcjl8k71.eng.gci: {}
+                eng-vocnasl8k71.eng.gci: {}
+                eng-vocphxl8k71.eng.gci: {}
+            l8k-tst:
+              hosts:
+                eng-voctstl8k71.eng.gci: {}
+                eng-voctstl8k72.eng.gci: {}
+    l8k-prod:
+      children:
+        l8k-doc:
+          hosts:
+            eng-docasbl8k71.eng.gci: {}
+            eng-docdesl8k71.eng.gci: {}
+            eng-docdmpl8k71.eng.gci: {}
+            eng-doclcjl8k71.eng.gci: {}
+            eng-docnasl8k71.eng.gci: {}
+            eng-docphxl8k71.eng.gci: {}
+        l8k-prod-voc:
+          hosts:
+            eng-vocasbl8k71.eng.gci: {}
+            eng-vocdesl8k71.eng.gci: {}
+            eng-vocdmpl8k71.eng.gci: {}
+            eng-voclcjl8k71.eng.gci: {}
+            eng-vocnasl8k71.eng.gci: {}
+            eng-vocphxl8k71.eng.gci: {}
+    nmass:
+      children:
+        nmass-non-pci:
+          hosts:
+            ent-mocapinch01.us.ad.gannett.com: {}
+            ent-mocapnmas01.us.ad.gannett.com: {}
+            ent-mocapnmas03.us.ad.gannett.com: {}
+            ent-mocapnmas05.us.ad.gannett.com: {}
+            ent-mocapnmas07.us.ad.gannett.com: {}
+            ent-mocapnmas08.us.ad.gannett.com: {}
+            ent-mocapnmas09.us.ad.gannett.com: {}
+            ent-mocapnmas10.us.ad.gannett.com: {}
+            ent-mocapnmas22.us.ad.gannett.com: {}
+            ent-mocapnmas24.us.ad.gannett.com: {}
+            ent-mocapnmas26.us.ad.gannett.com: {}
+            ent-mocapnmas27.us.ad.gannett.com: {}
+            ent-mocapnmas28.us.ad.gannett.com: {}
+            ent-mocapnmas29.us.ad.gannett.com: {}
+            ent-mocapnmas31.us.ad.gannett.com: {}
+            ent-mocapnmas32.us.ad.gannett.com: {}
+            ent-mocapnmas33.us.ad.gannett.com: {}
+            ent-mocapnmas34.us.ad.gannett.com: {}
+            ent-mocapnmas35.us.ad.gannett.com: {}
+            ent-mocapnmas36.us.ad.gannett.com: {}
+            ent-mocapnmas37.us.ad.gannett.com: {}
+            ent-mocdbnmas01.us.ad.gannett.com: {}
+            ent-mocdbnmas20.us.ad.gannett.com: {}
+            ent-mocdvgen03.us.ad.gannett.com: {}
+            ent-mocdvnmas01.us.ad.gannett.com: {}
+            ent-mocdvnmas03.us.ad.gannett.com: {}
+            ent-mocdvnmas04.us.ad.gannett.com: {}
+            ent-mocdvnmas05.us.ad.gannett.com: {}
+            ent-mocdvnmas06.us.ad.gannett.com: {}
+            ent-mocdvpoet01.us.ad.gannett.com: {}
+            ent-pocapgcs01.us.ad.gannett.com: {}
+            ent-pocapgen02.us.ad.gannett.com: {}
+            ent-pocapinch01.us.ad.gannett.com: {}
+            ent-pocapnmas01.us.ad.gannett.com: {}
+            ent-pocapnmas02.us.ad.gannett.com: {}
+            ent-pocapnmas24.us.ad.gannett.com: {}
+            ent-pocapnmas26.us.ad.gannett.com: {}
+            ent-pocapnmas27.us.ad.gannett.com: {}
+            ent-pocapnmas28.us.ad.gannett.com: {}
+            ent-pocapnmas29.us.ad.gannett.com: {}
+            ent-pocapnmas31.us.ad.gannett.com: {}
+            ent-pocapnmas32.us.ad.gannett.com: {}
+            ent-pocapnmas33.us.ad.gannett.com: {}
+            ent-pocapnmas34.us.ad.gannett.com: {}
+            ent-pocapnmas35.us.ad.gannett.com: {}
+            ent-pocapnmas36.us.ad.gannett.com: {}
+            ent-pocapnmas37.us.ad.gannett.com: {}
+            ent-pocdbnmas01.us.ad.gannett.com: {}
+            ent-pocdbnmas20.us.ad.gannett.com: {}
+            pci-mocapdraw01.us.ad.gannett.com: {}
+            pci-mocapnmas01.us.ad.gannett.com: {}
+            pci-pocapdraw01.us.ad.gannett.com: {}
+        nmass-pci:
+          children:
+            nmass-pci-x86:
+              hosts:
+                ent-mocapgcs01.us.ad.gannett.com: {}
+                ent-mocapgcs02.us.ad.gannett.com: {}
+                ent-mocapnmas20.us.ad.gannett.com: {}
+                ent-mocapnmas23.us.ad.gannett.com: {}
+                ent-mocapnmas25.us.ad.gannett.com: {}
+                ent-pocapgcs02.us.ad.gannett.com: {}
+                ent-pocapnmas20.us.ad.gannett.com: {}
+                ent-pocapnmas23.us.ad.gannett.com: {}
+                ent-pocapnmas25.us.ad.gannett.com: {}
+            ppc:
+              hosts:
+                ent-mocapapi02.us.ad.gannett.com: {}
+                ent-mocapcirc02.us.ad.gannett.com: {}
+                ent-pocapapi02.us.ad.gannett.com: {}
+                ent-pocapcirc02.us.ad.gannett.com: {}
+    rtc:
+      children:
+        rtc-moc:
+          children:
+            rtc-dev-moc:
+              children:
+                rtc-dev-moc-database:
+                  hosts:
+                    rtc-mocdvdb01.rtc.gci: {}
+                    rtc-mocdvdb02.rtc.gci: {}
+                    rtc-mocdvdbmm01.rtc.gci: {}
+                    rtc-mocdvdbmm02.rtc.gci: {}
+                rtc-dev-moc-rake:
+                  children:
+                    rtc-dev-moc-rake-external:
+                      hosts:
+                        rtc-mocdvmm06.rtc.gci: {}
+                    rtc-dev-moc-rake-internal:
+                      hosts:
+                        rtc-mocdvmm02.rtc.gci: {}
+                        rtc-mocdvmm04.rtc.gci: {}
+                rtc-dev-moc-webhead:
+                  children:
+                    rtc-dev-moc-webhead-external:
+                      hosts:
+                        rtc-mocdvmm05.rtc.gci: {}
+                    rtc-dev-moc-webhead-internal:
+                      hosts:
+                        rtc-mocdvmm01.rtc.gci: {}
+                        rtc-mocdvmm03.rtc.gci: {}
+            rtc-prod-moc:
+              children:
+                rtc-prod-moc-capistrano:
+                  hosts:
+                    rtc-moccamm01.rtc.gci: {}
+                rtc-prod-moc-database:
+                  hosts:
+                    rtc-mocdbmm01.rtc.gci: {}
+                    rtc-mocdbmm02.rtc.gci: {}
+                rtc-prod-moc-ftp:
+                  hosts:
+                    rtc-mocapftp01.rtc.gci: {}
+                rtc-prod-moc-rake:
+                  hosts:
+                    rtc-mocapmm03.rtc.gci: {}
+                    rtc-mocapmm04.rtc.gci: {}
+                    rtc-mocapmm06.rtc.gci: {}
+                    rtc-mocapmm08.rtc.gci: {}
+                    rtc-mocapmm35.rtc.gci: {}
+                    rtc-mocapmm36.rtc.gci: {}
+                    rtc-mocapmm37.rtc.gci: {}
+                rtc-prod-moc-web:
+                  children:
+                    rtc-prod-moc-webhead-external:
+                      hosts:
+                        rtc-mocapmm32.rtc.gci: {}
+                        rtc-mocapmm33.rtc.gci: {}
+                        rtc-mocapmm34.rtc.gci: {}
+                    rtc-prod-moc-webhead-internal:
+                      hosts:
+                        rtc-mocapmm01.rtc.gci: {}
+                        rtc-mocapmm02.rtc.gci: {}
+                        rtc-mocapmm05.rtc.gci: {}
+                        rtc-mocapmm07.rtc.gci: {}
+                        rtc-mocapmm09.rtc.gci: {}
+                        rtc-mocapmm10.rtc.gci: {}
+            rtc-test:
+              children:
+                rtc-test-capistrano:
+                  hosts:
+                    rtc-poctstmm03.rtc.gci: {}
+                rtc-test-rake:
+                  hosts:
+                    rtc-poctstmm02.rtc.gci: {}
+                rtc-test-webhead:
+                  children:
+                    rtc-test-webhead-external:
+                      hosts:
+                        rtc-poctstmm04.rtc.gci: {}
+                    rtc-test-webhead-internal:
+                      hosts:
+                        rtc-poctstmm01.rtc.gci: {}
+        rtc-poc:
+          children:
+            rtc-dev-poc:
+              children:
+                rtc-dev-poc-database:
+                  hosts:
+                    rtc-pocdvdb01.rtc.gci: {}
+                    rtc-pocdvdb02.rtc.gci: {}
+                rtc-dev-poc-rake:
+                  children:
+                    rtc-dev-poc-rake-external:
+                      hosts:
+                        rtc-pocdvmm04.rtc.gci: {}
+                        rtc-pocdvmm06.rtc.gci: {}
+                    rtc-dev-poc-rake-internal:
+                      hosts:
+                        rtc-pocdvmm02.rtc.gci: {}
+                rtc-dev-poc-webhead:
+                  children:
+                    rtc-dev-poc-webhead-external:
+                      hosts:
+                        rtc-pocdvmm05.rtc.gci: {}
+                    rtc-dev-poc-webhead-internal:
+                      hosts:
+                        rtc-pocdvmm01.rtc.gci: {}
+                        rtc-pocdvmm03.rtc.gci: {}
+            rtc-prod-poc:
+              children:
+                rtc-prod-poc-database:
+                  hosts:
+                    rtc-pocdbmm01.rtc.gci: {}
+                    rtc-pocdbmm02.rtc.gci: {}
+                rtc-prod-poc-ftp:
+                  hosts:
+                    rtc-pocapftp01.rtc.gci: {}
+                rtc-prod-poc-rake:
+                  hosts:
+                    rtc-pocapmm03.rtc.gci: {}
+                    rtc-pocapmm04.rtc.gci: {}
+                    rtc-pocapmm06.rtc.gci: {}
+                    rtc-pocapmm08.rtc.gci: {}
+                    rtc-pocapmm35.rtc.gci: {}
+                    rtc-pocapmm36.rtc.gci: {}
+                    rtc-pocapmm37.rtc.gci: {}
+                rtc-prod-poc-web:
+                  children:
+                    rtc-prod-poc-webhead-external:
+                      hosts:
+                        rtc-pocapmm32.rtc.gci: {}
+                        rtc-pocapmm33.rtc.gci: {}
+                        rtc-pocapmm34.rtc.gci: {}
+                    rtc-prod-poc-webhead-internal:
+                      hosts:
+                        rtc-pocapmm01.rtc.gci: {}
+                        rtc-pocapmm02.rtc.gci: {}
+                        rtc-pocapmm05.rtc.gci: {}
+                        rtc-pocapmm07.rtc.gci: {}
+                        rtc-pocapmm09.rtc.gci: {}
+                        rtc-pocapmm10.rtc.gci: {}
+    rtc-dev:
+      children:
+        rtc-dev-moc:
+          children:
+            rtc-dev-moc-database:
+              hosts:
+                rtc-mocdvdb01.rtc.gci: {}
+                rtc-mocdvdb02.rtc.gci: {}
+                rtc-mocdvdbmm01.rtc.gci: {}
+                rtc-mocdvdbmm02.rtc.gci: {}
+            rtc-dev-moc-rake:
+              children:
+                rtc-dev-moc-rake-external:
+                  hosts:
+                    rtc-mocdvmm06.rtc.gci: {}
+                rtc-dev-moc-rake-internal:
+                  hosts:
+                    rtc-mocdvmm02.rtc.gci: {}
+                    rtc-mocdvmm04.rtc.gci: {}
+            rtc-dev-moc-webhead:
+              children:
+                rtc-dev-moc-webhead-external:
+                  hosts:
+                    rtc-mocdvmm05.rtc.gci: {}
+                rtc-dev-moc-webhead-internal:
+                  hosts:
+                    rtc-mocdvmm01.rtc.gci: {}
+                    rtc-mocdvmm03.rtc.gci: {}
+        rtc-dev-poc:
+          children:
+            rtc-dev-poc-database:
+              hosts:
+                rtc-pocdvdb01.rtc.gci: {}
+                rtc-pocdvdb02.rtc.gci: {}
+            rtc-dev-poc-rake:
+              children:
+                rtc-dev-poc-rake-external:
+                  hosts:
+                    rtc-pocdvmm04.rtc.gci: {}
+                    rtc-pocdvmm06.rtc.gci: {}
+                rtc-dev-poc-rake-internal:
+                  hosts:
+                    rtc-pocdvmm02.rtc.gci: {}
+            rtc-dev-poc-webhead:
+              children:
+                rtc-dev-poc-webhead-external:
+                  hosts:
+                    rtc-pocdvmm05.rtc.gci: {}
+                rtc-dev-poc-webhead-internal:
+                  hosts:
+                    rtc-pocdvmm01.rtc.gci: {}
+                    rtc-pocdvmm03.rtc.gci: {}
+    rtc-external:
+      children:
+        rtc-dev-moc-rake-external:
+          hosts:
+            rtc-mocdvmm06.rtc.gci: {}
+        rtc-dev-moc-webhead-external:
+          hosts:
+            rtc-mocdvmm05.rtc.gci: {}
+        rtc-dev-poc-rake-external:
+          hosts:
+            rtc-pocdvmm04.rtc.gci: {}
+            rtc-pocdvmm06.rtc.gci: {}
+        rtc-dev-poc-webhead-external:
+          hosts:
+            rtc-pocdvmm05.rtc.gci: {}
+        rtc-prod-moc-ftp:
+          hosts:
+            rtc-mocapftp01.rtc.gci: {}
+        rtc-prod-moc-webhead-external:
+          hosts:
+            rtc-mocapmm32.rtc.gci: {}
+            rtc-mocapmm33.rtc.gci: {}
+            rtc-mocapmm34.rtc.gci: {}
+        rtc-prod-poc-ftp:
+          hosts:
+            rtc-pocapftp01.rtc.gci: {}
+        rtc-prod-poc-webhead-external:
+          hosts:
+            rtc-pocapmm32.rtc.gci: {}
+            rtc-pocapmm33.rtc.gci: {}
+            rtc-pocapmm34.rtc.gci: {}
+    rtc-prod:
+      children:
+        rtc-prod-moc:
+          children:
+            rtc-prod-moc-capistrano:
+              hosts:
+                rtc-moccamm01.rtc.gci: {}
+            rtc-prod-moc-database:
+              hosts:
+                rtc-mocdbmm01.rtc.gci: {}
+                rtc-mocdbmm02.rtc.gci: {}
+            rtc-prod-moc-ftp:
+              hosts:
+                rtc-mocapftp01.rtc.gci: {}
+            rtc-prod-moc-rake:
+              hosts:
+                rtc-mocapmm03.rtc.gci: {}
+                rtc-mocapmm04.rtc.gci: {}
+                rtc-mocapmm06.rtc.gci: {}
+                rtc-mocapmm08.rtc.gci: {}
+                rtc-mocapmm35.rtc.gci: {}
+                rtc-mocapmm36.rtc.gci: {}
+                rtc-mocapmm37.rtc.gci: {}
+            rtc-prod-moc-web:
+              children:
+                rtc-prod-moc-webhead-external:
+                  hosts:
+                    rtc-mocapmm32.rtc.gci: {}
+                    rtc-mocapmm33.rtc.gci: {}
+                    rtc-mocapmm34.rtc.gci: {}
+                rtc-prod-moc-webhead-internal:
+                  hosts:
+                    rtc-mocapmm01.rtc.gci: {}
+                    rtc-mocapmm02.rtc.gci: {}
+                    rtc-mocapmm05.rtc.gci: {}
+                    rtc-mocapmm07.rtc.gci: {}
+                    rtc-mocapmm09.rtc.gci: {}
+                    rtc-mocapmm10.rtc.gci: {}
+        rtc-prod-poc:
+          children:
+            rtc-prod-poc-database:
+              hosts:
+                rtc-pocdbmm01.rtc.gci: {}
+                rtc-pocdbmm02.rtc.gci: {}
+            rtc-prod-poc-ftp:
+              hosts:
+                rtc-pocapftp01.rtc.gci: {}
+            rtc-prod-poc-rake:
+              hosts:
+                rtc-pocapmm03.rtc.gci: {}
+                rtc-pocapmm04.rtc.gci: {}
+                rtc-pocapmm06.rtc.gci: {}
+                rtc-pocapmm08.rtc.gci: {}
+                rtc-pocapmm35.rtc.gci: {}
+                rtc-pocapmm36.rtc.gci: {}
+                rtc-pocapmm37.rtc.gci: {}
+            rtc-prod-poc-web:
+              children:
+                rtc-prod-poc-webhead-external:
+                  hosts:
+                    rtc-pocapmm32.rtc.gci: {}
+                    rtc-pocapmm33.rtc.gci: {}
+                    rtc-pocapmm34.rtc.gci: {}
+                rtc-prod-poc-webhead-internal:
+                  hosts:
+                    rtc-pocapmm01.rtc.gci: {}
+                    rtc-pocapmm02.rtc.gci: {}
+                    rtc-pocapmm05.rtc.gci: {}
+                    rtc-pocapmm07.rtc.gci: {}
+                    rtc-pocapmm09.rtc.gci: {}
+                    rtc-pocapmm10.rtc.gci: {}
+    ungrouped: {}

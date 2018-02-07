@@ -1,0 +1,8 @@
+---
+- hosts: "{{ group }}"
+  gather_facts: no
+  remote_user: ansible
+  connection: ssh
+  become: yes
+  roles:
+      - ent-svcnow-asset

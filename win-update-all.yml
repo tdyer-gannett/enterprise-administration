@@ -2,9 +2,22 @@
 #The following command should be run to install the updates
 # ansible-playbook win-update-all.yml --ask-vault-pass --extra-vars "group=[group_name | hostname]"
 
-- hosts: '{{ group }}' 
-  gather_facts: no 
+- hosts: '{{ group }}'
+  gather_facts: no
   tasks:
+
+    - name: Report host list to Slack
+      slack:
+        token: "{{ slack_token }}"
+        channel: #ansible
+        domain: "gannettdigital.slack.com"
+        username: "Enterprise-Ansible"
+        icon_url: "{{ slack_icon_url }}"
+        msg: "Ansible Playbook: win-update-critsec.yml\nGroup: {{ group }}\n--------------\n{{ansible_play_batch|join('\n') }}"
+        color: good
+      delegate_to: localhost
+      run_once: true
+
     - name: Find all avaiable updates.
       win_updates:
         category_names:
@@ -25,6 +38,7 @@
         log_path: c:\ansible_wui_list.txt
       register: found_updates
       tags: find_updates
+
     - name: Display (all) updates.
       debug: var=found_update
 
@@ -55,37 +69,12 @@
         state: installed
         log_path: c:\ansible_wui_installed.txt
       register: check_finish
-      notify: Slack Maintenance Channel Upates Applied
       tags: installed_updates
-
-    - name: Display install results. 
-      debug: var=check_finish  
 
     - name: Reboot if needed.
       win_reboot:
         pre_reboot_delay_sec: 10
       when: check_finish.reboot_required != false
-      notify: Slack Maintenance Channel Reboot
       tags: reboot
 
-  handlers:
-    - name: Slack Maintenance Channel Upates Applied
-      slack:
-        token: "{{ slack_token_maint }}"
-        attachments:
-            - text: "NOTICE: Updates have been applied to: {{ inventory_hostname }}"
-              color: warning
-              author_name: "Ansible"
-              author_icon: "{{ slack_icon_url }}"
-      delegate_to: localhost
-
-    - name: Slack Maintenance Channel Reboot
-      slack:
-        token: "{{ slack_token_maint }}"
-        attachments:
-          - text: "NOTICE: {{ inventory_hostname }} has been rebooted following Windows Update Installation."
-            color: good
-            author_name: "Ansible"
-            author_icon: "{{ slack_icon_url }}"
-      delegate_to: localhost
 

@@ -1,18 +1,63 @@
 --- # Run package module to upgrade all packages on linux systems.
 
-- hosts: "{{ group | default('linux') }}"
-  ansible_connection: ssh
-  ansible_user: ansible
-  ansible_become: yes
-  ansible_become_method: sudo
-  gather_facts: no
+- hosts: "{{ group }}"
+  connection: ssh
+  remote_user: ansible
+  become: yes
+  become_method: sudo
+  gather_facts: yes
+
+  vars:
+    env_username: "{{ lookup('env','USER') }}"
 
   tasks:
-    - name: upgrade all packages
-      package:
-          name: '*'
-          state: latest
-      register: package_result
-    - debug: var=package_result
-  
 
+    - name: Report host list to Slack
+      tags: slack
+      slack:
+        token: "{{ slack_token }}"
+        channel: #ansible
+        domain: "gannettdigital.slack.com"
+        username: "Enterprise-Ansible"
+        icon_url: "{{ slack_icon_url }}"
+        msg: "Ansible Playbook: linux-update.yml\nRun by: {{ lookup('env','USER') }}\nGroup: {{ group }}\n--------------\n{{ansible_play_batch|join('\n') }}"
+        color: good
+      delegate_to: localhost
+      run_once: true
+
+    - name: Upgrade ALL Packages (RedHat Family)
+      package:
+        name: '*'
+        state: latest
+        update_cache: yes
+      register: update_result
+      when: ansible_os_family == "RedHat"
+
+    - name: Package Debug Output
+      debug: var=update_result
+
+    - name: Check for kernel update (another option for testing)
+      shell: if [ "`rpm -q kernel --qf '%{installtime} %{version}-%{release}.%{arch}\n'|sort -n -k1|tail -1|cut -d ' ' -f 2`" = "`uname -r`"  ]; then echo "latest"; else echo "reboot"; fi
+      ignore_errors: true
+      changed_when: false
+      register: reboot_test
+
+    - name: Output result of kernel update check
+      debug: msg={{ reboot_test.stdout }}
+
+    - name: reboot
+      shell: sleep 5 && shutdown -r now "Reboot Triggered by {{ env_username }} with Ansible"
+      async: 1
+      poll: 0
+      ignore_errors: true
+      when: reboot_test.stdout == "reboot"
+
+    - name: wait_for_connection
+      wait_for_connection:
+        delay: 15
+        sleep: 5
+        timeout: 300
+      become: false
+      when: reboot_test.stdout == "reboot"
+
+# vi: ft=ansible
