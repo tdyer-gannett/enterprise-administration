@@ -83,4 +83,18 @@
     - "{{ linux_egsvc_rpm }}"
   register: agent_install
 
+- name: Start the tw-eg-service service
+  tags: service
+  service:
+    name: tw-eg-service
+    state: started
+    enabled: yes
+
+- name: Start the tripwire-axon-agent service
+  tags: service
+  service:
+    name: tripwire-axon-agent
+    state: started
+    enabled: yes
+
 # vi: ft=ansible
