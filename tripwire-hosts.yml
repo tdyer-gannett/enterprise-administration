@@ -1,0 +1,108 @@
+---
+all:
+  vars:
+    repository_server: "http://ent-mocsmrhs03.ent.gci/pub/repo/tripwire/axon-agent"
+    windows_x64_agent: "windows/Axon_Agent_x64.msi"
+    windows_x86_agent: "windows/Axon_Agent_x86.msi"
+    linux_dkm_egdrv_rpm: "x86_64/tw-eg-driver-dkms-1.3.444-1.noarch.rpm"
+    linux_x64_agent_rpm: "x86_64/axon-agent-installer-linux-x64.rpm"
+    linux_x64_egsvc_rpm: "x86_64/tw-eg-service-1.3.3100-1.x86_64.rpm"
+
+    registration_psk: "$5$rRLNm/4s3p/2ey6r$WUB4OEXdsaQsKtxoNKt/1hxru.LN/6sgdfUc58zXWo9"
+    bridge_host: ent-mocaptw01.us.ad.gannett.com
+    policy: PCI
+  children:
+    linux:
+      children:
+        linux_test:
+          vars:
+            application_group: Brainworks
+            app_environment: Testing
+            location: MOC
+          hosts:
+            ent-mocsmawx01.ent.gci: { primary_function: "Process Server" }
+    windows:
+      vars:
+        ansible_connection: winrm
+        ansible_port: 5985
+        ansible_winrm_scheme: http
+        ansible_winrm_transport: kerberos
+        # ansible_winrm_kinit_mode: manual
+        ansible_winrm_kerberos_delegation: true
+        ansible_winrm_server_cert_validation: ignore
+        ansible_winrm_realm: US.AD.GANNETT.COM
+      children:
+        brainworks_dev:
+          vars:
+            application_group: Brainworks
+            app_environment: Development
+            location: DOC
+          hosts:
+            ent-docapbw-d01.us.ad.gannett.com: { primary_function: "Database" }
+            ent-docapbw-d02.us.ad.gannett.com: { primary_function: "File Server" }
+            ent-docapbw-d03.us.ad.gannett.com: { primary_function: "Process Server" }
+            ent-docapbw-d04.us.ad.gannett.com: { primary_function: "Process Server" }
+        brainworks_prod:
+          vars:
+            application_group: Brainworks
+            app_environment: Production
+            location: DOC
+          hosts:
+            ent-docapbw-p02.us.ad.gannett.com: { primary_function: "File Server" }
+            ent-docapbw-p03.us.ad.gannett.com: { primary_function: "Process Server" }
+            ent-docapbw-p08.us.ad.gannett.com: { primary_function: "Process Server" }
+            ent-docapbw-p10.us.ad.gannett.com: { primary_function: "Process Server" }
+            ent-docapbw-p13.us.ad.gannett.com: { primary_function: "Process Server" }
+            ent-docapbw-p30.us.ad.gannett.com: { primary_function: "Process Server" }
+            ent-docapbw-p31.us.ad.gannett.com: { primary_function: "Process Server" }
+            ent-docapbw-p32.us.ad.gannett.com: { primary_function: "Process Server" }
+            ent-docapbw-p33.us.ad.gannett.com: { primary_function: "Process Server" }
+            ent-docapbw-p34.us.ad.gannett.com: { primary_function: "Process Server" }
+            ent-docapbw-p35.us.ad.gannett.com: { primary_function: "Process Server" }
+            ent-docapbw-p36.us.ad.gannett.com: { primary_function: "Process Server" }
+            ent-docapbw-p37.us.ad.gannett.com: { primary_function: "Process Server" }
+            ent-docapbw-p38.us.ad.gannett.com: { primary_function: "Process Server" }
+            ent-docapbw-p39.us.ad.gannett.com: { primary_function: "Process Server" }
+            ent-docapbw-p40.us.ad.gannett.com: { primary_function: "Process Server" }
+            ent-docapbw-p41.us.ad.gannett.com: { primary_function: "Process Server" }
+            ent-docapbw-p42.us.ad.gannett.com: { primary_function: "Process Server" }
+            ent-docapbw-p43.us.ad.gannett.com: { primary_function: "Process Server" }
+            ent-docapbw-p44.us.ad.gannett.com: { primary_function: "Process Server" }
+            ent-docapbw-p45.us.ad.gannett.com: { primary_function: "Process Server" }
+            ent-docapbw-p46.us.ad.gannett.com: { primary_function: "Process Server" }
+            ent-docapbw-p47.us.ad.gannett.com: { primary_function: "Process Server" }
+            ent-docapbw-p48.us.ad.gannett.com: { primary_function: "Process Server" }
+            ent-docapbw-p49.us.ad.gannett.com: { primary_function: "Process Server" }
+            ent-docapbw-p50.us.ad.gannett.com: { primary_function: "Process Server" }
+            ent-docapbw-p51.us.ad.gannett.com: { primary_function: "Process Server" }
+            ent-docapbw-p52.us.ad.gannett.com: { primary_function: "Process Server" }
+            ent-docapbw-p53.us.ad.gannett.com: { primary_function: "Process Server" }
+            ent-docapbw-p54.us.ad.gannett.com: { primary_function: "Process Server" }
+            ent-docapbw-p55.us.ad.gannett.com: { primary_function: "Process Server" }
+            ent-docapbw-p56.us.ad.gannett.com: { primary_function: "Process Server" }
+            ent-docapbw-p57.us.ad.gannett.com: { primary_function: "Process Server" }
+            ent-docapbw-p58.us.ad.gannett.com: { primary_function: "Process Server" }
+            ent-docapbw-p59.us.ad.gannett.com: { primary_function: "Process Server" }
+            ent-docapbw-p60.us.ad.gannett.com: { primary_function: "Process Server" }
+            ent-docapbw-p61.us.ad.gannett.com: { primary_function: "Process Server" }
+            ent-docapbw-p62.us.ad.gannett.com: { primary_function: "Process Server" }
+            ent-docapbw-p63.us.ad.gannett.com: { primary_function: "Process Server" }
+            ent-docapbw-p64.us.ad.gannett.com: { primary_function: "Process Server" }
+            ent-docapbw-p65.us.ad.gannett.com: { primary_function: "Process Server" }
+            ent-docapbw-p66.us.ad.gannett.com: { primary_function: "Process Server" }
+            ent-docapbw-p67.us.ad.gannett.com: { primary_function: "Process Server" }
+            ent-docapbw-p68.us.ad.gannett.com: { primary_function: "Process Server" }
+            ent-docapbw-p69.us.ad.gannett.com: { primary_function: "Process Server" }
+        brainworks_test:
+          vars:
+            application_group: Brainworks
+            app_environment: Test
+            location: DOC
+          hosts:
+            ent-docapbw-t02.us.ad.gannett.com: { primary_function: "File Server" }
+            ent-docapbw-t03.us.ad.gannett.com: { primary_function: "Process Server" }
+            ent-docapbw-t31.us.ad.gannett.com: { primary_function: "Process Server" }
+            ent-docapbw-t32.us.ad.gannett.com: { primary_function: "Process Server" }
+            #ent-docapbw-tup.us.ad.gannett.com: { primary_function: "Process Server" }
+
+# vi: ft=ansible

@@ -1,18 +1,22 @@
+#!/usr/bin/env ansible-playbook
 --- # Ping a device, regardless of the OS Family
 - name: Ping Hosts
-  hosts: "{{ group | default('dhs_utility_linux') }}"
-  connection: ssh
-  user: ansible
-  become: yes
-  become_method: sudo
+  hosts: "{{ group | default('all') }}"
+  become: no
   gather_facts: yes
 
   tasks:
-      - name: Ping Windows Hosts
-        win_ping:
-        when: ansible_os_family == "Windows"
+    - name: Ping Linux Hosts
+      ping:
+      remote_user: ansible
+      become: yes
+      become_method: sudo
+      when: ansible_os_family != "Windows"
 
-      - name: Ping Linux Hosts
-        ping:
-        when: ansible_os_family != "Windows"
+    - name: Ping Windows Hosts
+      win_ping:
+      become: no
+      when: ansible_os_family == "Windows"
+
+# vi: ft=ansible
 
