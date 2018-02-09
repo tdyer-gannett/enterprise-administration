@@ -17,10 +17,7 @@ ansible_winrm_scheme=https
 [aime_stage_group1]
 moc-wn00009573
 moc-wn00009593
-# moc-wn00009594 # Not in DNS
 moc-wn00010063
-# moc-wn00010237 # Not in DNS
-# moc-wn00010238 # Not in DNS
 moc-wn00010482
 moc-wn00010483
 moc-wn00010484
@@ -39,7 +36,6 @@ moc-wn7697
 moc-wn7698
 moc-wn7700
 moc-wn7702
-# moc-wn7703 # Unknown WinRM problem
 moc-wn7704
 moc-wn7817
 moc-wn7818
@@ -137,10 +133,6 @@ moc-wn00009129
 moc-wn00009130
 moc-wn00009131
 moc-wn00009132
-# moc-wn00010500
-# moc-wn00010501
-# moc-wn00010504
-# moc-wn00010505
 moc-wn6905
 moc-wn6906
 moc-wn7036
@@ -157,11 +149,6 @@ phx-wn00009172
 phx-wn00009173
 phx-wn00009174
 phx-wn00009175
-# phx-wn00009179
-# phx-wn00009180
-# phx-wn00009181
-# phx-wn00009182
-# phx-wn00009183
 phx-wn00009184
 phx-wn00009185
 phx-wn00009187
@@ -185,7 +172,7 @@ phx-wn7186
 phx-wn7925
 phx-wn7930
 
-[presto_lg1]
+#[presto_lg1]
 # moc-wn00009595 # Connection denied, user account not allowed remote login
 # moc-wn00009596 # Connection denied, user account not allowed remote login
 # moc-wn00009597
@@ -209,13 +196,6 @@ phx-wn7930
 isd_test
 aime_stage_group1
 aime_stage_group2
-aime_prod_group1
-aime_prod_group2
-presto_lg1
-presto_lg2
-
-[windows_nonprod:children]
-isd_test
 aime_prod_group1
 aime_prod_group2
 

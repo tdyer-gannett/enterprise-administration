@@ -1,0 +1,85 @@
+--- # Axon Agent install tasks for Linux
+
+- name: Set package architecture for RedHat x86_64
+  set_fact:
+    linux_agent_rpm: "{{ repository_server }}/{{ linux_x64_agent_rpm }}"
+    linux_egdrv_rpm: "{{ repository_server }}/{{ linux_dkm_egdrv_rpm }}"
+    linux_egsvc_rpm: "{{ repository_server }}/{{ linux_x64_egsvc_rpm }}"
+    platform_family: "Red Hat"
+  when:
+    - ansible_os_family == "RedHat"
+    - ansible_architecture == "x86_64"
+
+- name: Set package architecture for Windows i386
+  set_fact:
+    linux_agent_rpm: "{{ repository_server }}/{{ linux_i386_agent_rpm }}"
+    linux_egdrv_rpm: "{{ repository_server }}/{{ linux_dkm_egdrv_rpm }}"
+    linux_egsvc_rpm: "{{ repository_server }}/{{ linux_i386_agent_rpm }}"
+    platform_family: "Red Hat"
+  when:
+    - ansible_os_family == "RedHat"
+    - ansible_architecture == "i386"
+
+- name: Create /etc/tripwire directory
+  tags: config
+  file:
+    path: /etc/tripwire
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
+
+- name: Install the twagent config template
+  tags: config
+  template:
+    src: twagent.conf.j2
+    dest: /etc/tripwire/twagent.conf
+    owner: root
+    group: root
+    mode: 0644
+  register: twconfig_result
+
+- name: Install the temporary PSK file
+  tags: config
+  lineinfile:
+    path: /etc/tripwire/registration_pre_shared_key.txt
+    line: "{{ registration_psk }}"
+    create: yes
+    owner: root
+    group: root
+    mode: 0644
+  when: twconfig_result.changed == True
+
+- name: Install the metadata.yml tag file
+  template:
+    src: metadata.yml.j2
+    dest: /etc/tripwire/metadata.yml
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Install DKMS prerequisites
+  tags: yum,dkms,install
+  yum:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - dkms
+    - kernel-headers
+    - kernel-devel
+  register: prereq_install
+
+- name: Install the Axon Agent Event Generator Driver
+  tags: yum,eg,install
+  yum:
+    name: "{{ item }}"
+    state: present
+    disable_gpg_check: yes
+    validate_certs: no
+  with_items:
+    - "{{ linux_agent_rpm }}"
+    - "{{ linux_egdrv_rpm }}"
+    - "{{ linux_egsvc_rpm }}"
+  register: agent_install
+
+# vi: ft=ansible
