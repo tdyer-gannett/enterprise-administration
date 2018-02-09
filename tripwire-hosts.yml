@@ -17,10 +17,13 @@ all:
         linux_test:
           vars:
             application_group: Brainworks
-            app_environment: Testing
+            app_environment: Test
             location: MOC
           hosts:
             ent-mocsmawx01.ent.gci: { primary_function: "Process Server" }
+            ent-docnplxdevfs01.us.ad.gannett.com: 
+              primary_function: "File Server"
+              location: DOC
     windows:
       vars:
         ansible_connection: winrm
@@ -83,7 +86,7 @@ all:
             ent-docapbw-p57.us.ad.gannett.com: { primary_function: "Process Server" }
             ent-docapbw-p58.us.ad.gannett.com: { primary_function: "Process Server" }
             ent-docapbw-p59.us.ad.gannett.com: { primary_function: "Process Server" }
-            ent-docapbw-p60.us.ad.gannett.com: { primary_function: "Process Server" }
+            # DNS ent-docapbw-p60.us.ad.gannett.com: { primary_function: "Process Server" }
             ent-docapbw-p61.us.ad.gannett.com: { primary_function: "Process Server" }
             ent-docapbw-p62.us.ad.gannett.com: { primary_function: "Process Server" }
             ent-docapbw-p63.us.ad.gannett.com: { primary_function: "Process Server" }
@@ -102,7 +105,7 @@ all:
             ent-docapbw-t02.us.ad.gannett.com: { primary_function: "File Server" }
             ent-docapbw-t03.us.ad.gannett.com: { primary_function: "Process Server" }
             ent-docapbw-t31.us.ad.gannett.com: { primary_function: "Process Server" }
-            ent-docapbw-t32.us.ad.gannett.com: { primary_function: "Process Server" }
-            #ent-docapbw-tup.us.ad.gannett.com: { primary_function: "Process Server" }
+            # Unreachable ent-docapbw-t32.us.ad.gannett.com: { primary_function: "Process Server" }
+            # DNS ent-docapbw-tup.us.ad.gannett.com: { primary_function: "Process Server" }
 
 # vi: ft=ansible
