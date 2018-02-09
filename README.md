@@ -47,6 +47,8 @@ Valid starting       Expires              Service principal
 ### Cross-platform Playbooks
  * __ping-any.yml__ - Basic test of ansible connectivity to any system, using 
  the right method for that system.
+ * __tripwire.yml__ - Install Tripwire Axon Agent on Windows or Linux
+ * __tripwire_rm_psk.yml__ - Cleanup the PSK file from a host, if it was put there after the host was already registered.
 
 ## Roles
 
@@ -55,10 +57,16 @@ Valid starting       Expires              Service principal
  * __epel-repo__ - Update some packages and install the epel repository configuration for yum.
  * __net-snmp__ - Install net-snmp packages as needed, and configure snmpd.conf for SNMPv3 access by EM7.
  * __spacewalk__ - Install spacewalk client packages and register a system with the Spacewalk server.
+ * __axon-linux__ - Install, configure and register Tripwire Axon Agent on RHEL/CentOS hosts. (currently 64-bit only)
+ * __axon-windows__ - Install, configure and register Tripwire Axon Agent on Windows hosts. (currently 64-bit only)
 
 ## Configuration Files
 
- * __hosts-init__ - Default inventory file (copy to "hosts" to make live)
-
  * __ansible.cfg__ - Local configuration file (overrides /etc/ansible/ansible.cfg)
+
+## Inventory Files (To use, add "-i <filename>" to the ansible[-playbook] command.)
+
+ * __hosts-init__ - Default inventory file (copy to "hosts" to make live)
+ * __hosts-gci__ - Inventory of Enterprise systems.
+ * __tripwire-hosts.yml - Inventory of Tripwire client systems for the Tripwire Axon Agent playbooks
 
