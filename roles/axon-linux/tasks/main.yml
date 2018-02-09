@@ -45,6 +45,7 @@
     path: /etc/tripwire/registration_pre_shared_key.txt
     line: "{{ registration_psk }}"
     create: yes
+    insertbefore: BOF
     owner: root
     group: root
     mode: 0644
