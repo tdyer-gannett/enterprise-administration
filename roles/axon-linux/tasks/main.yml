@@ -80,7 +80,7 @@
 - name: Output result of kernel update check
   tags: kernel_test
   debug:
-    msg: "{{ inventory_host }} {{ reboot_test.stdout }}"
+    msg: "{{ inventory_hostname }} {{ reboot_test.stdout }}"
 
 - name: Install the Axon Agent Event Generator Driver
   tags: yum,eg,install
