@@ -1,6 +1,6 @@
 --- # Axon Agent install tasks for Linux
 
-- name: Set package architecture for RedHat x86_64
+- name: Set package architecture for 64-bit Linux
   set_fact:
     linux_agent_rpm: "{{ repository_server }}/{{ linux_x64_agent_rpm }}"
     linux_egdrv_rpm: "{{ repository_server }}/{{ linux_dkm_egdrv_rpm }}"
@@ -10,7 +10,7 @@
     - ansible_os_family == "RedHat"
     - ansible_architecture == "x86_64"
 
-- name: Set package architecture for Windows i386
+- name: Set package architecture for 32-bit Linux
   set_fact:
     linux_agent_rpm: "{{ repository_server }}/{{ linux_i386_agent_rpm }}"
     linux_egdrv_rpm: "{{ repository_server }}/{{ linux_dkm_egdrv_rpm }}"
