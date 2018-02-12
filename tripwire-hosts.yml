@@ -17,7 +17,7 @@ all:
         linux_test:
           vars:
             application_group: Brainworks
-            app_environment: Testing
+            app_environment: Test
             location: MOC
           hosts:
             ent-mocsmawx01.ent.gci: { primary_function: "Process Server" }
