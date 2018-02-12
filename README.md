@@ -68,5 +68,5 @@ Valid starting       Expires              Service principal
 
  * __hosts-init__ - Default inventory file (copy to "hosts" to make live)
  * __hosts-gci__ - Inventory of Enterprise systems.
- * __tripwire-hosts.yml - Inventory of Tripwire client systems for the Tripwire Axon Agent playbooks
+ * __tripwire-hosts.yml__ - Inventory of Tripwire client systems for the Tripwire Axon Agent playbooks
 

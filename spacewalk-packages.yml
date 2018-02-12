@@ -1,0 +1,24 @@
+--- # make sure spacewalk client packages are present
+- name: install spacewalk packages
+  hosts: "{{ group }}"
+  remote_user: root
+  gather_facts: yes
+  tasks:
+    - name: install m2crypto python-hwdata rhn-check rhn-client-tools rhn-custom-info rhn-setup rhncfg rhncfg-actions rhncfg-client rhncfg-management rhnlib rhnsd yum-rhn-plugin
+      yum:
+        name: "{{ item }}"
+        state: present
+      with_items:
+        - m2crypto
+        - python-hwdata
+        - rhn-check
+        - rhn-client-tools
+        - rhn-setup
+        - rhnlib
+        - rhnsd
+        - yum-rhn-plugin
+        - rhn-custom-info
+        - rhncfg
+        - rhncfg-actions
+        - rhncfg-client
+        - rhncfg-management

@@ -33,12 +33,14 @@
     dest: "{{ tw_config_dir }}\\twagent.conf"
   register: twconfig_result
 
-- name: Install the temporary PSK file
+- name: Write the PSK file
   tags: config
-  win_copy:
-    src: registration_pre_shared_key.txt
-    dest: "{{ tw_config_dir }}\\registration_pre_shared_key.txt"
   when: twconfig_result.changed == True
+  win_lineinfile:
+    path: "{{ tw_config_dir }}\\registration_pre_shared_key.txt"
+    line: "{{ registration_psk }}"
+    create: yes
+    insertbefore: BOF
 
 - name: Install the metadata.yml tag file
   win_template:
