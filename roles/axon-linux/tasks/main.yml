@@ -1,6 +1,6 @@
 --- # Axon Agent install tasks for Linux
 
-- name: Set package architecture for RedHat x86_64
+- name: Set package architecture for 64-bit Linux
   set_fact:
     linux_agent_rpm: "{{ repository_server }}/{{ linux_x64_agent_rpm }}"
     linux_egdrv_rpm: "{{ repository_server }}/{{ linux_dkm_egdrv_rpm }}"
@@ -10,7 +10,7 @@
     - ansible_os_family == "RedHat"
     - ansible_architecture == "x86_64"
 
-- name: Set package architecture for Windows i386
+- name: Set package architecture for 32-bit Linux
   set_fact:
     linux_agent_rpm: "{{ repository_server }}/{{ linux_i386_agent_rpm }}"
     linux_egdrv_rpm: "{{ repository_server }}/{{ linux_dkm_egdrv_rpm }}"
@@ -69,6 +69,18 @@
     - kernel-headers
     - kernel-devel
   register: prereq_install
+
+- name: Check if running kernel matches latest installed kernel
+  tags: kernel_test
+  shell: if [ "`rpm -q kernel --qf '%{installtime} %{version}-%{release}.%{arch}\n'|sort -n -k1|tail -1|cut -d ' ' -f 2`" =        "`uname -r`"  ]; then echo "running latest installed kernel."; else echo "needs to be rebooted."; fi
+  ignore_errors: true
+  changed_when: false
+  register: reboot_test
+
+- name: Output result of kernel update check
+  tags: kernel_test
+  debug:
+    msg: "{{ inventory_hostname }} {{ reboot_test.stdout }}"
 
 - name: Install the Axon Agent Event Generator Driver
   tags: yum,eg,install

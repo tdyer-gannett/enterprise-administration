@@ -21,6 +21,9 @@ all:
             location: MOC
           hosts:
             ent-mocsmawx01.ent.gci: { primary_function: "Process Server" }
+            ent-docsmawx01.ent.gci:
+              primary_function: "Process Server"
+              location: DOC
             ent-docnplxdevfs01.us.ad.gannett.com: 
               primary_function: "File Server"
               location: DOC

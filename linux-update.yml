@@ -43,7 +43,8 @@
       register: reboot_test
 
     - name: Output result of kernel update check
-      debug: msg={{ reboot_test.stdout }}
+      debug: 
+        msg: "{{ reboot_test.stdout }}"
 
     - name: reboot
       shell: sleep 5 && shutdown -r now "Reboot Triggered by {{ env_username }} with Ansible"
