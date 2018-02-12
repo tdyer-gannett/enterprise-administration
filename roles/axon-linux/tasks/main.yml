@@ -45,6 +45,7 @@
     path: /etc/tripwire/registration_pre_shared_key.txt
     line: "{{ registration_psk }}"
     create: yes
+    insertbefore: BOF
     owner: root
     group: root
     mode: 0644
@@ -69,6 +70,18 @@
     - kernel-devel
   register: prereq_install
 
+- name: Check if running kernel matches latest installed kernel
+  tags: kernel_test
+  shell: if [ "`rpm -q kernel --qf '%{installtime} %{version}-%{release}.%{arch}\n'|sort -n -k1|tail -1|cut -d ' ' -f 2`" =        "`uname -r`"  ]; then echo "running latest installed kernel."; else echo "needs to be rebooted."; fi
+  ignore_errors: true
+  changed_when: false
+  register: reboot_test
+
+- name: Output result of kernel update check
+  tags: kernel_test
+  debug:
+    msg: "{{ inventory_host }} {{ reboot_test.stdout }}"
+
 - name: Install the Axon Agent Event Generator Driver
   tags: yum,eg,install
   yum:
@@ -81,5 +94,19 @@
     - "{{ linux_egdrv_rpm }}"
     - "{{ linux_egsvc_rpm }}"
   register: agent_install
+
+- name: Start the tw-eg-service service
+  tags: service
+  service:
+    name: tw-eg-service
+    state: started
+    enabled: yes
+
+- name: Start the tripwire-axon-agent service
+  tags: service
+  service:
+    name: tripwire-axon-agent
+    state: started
+    enabled: yes
 
 # vi: ft=ansible
