@@ -1,0 +1,18 @@
+--- # Create inventory of RHEL/CentOS 5 hosts
+- hosts: all
+  remote_user: root
+  become: yes
+  gather_facts: yes
+
+  tasks:
+    - name: Add line to inventory file
+      lineinfile:
+        path: ./hosts-el5.yml
+        create: yes
+        insertafter: 'hosts\:'
+        line: "        {{ inventory_hostname }}:"
+      when: ansible_distribution_major_version == "5"
+      delegate_to: localhost
+
+
+# vi: ft=ansible

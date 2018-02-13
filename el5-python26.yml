@@ -1,0 +1,24 @@
+--- # Install python 2.6 on CentOS/RedHat 5 systems
+- hosts: "{{ group }}"
+  remote_user: root
+  become: no
+  gather_facts: no
+
+  tasks:
+    - name: Install python26 from EPEL
+      yum:
+        name: "{{ item }}"
+        disablerepo: '*'
+        enablerepo: 'epel*'
+        state: installed
+      with_items: "{{ python26_rpms }}"
+      when: ansible_distribution_major_version == "5"
+
+    - name: Test python26
+      setup:
+      ansible_python_interpreter: "/usr/bin/python26"
+      when: ansible_distribution_major_version == "5"
+      ignore_errors: true
+
+
+# vi: ft=ansible
