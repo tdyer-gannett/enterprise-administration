@@ -624,7 +624,9 @@ ent-mocdevcos02.dev.gci.
 ent-mocdevcos03.dev.gci.
 
 [c567]
-ent-mocdevcos[01:03].dev.gci.
+ent-mocdevcos01.dev.gci. ansible_python_interpreter=/usr/bin/python26
+ent-mocdevcos02.dev.gci.
+ent-mocdevcos03.dev.gci.
 
 [dev-cn1]
 ent-mocdevcn01.dev.gci.
