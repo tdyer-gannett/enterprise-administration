@@ -1,7 +1,7 @@
 # Don't version control log files
 
 # Removing the hosts file from inventory control
-hosts
+hosts*
 
 # Directories to ignore
 log/*
