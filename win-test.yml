@@ -15,19 +15,19 @@
         domain: "gannettdigital.slack.com"
         username: "Enterprise-Ansible"
         icon_url: "{{ slack_icon_url }}"
-        msg: "Playbook:   win-update-critsec.yml\nHost Group: {{ group }}\nFrom Host:  {{ cntr_hostname }}\nBy User:    {{             cntr_user      }}\nRunning as: {{ ansible_user_id }}\n--------------\n{{ansible_play_batch|join('\n') }}"
+        msg: "Playbook:   win-test.yml\nHost Group: {{ group }}\nFrom Host:  {{ cntr_hostname }}\nBy User:    {{             cntr_user      }}\nRunning as: {{ ansible_user_id }}\n--------------\n{{ansible_play_batch|join('\n') }}"
         color: good
       delegate_to: localhost
       run_once: true
 
     - name: Report host list via Email
       mail:
-        host: smtp
+        host: relay.ent.gci
         port: 25
         subject: "Ansible Play Report for Group: {{ group | default('windows') }}"
         to: dmaple@gannett.com
-        from: ansible@moc-lx00011359.gmti.gbahn.net
-        body: "Group: {{ group | default('windows') }}\n--------------\n{{ansible_play_batch|join('\n') }}"
+        from: "{{ cntr_user }}@{{ cntr_hostname }}"
+        body: "Playbook:   win-test.yml\nHost Group: {{ group }}\nFrom Host:  {{ cntr_hostname }}\nBy User:    {{             cntr_user      }}\nRunning as: {{ ansible_user_id }}\n--------------\n{{ansible_play_batch|join('\n') }}"
       delegate_to: localhost
       run_once: true
 
