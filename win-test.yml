@@ -26,7 +26,7 @@
         port: 25
         subject: "Ansible Play Report for Group: {{ group | default('windows') }}"
         to: dmaple@gannett.com
-        from: "{{ cntr_user }}@{{ cntr_hostname }}"
+        from: "{{ ansible_user_id }}@{{ cntr_hostname }}"
         body: "Playbook:   win-test.yml\nHost Group: {{ group }}\nFrom Host:  {{ cntr_hostname }}\nBy User:    {{ cntr_user }}\nRunning as: {{ ansible_user_id }}\n--------------\n{{ansible_play_batch|join('\n') }}"
       delegate_to: localhost
       run_once: true
