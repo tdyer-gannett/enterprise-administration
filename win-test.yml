@@ -3,6 +3,10 @@
 - hosts: '{{ group | default("windows") }}'
   gather_facts: yes
   tasks:
+    - name: Set Facts
+      set_fact:
+        cntr_user: "{{ lookup('env','USER') }}"
+        cntr_hostname: "{{ lookup('env','HOSTNAME') }}"
 
     - name: Report host list to Slack
       slack:
@@ -11,7 +15,7 @@
         domain: "gannettdigital.slack.com"
         username: "Enterprise-Ansible"
         icon_url: "{{ slack_icon_url }}"
-        msg: "Ansible Test: Group {{ group | default('windows') }}\n--------------\n{{ansible_play_batch|join('\n') }}"
+        msg: "Playbook:   win-update-critsec.yml\nHost Group: {{ group }}\nFrom Host:  {{ cntr_hostname }}\nBy User:    {{             cntr_user      }}\nRunning as: {{ ansible_user_id }}\n--------------\n{{ansible_play_batch|join('\n') }}"
         color: good
       delegate_to: localhost
       run_once: true
@@ -52,4 +56,4 @@
           state: started
           register: service_info
 
-
+# vi: ft=ansible
