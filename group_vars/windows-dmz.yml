@@ -1,0 +1,14 @@
+---
+
+ansible_connection: winrm
+ansible_port: 5985
+ansible_winrm_scheme: http
+# ansible_winrm_transport: kerberos
+# ansible_winrm_kinit_mode: manual
+# ansible_winrm_kerberos_delegation: true
+# ansible_winrm_server_cert_validation: ignore
+# ansible_winrm_realm: US.AD.GANNETT.COM
+
+ansible_user: ans-patch
+ansible_password: L9*tQ2HC
+
