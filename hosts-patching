@@ -170,12 +170,10 @@ eop-voctstwp01.us.ad.gannett.com
 [eop_dmz]
 eop-docwp01.us.ad.gannett.com
 eop-docwp02.us.ad.gannett.com
-eop-shrps01.us.ad.gannett.com
-eop-shrps02.us.ad.gannett.com
 eop-vocwp01.us.ad.gannett.com
 eop-vocwp02.us.ad.gannett.com
 
-[eop_doc]
+[eop_doca]
 eop-docam01.us.ad.gannett.com
 eop-docam02.us.ad.gannett.com
 eop-docam03.us.ad.gannett.com
@@ -193,6 +191,8 @@ eop-docnxdb01.us.ad.gannett.com
 eop-docnxsvc01.us.ad.gannett.com
 eop-docnxweb01.us.ad.gannett.com
 eop-docnxweb02.us.ad.gannett.com
+
+[eop_docb]
 eop-docpfdb01.us.ad.gannett.com
 eop-docpfdb02.us.ad.gannett.com
 eop-docpfftp01.us.ad.gannett.com
@@ -210,7 +210,7 @@ eop-docrp06.us.ad.gannett.com
 eop-docrp07.us.ad.gannett.com
 eop-docrp08.us.ad.gannett.com
 
-[eop_field01]
+[eop_field01a]
 eop-aimps01.us.ad.gannett.com
 eop-arnps01.us.ad.gannett.com
 eop-berps01.us.ad.gannett.com
@@ -234,6 +234,8 @@ eop-knsps01.us.ad.gannett.com
 eop-lafps01.us.ad.gannett.com
 eop-lcjps01.us.ad.gannett.com
 eop-mgmps01.us.ad.gannett.com
+
+[eop_field01b]
 eop-mjsps01.us.ad.gannett.com
 eop-naspc01.us.ad.gannett.com
 eop-nasps01.us.ad.gannett.com
@@ -244,6 +246,7 @@ eop-rocpc01.us.ad.gannett.com
 eop-rocps01.us.ad.gannett.com
 eop-rrsps01.us.ad.gannett.com
 eop-sfaps01.us.ad.gannett.com
+eop-shrps01.us.ad.gannett.com
 eop-snlps01.us.ad.gannett.com
 eop-stgps01.us.ad.gannett.com
 eop-tclpc01.us.ad.gannett.com
@@ -259,7 +262,7 @@ eop-wilps01.us.ad.gannett.com
 eop-wtrps01.us.ad.gannett.com
 eop-ydrps01.us.ad.gannett.com
 
-[eop_field02]
+[eop_field02a]
 eop-aimps02.us.ad.gannett.com
 eop-arnps02.us.ad.gannett.com
 eop-berps02.us.ad.gannett.com
@@ -281,6 +284,8 @@ eop-knsps02.us.ad.gannett.com
 eop-lafps02.us.ad.gannett.com
 eop-lcjps02.us.ad.gannett.com
 eop-mgmps02.us.ad.gannett.com
+
+[eop_field02b]
 eop-mjsps02.us.ad.gannett.com
 eop-naspc02.us.ad.gannett.com
 eop-nasps02.us.ad.gannett.com
@@ -291,6 +296,7 @@ eop-rocpc02.us.ad.gannett.com
 eop-rocps02.us.ad.gannett.com
 eop-rrsps02.us.ad.gannett.com
 eop-sfaps02.us.ad.gannett.com
+eop-shrps02.us.ad.gannett.com
 eop-snlps02.us.ad.gannett.com
 eop-stgps02.us.ad.gannett.com
 eop-tclpc02.us.ad.gannett.com
@@ -340,6 +346,9 @@ eop-vocrp06.us.ad.gannett.com
 eop-vocrp07.us.ad.gannett.com
 eop-vocrp08.us.ad.gannett.com
 eop-vocrptsvr01.us.ad.gannett.com
+
+[Day14_0100]
+ent-mocconpen01.us.ad.gannett.com
 
 [_isnotvirtual]
 ent-vocdvdig01.us.ad.gannett.com
