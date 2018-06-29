@@ -4,6 +4,7 @@ ecs_dev
 eng_dev
 ent_dev
 eop_dev
+Day14_0100
 
 [isvirtual:children]
 _isvirtual
@@ -18,10 +19,16 @@ ecs_dev
 eng_dev
 ent_dev
 eop_dev
-eop_doc
-eop_field01
-eop_field02
-eop_moc
+eop_doca
+eop_docb
+eop_field01a
+eop_field01b
+eop_field02a
+eop_field02b
+eop_moca
+eop_mocb
+Day14_0100
+
 _isvirtual
 _isnotvirtual
 windows_server_2003
