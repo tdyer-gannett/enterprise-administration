@@ -1,4 +1,4 @@
---- # This playbook will install windows updates of all the categories on the machines for the group mentioned as the argument and reboot the server
+--- # This playbook will install windows updates of all the categories on the machines for the group mentioned as the argument
 #The following command should be run to install the updates
 # ansible-playbook win-update-all.yml --ask-vault-pass --extra-vars "group=[group_name | hostname]"
 
@@ -34,15 +34,6 @@
 
     - name: Display (all) updates.
       debug: var=found_updates
-
-    - name: Prompt for confirmation to install updates.
-      pause:
-        prompt: "Please confirm update installation! Enter 'Y' to continue."
-      register: result
-
-    - name: Exit if anything other than Y
-      meta: end_play
-      when: result.user_input != "Y"
 
     - name: Install (all) the updates.
       win_updates:
