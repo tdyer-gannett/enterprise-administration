@@ -4,7 +4,9 @@ csc_prod2
 ecs_dev
 ecs_prod_xna
 ecs_prod_th_0400
+ecs_prod_f_0400
 eng_dev
+eng_prod_f_0500
 ent_dev
 eop_dev
 eop_dmz
@@ -24,6 +26,7 @@ giadc_group1
 giadc_group2
 giadc_group3
 mp_df_0200
+mp_df_0300
 mp_df_0400
 mp_dm_0100
 mp_dm_0200
@@ -123,10 +126,34 @@ ecs-mocadbbps15.us.ad.gannett.com
 ecs-mocadbbps20.us.ad.gannett.com
 ecs-mocsmutil01.us.ad.gannett.com
 
+[ecs_prod_f_0400]
+ecs-docadbeap02.us.ad.gannett.com
+ecs-docadbws02.us.ad.gannett.com
+ecs-mocadbbps16.us.ad.gannett.com
+ecs-mocadbeap09.us.ad.gannett.com
+ecs-mocadbeap10.us.ad.gannett.com
+ecs-mocadbeap11.us.ad.gannett.com
+ecs-mocadbeap12.us.ad.gannett.com
+ecs-mocadbeap13.us.ad.gannett.com
+ecs-mocadbeap14.us.ad.gannett.com
+ecs-mocadbeap15.us.ad.gannett.com
+ecs-mocadbeap16.us.ad.gannett.com
+ecs-mocadbeap17.us.ad.gannett.com
+ecs-mocadbeap18.us.ad.gannett.com
+ecs-mocadbeap19.us.ad.gannett.com
+ecs-mocadbeap20.us.ad.gannett.com
+
 [eng_dev]
 eng-docxnapts71.us.ad.gannett.com
 eng-docxnin71.us.ad.gannett.com
 eng-vocngutil01.us.ad.gannett.com
+
+[eng_prod_f_0500]
+eng-vocngaux72.us.ad.gannett.com
+eng-vocngutil02.us.ad.gannett.com
+eng-vocxnin72.us.ad.gannett.com
+eng-vocxnin73.us.ad.gannett.com
+
 
 [ent_dev]
 ent-mocdvbpc02.us.ad.gannett.com
@@ -481,15 +508,38 @@ gpc-iniapwf03.us.ad.gannett.com
 gpc-iniapwf05.us.ad.gannett.com
 
 [mp_df_0200]
-ent-mocapfax01.us.ad.gannett.com
-ent-mocaprds02.us.ad.gannett.com
-ent-mocdtirdp01.us.ad.gannett.com
-ent-mocsmep02.us.ad.gannett.com
-ent-pocaprds05.us.ad.gannett.com
 ini-mocaputil01.us.ad.gannett.com
+ent-pocdvmg08.us.ad.gannett.com
+ent-pocaprds05.us.ad.gannett.com
+ent-mocsmep02.us.ad.gannett.com
+ent-mocdtirdp01.us.ad.gannett.com
+ent-mocaprds02.us.ad.gannett.com
+ent-mocapfax01.us.ad.gannett.com
+
+[mp_df_0300]
+ent-pocsqhsm01.us.ad.gannett.com
+ent-pocapokta02.us.ad.gannett.com
+ent-mocwbabn01.us.ad.gannett.com
+ent-mocsmops01.us.ad.gannett.com
+ent-mocilmt01.us.ad.gannett.com
+ent-mocdvsped04.us.ad.gannett.com
+ent-mocdvmid01.us.ad.gannett.com
+ent-mocdvmic01.us.ad.gannett.com
+ent-mocdvds02.us.ad.gannett.com
+ent-mocapsrp01n.us.ad.gannett.com
+ent-mocapokta02.us.ad.gannett.com
+ent-docapxnup03.us.ad.gannett.com
+ent-docapxnsf04.us.ad.gannett.com
 
 [mp_df_0400]
+ent-docspwfs03.us.ad.gannett.com
+ent-mocappki01.us.ad.gannett.com
+ent-mocsmome01.us.ad.gannett.com
+ent-mocsmpan03.us.ad.gannett.com
+ent-mocspwfs03.us.ad.gannett.com
+ent-mocsqep01.us.ad.gannett.com
 ent-mocsqusat03.us.ad.gannett.com
+ent-pocsmrsa03.us.ad.gannett.com
 pci-mocsqrpt01.us.ad.gannett.com
 
 [mp_dm_0100]
