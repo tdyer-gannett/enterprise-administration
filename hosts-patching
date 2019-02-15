@@ -1,7 +1,7 @@
 [windows:children]
 d4_eop_dev_0200
-d6_ent_dev_0200
 d4_bw_dev_0600
+d6_ent_dev_0200
 csc_prod2
 dc_sun_0300o
 dc_mon_0300e
