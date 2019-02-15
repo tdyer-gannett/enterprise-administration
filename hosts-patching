@@ -1,5 +1,7 @@
 [windows:children]
 d4_eop_dev_0200
+d4_st_dev_0300
+d4_st_dev_0300
 d4_bw_dev_0600
 d6_ent_dev_0200
 csc_prod2
@@ -120,6 +122,10 @@ eop-voctstsvc01.us.ad.gannett.com
 eop-voctstwp01.us.ad.gannett.com
 gpc-mocdvclr01.us.ad.gannett.com
 gpc-vocdvalw01.us.ad.gannett.com
+
+[d4_bw_dev_0600]
+ent-mocstppam01.us.ad.gannett.com
+ent-mocstppam02.us.ad.gannett.com
 
 [d4_bw_dev_0600]
 ent-docapbw-d01.us.ad.gannett.com
