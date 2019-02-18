@@ -36,4 +36,3 @@
         color: warning
       delegate_to: localhost
       when: found_updates.found_update_count > 0
-
