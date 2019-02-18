@@ -5,6 +5,7 @@ d4_bw_dev_0600
 d6_ent_dev_0200
 d6_ent_dev_0300
 d6_ecs_dev_0400
+d6_eng_dev_0500
 
 [d4_eop_dev_0200]
 eop-dfpdvps01.us.ad.gannett.com
@@ -156,3 +157,10 @@ ecs-mocapp01-r.us.ad.gannett.com
 ecs-mocapp02-k.us.ad.gannett.com
 ecs-mocapp02-r.us.ad.gannett.com
 ecs-mocbps01-r.us.ad.gannett.com
+
+[d6_eng_dev_0500]
+eng-docxnapts71.us.ad.gannett.com
+eng-docxnin71.us.ad.gannett.com
+eng-vocngutil01.us.ad.gannett.com
+eng-voctstxnap2.us.ad.gannett.com
+eng-vocxnapts71.us.ad.gannett.com
