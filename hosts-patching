@@ -4,6 +4,7 @@ d4_st_dev_0300
 d4_bw_dev_0600
 d6_ent_dev_0200
 d6_ent_dev_0300
+d6_ecs_dev_0400
 csc_prod2
 dc_sun_0300o
 dc_mon_0300e
@@ -137,6 +138,21 @@ ent-docapbw-t01.us.ad.gannett.com
 ent-docapbw-t02.us.ad.gannett.com
 ent-docapbw-t03.us.ad.gannett.com
 
+[d6_ecs_dev_0400]
+ecs-docabe01-b.us.ad.gannett.com
+ecs-docabe01-g.us.ad.gannett.com
+ecs-docapp01-b.us.ad.gannett.com
+ecs-docapp01-g.us.ad.gannett.com
+ecs-docapp02-b.us.ad.gannett.com
+ecs-docapp02-g.us.ad.gannett.com
+ecs-docbps01-g.us.ad.gannett.com
+ecs-mocabe01-r.us.ad.gannett.com
+ecs-mocapp01-k.us.ad.gannett.com
+ecs-mocapp01-r.us.ad.gannett.com
+ecs-mocapp02-k.us.ad.gannett.com
+ecs-mocapp02-r.us.ad.gannett.com
+ecs-mocbps01-r.us.ad.gannett.com
+
 [csc_prod2]
 csc-greiptvh01.us.ad.gannett.com
 csc-louiptvh01.us.ad.gannett.com
@@ -210,19 +226,6 @@ usat-vocadbh02.us.ad.gannett.com
 usat-vocadbh02n.us.ad.gannett.com
 vtd-lcladdc02.us.ad.gannett.com
 ydr-lcladdc02.us.ad.gannett.com
-
-[ecs_dev]
-ecs-docabe01-b.us.ad.gannett.com
-ecs-docabe01-g.us.ad.gannett.com
-ecs-docapp01-b.us.ad.gannett.com
-ecs-docapp01-g.us.ad.gannett.com
-ecs-docapp02-b.us.ad.gannett.com
-ecs-docapp02-g.us.ad.gannett.com
-ecs-docbps01-b.us.ad.gannett.com
-ecs-docbps01-g.us.ad.gannett.com
-ecs-mocabe01-r.us.ad.gannett.com
-ecs-mocapp01-r.us.ad.gannett.com
-ecs-mocapp02-r.us.ad.gannett.com
 
 [ecs_prod_xna]
 ecs-docxnadb05.us.ad.gannett.com
