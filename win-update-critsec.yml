@@ -6,6 +6,7 @@
 
 - hosts: '{{ group }}'
   gather_facts: yes
+  serial: 100
   tasks:
 
     - name: Set Facts
@@ -83,4 +84,3 @@
       when: check_finish.reboot_required
       register: reboot
       tags: reboot
-
