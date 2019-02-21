@@ -9,7 +9,7 @@
   serial: 200
   tasks:
 
-    - name: Set Facts
+  - name: Set Facts
       set_fact:
         cntr_user: "{{ lookup('env','USER') }}"
         cntr_hostname: "{{ lookup('env','HOSTNAME') }}"
@@ -18,7 +18,7 @@
       slack:
         token: "{{ slack_token }}"
         channel: #ansible
-        domain: "usatnetwork-product.slack.com"
+        domain: "gannettdigital.slack.com"
         username: "Enterprise-Ansible"
         icon_url: "{{ slack_icon_url }}"
         msg: "Playbook:   win-update-critsec.yml\nHost Group: {{ group }}\nFrom Host:  {{ cntr_hostname }}\nBy User:    {{ cntr_user }}\nRunning as: {{ ansible_user_id }}\n--------------\n{{ ansible_play_batch | join('\n') }}"
@@ -52,35 +52,3 @@
       register: result
 
     - name: Exit if anything other than Y
-      meta: end_play
-      when: result.user_input != "Y"
-
-    - name: Notify any logged-in users
-      win_msg:
-        delay_seconds: 60
-        msg: "Automated update is about to start.  You have 60 seconds to save your work and log off."
-      when: found_updates.reboot_required
-
-    - name: Install the updates.
-      win_updates:
-        category_names:
-          - CriticalUpdates
-          - SecurityUpdates
-        state: installed
-        log_path: c:\ansible_wui_installed.txt
-      register: check_finish
-      tags: installed_updates
-      when: found_updates.found_update_count > 0
-
-    - name: Check on reboot requirement.
-      debug:
-        msg: "{{ inventory_hostname }} has installed {{ check_finish.installed_update_count }} updates."
-      when: check_finish.installed_update_count > 0
-
-    - name: Reboot if needed.
-      win_reboot:
-        pre_reboot_delay_sec: 10
-        msg: "Rebooted to apply Windows updates."
-      when: check_finish.reboot_required
-      register: reboot
-      tags: reboot
