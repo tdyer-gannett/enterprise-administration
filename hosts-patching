@@ -92,7 +92,6 @@ d22_ent_wed_0400
 d22_ent_dc_wed_0300
 d23_ent_thu_0400
 d23_ent_dc_thu_0300
-d24_ent_fri_0400
 d24_ent_dc_fri_0300
 d25_ent_sat_0400
 d25_ent_dc_sat_0300
@@ -1576,9 +1575,15 @@ roc-lcladdc03.us.ad.gannett.com
 rrs-lcladdc01.us.ad.gannett.com
 sal-lcladdc01.us.ad.gannett.com
 
-
-
 [d22_ent_wed_0400]
+ENT-DOCDBBPC02.us.ad.gannett.com
+ent-docexmbx02.us.ad.gannett.com
+ent-docexrly02.us.ad.gannett.com
+ENT-DOCWBBPC04.us.ad.gannett.com
+ent-mocexcas02.us.ad.gannett.com
+ent-mocexmbx02.us.ad.gannett.com
+ent-mocexrly02.us.ad.gannett.com
+ent-pocexcas02.us.ad.gannett.com
 
 [d22_ent_dc_wed_0300]
 aim-lcladdc02.us.ad.gannett.com
@@ -1611,6 +1616,8 @@ sal-lcladdc02.us.ad.gannett.com
 ent-mocadlds04.us.ad.gannett.com
 
 [d23_ent_thu_0400]
+ENT-DOCWBBPC01.us.ad.gannett.com
+ent-vocfsav02.us.ad.gannett.com
 
 [d23_ent_dc_thu_0300]
 gci-mocaddc01.us.ad.gannett.com
@@ -1642,8 +1649,6 @@ usat-vocadbh01.us.ad.gannett.com
 ydr-lcladdc01.us.ad.gannett.com
 laf-lcladdc01.us.ad.gannett.com
 mgm-lcladdc01.us.ad.gannett.com
-
-[d24_ent_thu_0400]
 
 [d24_ent_dc_thu_0300]
 aap-lcladdc01.us.ad.gannett.com
