@@ -488,6 +488,8 @@ ent-mocapbw-p08.us.ad.gannett.com
 ent-mocapbw-p10.us.ad.gannett.com
 ent-mocapbw-p12.us.ad.gannett.com
 ent-moccctins01.us.ad.gannett.com
+gpc-desaprds01.us.ad.gannett.com
+gpc-iniapeps11.us.ad.gannett.com
 
 [d12_giadc_g1_sun_0200]
 ent-desstin01.us.ad.gannett.com
@@ -628,7 +630,7 @@ gpc-iniapwf07.us.ad.gannett.com
 GPC-INIDFSF01A.us.ad.gannett.com 
 gpc-inifs02.us.ad.gannett.com
 gpc-inismutil02.us.ad.gannett.com
-gpc-iniwbapi01.us.ad.gannett.com
+gpc-iniwbapi01.atol-west.gannett.gci
 gpc-iniwbapi02.us.ad.gannett.com
 gpc-iniwbat01.us.ad.gannett.com
 gpc-iniwbat02.us.ad.gannett.com
@@ -744,6 +746,8 @@ ent-pocfsav01.us.ad.gannett.com
 vpc-bces01.us.ad.gannett.com
 usat-mocintweb2.us.ad.gannett.com
 usat-vocadv02.us.ad.gannett.com
+
+[d14_giadc_tue_0300]
 gpc-desapas02.us.ad.gannett.com
 gpc-desapas04.us.ad.gannett.com
 gpc-desapas06.us.ad.gannett.com
@@ -771,8 +775,8 @@ GPC-INIAPRDS07.us.ad.gannett.com
 GPC-INIAPRDS08.us.ad.gannett.com
 GPC-INIAPRDS09.us.ad.gannett.com
 GPC-INIAPRDS10.us.ad.gannett.com
-gpc-iniwbatc03.us.ad.gannett.com
-GPC-INIWBATI03.us.ad.gannett.com
+gpc-iniwbatc03.atol-west.gannett.gci
+GPC-INIWBATI03.atol-west.gannett.gci
 
 [d14_ent_tue_0300]
 ent-docorcah01.us.ad.gannett.com
@@ -1169,6 +1173,7 @@ ent-pocsmpv01.us.ad.gannett.com
 ent-pocsmrsa02.us.ad.gannett.com
 ent-vocprint01.us.ad.gannett.com
 ecs-docadbcc02.us.ad.gannett.com
+ent-mocrpm02.us.ad.gannett.com
 
 [d16_ent_thu_0500]
 eng-mocprdrdc01.us.ad.gannett.com
@@ -1445,6 +1450,53 @@ ent-mocsmpv01.us.ad.gannett.com
 ent-pocappki02.us.ad.gannett.com
 gpi-mocsmsus01.us.ad.gannett.com
 
+[d19_giadc_sun_0300]
+des-lcladdc01.us.ad.gannett.com 
+des-lcladdc02.us.ad.gannett.com 
+giadc-desaddc01.us.ad.gannett.com 
+giadc-iniaddc01.us.ad.gannett.com 
+GPC-DESAPRDBR01.us.ad.gannett.com 
+GPC-DESAPRDS03.us.ad.gannett.com 
+GPC-DESAPRDS04.us.ad.gannett.com 
+GPC-DESDCATOL01.us.ad.gannett.com 
+GPC-DESDFSF01A.us.ad.gannett.com 
+GPC-DESDFSF01B.us.ad.gannett.com 
+GPC-DESDFSNS01.us.ad.gannett.com 
+GPC-DESFS02.us.ad.gannett.com 
+GPC-DESFS03.us.ad.gannett.com 
+GPC-DESFS04.us.ad.gannett.com 
+GPC-DESFS05.us.ad.gannett.com 
+GPC-DESFS08.us.ad.gannett.com 
+gpc-desfsdps01.us.ad.gannett.com 
+GPC-DESSMDSM01.us.ad.gannett.com 
+GPC-DESSMDSM02.us.ad.gannett.com 
+gpc-dessmutil01.us.ad.gannett.com 
+gpc-dessmutil02.us.ad.gannett.com 
+gpc-deswbapi02
+gpc-deswbat01
+gpc-deswbat02
+gpc-deswbat03
+gpc-deswbat04
+GPC-INIAPRDBR01.us.ad.gannett.com 
+GPC-INIDCATOL01.atol-west.gannett.gci
+GPC-INIDFSF01B.us.ad.gannett.com
+GPC-INIDFSFDV1A.us.ad.gannett.com  
+GPC-INIDFSFDV1B.us.ad.gannett.com 
+GPC-INIDFSNS01.us.ad.gannett.com 
+GPC-INIFS03.us.ad.gannett.com 
+GPC-INIFS04.us.ad.gannett.com 
+GPC-INIFS05.us.ad.gannett.com 
+GPC-INIFS06.us.ad.gannett.com 
+GPC-INIFS07.us.ad.gannett.com 
+GPC-INIFS08.us.ad.gannett.com 
+GPC-INIFS09.us.ad.gannett.com 
+GPC-INIFSDPS01.us.ad.gannett.com 
+gpc-inismdsm01.us.ad.gannett.com 
+gpc-inismdsm02.us.ad.gannett.com 
+gpc-iniwbat03.atol-west.gannett.gci
+gpc-iniwbat04.atol-west.gannett.gci
+GPC-INIWFDPS01.us.ad.gannett.com 
+
 [d19_ent_sun_nr_0200]
 eng-docxnap71.us.ad.gannett.com
 eng-docxnap72.us.ad.gannett.com
@@ -1632,6 +1684,7 @@ gpc-inisqdb05.us.ad.gannett.com
 gpc-inisqdb06.us.ad.gannett.com
 gpc-inisqdb07.us.ad.gannett.com
 gpc-inisqrpt02.us.ad.gannett.com
+
 
 [d26_ent_dc_sat_0300]
 
