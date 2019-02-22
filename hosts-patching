@@ -90,7 +90,6 @@ d22_ent_dc_wed_0300
 d23_ent_thu_0400
 d23_ent_dc_thu_0300
 d24_ent_dc_fri_0300
-d25_ent_sat_0400
 d25_ent_dc_sat_0300
 d26_ent_nr_Sun_0300
 d26_ent_nr_Sun_0300
@@ -1689,7 +1688,3 @@ gpc-inisqdb05.us.ad.gannett.com
 gpc-inisqdb06.us.ad.gannett.com
 gpc-inisqdb07.us.ad.gannett.com
 gpc-inisqrpt02.us.ad.gannett.com
-
-
-[d26_ent_dc_sat_0300]
-
