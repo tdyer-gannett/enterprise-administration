@@ -90,7 +90,7 @@ d23_ent_thu_0400
 d23_ent_dc_thu_0300
 d24_ent_dc_fri_0300
 d25_ent_dc_sat_0300
-d26_ent_nr_Sun_0300
+d26_ent_nr_sun_0300
 
 [d4_eop_dev_0200]
 eop-dfpdvps01.us.ad.gannett.com
@@ -1675,7 +1675,7 @@ gvn-lcladdc01.us.ad.gannett.com
 kns-lcladdc01.us.ad.gannett.com
 rlc-aww2addc01.us.ad.gannett.com
 
-[d26_ent_nr_sat_0300]
+[d26_ent_nr_sun_0300]
 gpc-dessqdb04.us.ad.gannett.com
 gpc-dessqdb05.us.ad.gannett.com
 gpc-dessqdb06.us.ad.gannett.com
