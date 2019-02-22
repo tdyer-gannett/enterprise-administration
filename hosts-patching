@@ -1,6 +1,3 @@
-[local]
-localhost.
-
 [windows:children]
 d4_eop_dev_0200
 d4_st_dev_0300
@@ -1650,7 +1647,7 @@ ydr-lcladdc01.us.ad.gannett.com
 laf-lcladdc01.us.ad.gannett.com
 mgm-lcladdc01.us.ad.gannett.com
 
-[d24_ent_dc_thu_0300]
+[d24_ent_dc_fri_0300]
 aap-lcladdc01.us.ad.gannett.com
 asb-lcladdc01.us.ad.gannett.com
 bce-lcladdc01.us.ad.gannett.com
@@ -1680,8 +1677,6 @@ fnp-lcladdc01.us.ad.gannett.com
 gvn-lcladdc01.us.ad.gannett.com
 kns-lcladdc01.us.ad.gannett.com
 rlc-aww2addc01.us.ad.gannett.com
-
-[d25_ent_fri_0400]
 
 [d26_ent_nr_sat_0300]
 gpc-dessqdb04.us.ad.gannett.com
