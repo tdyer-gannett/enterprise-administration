@@ -93,10 +93,8 @@ d24_ent_fri_0400
 d24_ent_dc_fri_0300
 d25_ent_sat_0400
 d25_ent_dc_sat_0300
-d26_ent_nr_sat_0300
-d26_ent_dc_sat_0300
-
-
+d26_ent_nr_Sun_0300
+d26_ent_nr_Sun_0300
 
 [d4_eop_dev_0200]
 eop-dfpdvps01.us.ad.gannett.com
@@ -233,6 +231,10 @@ ent-vocdvwas01n.us.ad.gannett.com
 ent-vocdvwas02.us.ad.gannett.com
 ent-vocdvwas02n.us.ad.gannett.com
 gpc-mocdvpfdb01.us.ad.gannett.com
+Ent-docdevrdc01.us.ad.gannett.com
+Ent-docdevrdg01.us.ad.gannett.com
+Ent-docdevrds01.us.ad.gannett.com
+Ent-docdevrdw01.us.ad.gannett.com
 
 [d6_ecs_dev_0400]
 ecs-docabe01-b.us.ad.gannett.com
@@ -299,7 +301,7 @@ pni-doctstdl02.us.ad.gannett.com
 pni-doctstdl03.us.ad.gannett.com
 pni-doctstdl02.us.ad.gannett.com
 
-[day11_eopfield02_0200]
+[d11_eopfield02_0200]
 eop-aimps02.us.ad.gannett.com
 eop-arnps02.us.ad.gannett.com
 eop-berps02.us.ad.gannett.com
@@ -1512,6 +1514,7 @@ stc-lcladdc02
 tcl-lcladdc02
 tlh-lcladdc02
 sal-lcladdc02
+ent-mocadlds04
 
 [d23_ent_thu_0400]
 
