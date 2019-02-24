@@ -4,7 +4,9 @@
 
 - hosts: '{{ group }}'
   gather_facts: no
+  serial: 200
   tasks:
+ 
 
     - name: Set Facts
       set_fact:
