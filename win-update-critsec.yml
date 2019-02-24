@@ -18,7 +18,7 @@
       slack:
         token: "{{ slack_token }}"
         channel: #ansible
-        domain: "gannettdigital.slack.com"
+        domain: "usatnetwork-product.slack.com"
         username: "Enterprise-Ansible"
         icon_url: "{{ slack_icon_url }}"
         msg: "Playbook:   win-update-critsec.yml\nHost Group: {{ group }}\nFrom Host:  {{ cntr_hostname }}\nBy User:    {{ cntr_user }}\nRunning as: {{ ansible_user_id }}\n--------------\n{{ ansible_play_batch | join('\n') }}"
