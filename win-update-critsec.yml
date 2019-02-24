@@ -8,8 +8,14 @@
   gather_facts: yes
   serial: 200
   tasks:
+  
+ - name: Verify the Windows Update Service is running
+      win_service:
+        name: wuauserv
+        state: started
+      register: service_info
 
-  - name: Set Facts
+    - name: Set Facts
       set_fact:
         cntr_user: "{{ lookup('env','USER') }}"
         cntr_hostname: "{{ lookup('env','HOSTNAME') }}"
