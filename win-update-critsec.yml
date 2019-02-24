@@ -9,7 +9,7 @@
   serial: 200
   tasks:
   
- - name: Verify the Windows Update Service is running
+- name: Verify the Windows Update Service is running
       win_service:
         name: wuauserv
         state: started
