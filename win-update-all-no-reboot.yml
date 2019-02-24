@@ -7,7 +7,6 @@
   serial: 200
   tasks:
  
-
     - name: Set Facts
       set_fact:
         cntr_user: "{{ lookup('env','USER') }}"
