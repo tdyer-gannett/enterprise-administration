@@ -2,6 +2,7 @@
 d4_eop_dev_0200
 d4_st_dev_0300
 d4_bw_dev_0600
+d5_ap_dev_0600
 d6_ent_dev_0200
 d6_ent_dev_0300
 d6_ecs_dev_0400
@@ -160,6 +161,15 @@ ent-docapbw-d05.us.ad.gannett.com
 ent-docapbw-t01.us.ad.gannett.com
 ent-docapbw-t02.us.ad.gannett.com
 ent-docapbw-t03.us.ad.gannett.com
+
+d5_ap_dev_0600
+moc-wn00011261.us.ad.gannett.com
+moc-wn00011392.us.ad.gannett.com
+moc-wn00011412.us.ad.gannett.com
+moc-wn00011414.us.ad.gannett.com
+moc-wn00011438.us.ad.gannett.com
+phx-wn00011374.us.ad.gannett.com
+phx-wn00011439.us.ad.gannett.com
 
 [d6_ent_dev_0200]
 ent-mocdvaabr02.us.ad.gannett.com
