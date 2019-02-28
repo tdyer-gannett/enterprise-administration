@@ -30,6 +30,7 @@ d13_ent_mon_0500
 d14_ent_tue_0000
 d14_ent_tue_0100
 d14_ent_tue_0200
+d14_ent_tues_0200_rs
 d14_ent_tue_0300
 d14_ent_tue_0400
 d14_ent_tue_0500
@@ -709,6 +710,18 @@ ecs-mocadbest01.us.ad.gannett.com
 ecs-mocadbws01.us.ad.gannett.com
 ecs-mocxnadb21.us.ad.gannett.com
 ecs-mocxnin01.us.ad.gannett.com
+ecs-docadbcc01.us.ad.gannett.com
+ecs-docadbws01.us.ad.gannett.com
+ecs-docapcr01.us.ad.gannett.com
+ecs-docxnin02.us.ad.gannett.com
+ecs-mocadbcc01.us.ad.gannett.com
+ecs-mocadbeap02.us.ad.gannett.com
+ecs-mocadbeap07.us.ad.gannett.com
+ecs-mocadbest02.us.ad.gannett.com
+ecs-mocadbrs01.us.ad.gannett.com
+ecs-mocapcr01.us.ad.gannett.com
+ecs-mocxnadb22.us.ad.gannett.com
+ecs-mocxnin02.us.ad.gannett.com
 
 [d13_ent_mon_0500]
 eng-docngaux71.us.ad.gannett.com
@@ -772,6 +785,22 @@ ent-pocfsav01.us.ad.gannett.com
 vpc-bces01.us.ad.gannett.com
 usat-mocintweb2.us.ad.gannett.com
 usat-vocadv02.us.ad.gannett.com
+
+[d14_ent_tues_0200_rs]
+ecs-docxnadb22.us.ad.gannett.com
+ecs-docxnadb27.us.ad.gannett.com
+ecs-docxnadb32.us.ad.gannett.com
+ecs-docxnpgl12.us.ad.gannett.com
+ecs-docxnpgl17.us.ad.gannett.com
+ecs-mocadbbps02.us.ad.gannett.com
+ecs-mocadbbps07.us.ad.gannett.com
+ecs-mocadbbps11.us.ad.gannett.com
+ecs-mocadbbps12.us.ad.gannett.com
+ecs-mocadbbps18.us.ad.gannett.com
+ecs-mocxnadb27.us.ad.gannett.com
+ecs-mocxnadb32.us.ad.gannett.com
+ecs-mocxnpgl12.us.ad.gannett.com
+ecs-mocxnpgl17.us.ad.gannett.com
 
 [d14_giadc_tue_0300]
 gpc-desapas02.us.ad.gannett.com
