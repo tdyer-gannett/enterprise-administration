@@ -23,6 +23,7 @@ d12_giadc_g1_sun_0200
 d12_ent_sun_1800
 d13_ent_mon_0100
 d13_ent_mon_0200
+d13_ent_mon_0200_rs
 d13_ent_mon_0300
 d13_ent_mon_0400
 d13_ent_mon_0500
@@ -647,6 +648,19 @@ gpc-iniwbati04.us.ad.gannett.com
 ini-lcladdc04.us.ad.gannett.com
 ini-mocaputil01.us.ad.gannett.com
 
+[d13_ent_mon_0200_rs]
+ecs-docxnadb26.us.ad.gannett.com
+ecs-docxnpgl11.us.ad.gannett.com
+ecs-docxnpgl16.us.ad.gannett.com
+ecs-mocadbbps06.us.ad.gannett.com
+ecs-mocadbbps13.us.ad.gannett.com
+ecs-mocadbbps16.us.ad.gannett.com
+ecs-mocadbbps17.us.ad.gannett.com
+ecs-mocxnadb26.us.ad.gannett.com
+ecs-mocxnadb31.us.ad.gannett.com
+ecs-mocxnpgl11.us.ad.gannett.com
+ecs-mocxnpgl16.us.ad.gannett.com
+
 [d13_ent_mon_0300]
 csc-grelabgax01.us.ad.gannett.com
 csc-grelabgax02.us.ad.gannett.com
@@ -688,6 +702,13 @@ ent-mocspweb01.us.ad.gannett.com
 ent-mocspwfs01.us.ad.gannett.com
 ent-mocwbbpc03.us.ad.gannett.com
 ent-mocwbgps01.us.ad.gannett.com
+ecs-docadbrs01.us.ad.gannett.com
+ecs-mocadbeap06.us.ad.gannett.com
+ecs-mocadbeap11.us.ad.gannett.com
+ecs-mocadbest01.us.ad.gannett.com
+ecs-mocadbws01.us.ad.gannett.com
+ecs-mocxnadb21.us.ad.gannett.com
+ecs-mocxnin01.us.ad.gannett.com
 
 [d13_ent_mon_0500]
 eng-docngaux71.us.ad.gannett.com
