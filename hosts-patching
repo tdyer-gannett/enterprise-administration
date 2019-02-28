@@ -60,6 +60,7 @@ d15_pni_wed_1100
 d16_ent_thu_0000
 d16_ent_thu_0100
 d16_ent_thu_0200
+d16_ent_thu_0200_rs
 d16_ent_thu_0300
 d16_ent_thu_0400
 d16_ent_thu_0500
@@ -166,7 +167,7 @@ ent-docapbw-t01.us.ad.gannett.com
 ent-docapbw-t02.us.ad.gannett.com
 ent-docapbw-t03.us.ad.gannett.com
 
-d5_ap_dev_0600
+[d5_ap_dev_0600]
 moc-wn00011261.us.ad.gannett.com
 moc-wn00011392.us.ad.gannett.com
 moc-wn00011412.us.ad.gannett.com
