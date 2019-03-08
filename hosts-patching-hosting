@@ -1,16 +1,15 @@
-windows:children]
+[windows:children]
 d6_gdp_sg1_0300
-
 d20_ngdp_pdg1_0300
 d21_ngdp_pdg2_0300
 d22_gdp_pdg2_0300
-d22_ngdp_pdg2_0300
 d22_gdp_pdg3_0300
-d23_ngdp_pdg2_0300
+d22_ngdp_pdg3_0300
+d23_ngdp_pdg4_0300
 d24_gdp_pdg4_0300
 d24_gdp_pdg5_0300
 d24_gdp_pdg6_0300
-d24_ngdp_pdg2_0300
+d24_ngdp_pdg5_0300
 
 [d6_gdp_sg1_0300]
 moc-wn00009593.gmti.gbahn.net
